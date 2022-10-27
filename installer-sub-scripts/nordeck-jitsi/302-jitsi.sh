@@ -201,6 +201,26 @@ apt-get $APT_PROXY -y install luarocks liblua5.2-dev
 apt-get $APT_PROXY -y install gcc git
 EOS
 
+# jitsi-meet-tokens secret
+APP_ID="jitsi-$RANDOM"
+APP_SECRET="$(openssl rand -hex 20)"
+
+echo APP_ID="$APP_ID" >> $INSTALLER/000-source
+echo APP_SECRET="$APP_SECRET" >> $INSTALLER/000-source
+
+# jitsi-meet-tokens
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+export DEBIAN_FRONTEND=noninteractive
+debconf-set-selections <<< \
+    'jitsi-meet-tokens jitsi-meet-tokens/appid string $APP_ID'
+debconf-set-selections <<< \
+    'jitsi-meet-tokens jitsi-meet-tokens/appsecret password $APP_SECRET'
+
+apt-get $APT_PROXY -y --allow-change-held-packages install jitsi-meet-tokens
+apt-mark hold jitsi-meet-tokens
+EOS
+
 # ------------------------------------------------------------------------------
 # EXTERNAL IP
 # ------------------------------------------------------------------------------
