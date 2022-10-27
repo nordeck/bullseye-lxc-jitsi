@@ -135,7 +135,8 @@ lxc-attach -n $MACH -- zsh <<EOS
 set -e
 wget -T 30 -qO /tmp/google-chrome.gpg.key \
     https://dl.google.com/linux/linux_signing_key.pub
-apt-key add /tmp/google-chrome.gpg.key
+cat /tmp/google-chrome.gpg.key | gpg --dearmor \
+    >/usr/share/keyrings/google-chrome.gpg
 apt-get $APT_PROXY update
 EOS
 
@@ -144,6 +145,16 @@ set -e
 export DEBIAN_FRONTEND=noninteractive
 apt-get $APT_PROXY -y --install-recommends install google-chrome-stable
 apt-mark hold google-chrome-stable
+EOS
+
+# fix overwritten google-chrome sources list by recopying it
+# google tries to add its key as a globally trusted one, limit its permissions
+cp etc/apt/sources.list.d/google-chrome.list $ROOTFS/etc/apt/sources.list.d/
+
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+rm -f /etc/apt/trusted.gpg.d/google-chrome.*
+apt-get $APT_PROXY update
 EOS
 
 # chromedriver
