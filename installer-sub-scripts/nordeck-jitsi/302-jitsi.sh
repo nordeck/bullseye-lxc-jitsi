@@ -266,6 +266,7 @@ lxc-attach -n $MACH -- systemctl daemon-reload
 # ------------------------------------------------------------------------------
 cp $ROOTFS/etc/turnserver.conf $ROOTFS/etc/turnserver.conf.org
 
+# add the custom config
 cat etc/turnserver.custom.conf >>$ROOTFS/etc/turnserver.conf
 sed -i "s/___PUBLIC_IP___/$IP/" $ROOTFS/etc/turnserver.conf
 
@@ -309,6 +310,7 @@ lxc-attach -n $MACH -- systemctl restart prosody.service
 cp $ROOTFS/etc/jitsi/jicofo/config $ROOTFS/etc/jitsi/jicofo/config.org
 cp $ROOTFS/etc/jitsi/jicofo/jicofo.conf $ROOTFS/etc/jitsi/jicofo/jicofo.conf.org
 
+# add the custom config
 cat etc/jitsi/jicofo/config.custom >>$ROOTFS/etc/jitsi/jicofo/config
 
 lxc-attach -n $MACH -- zsh <<EOS
@@ -376,12 +378,8 @@ VERSION=\$(apt-cache policy jitsi-videobridge2 | grep Installed | rev | \
 echo \$VERSION > /root/meta/jvb-version
 EOS
 
-# default memory limit
-sed -i '/^JVB_SECRET=/a \
-\
-# set the maximum memory for the JVB daemon\
-VIDEOBRIDGE_MAX_MEMORY=3072m' \
-    $ROOTFS/etc/jitsi/videobridge/config
+# add the custom config
+cat etc/jitsi/videobridge/config.custom >>$ROOTFS/etc/jitsi/videobridge/config
 
 # colibri
 lxc-attach -n $MACH -- zsh <<EOS
@@ -393,10 +391,12 @@ hocon -f /etc/jitsi/videobridge/jvb.conf \
 EOS
 
 # NAT harvester. these will be needed if this is an in-house server.
-cat >>$ROOTFS/etc/jitsi/videobridge/sip-communicator.properties <<EOF
-#org.ice4j.ice.harvest.NAT_HARVESTER_LOCAL_ADDRESS=$IP
-#org.ice4j.ice.harvest.NAT_HARVESTER_PUBLIC_ADDRESS=$REMOTE_IP
-EOF
+cat etc/jitsi/videobridge/sip-communicator.custom.properties \
+    >>$ROOTFS/etc/jitsi/videobridge/sip-communicator.properties
+sed -i "s/___PUBLIC_IP___/$IP/" \
+    $ROOTFS/etc/jitsi/videobridge/sip-communicator.properties
+sed -i "s/___REMOTE_IP___/$REMOTE_IP/" \
+    $ROOTFS/etc/jitsi/videobridge/sip-communicator.properties
 
 if [[ "$EXTERNAL_IP" != "$REMOTE_IP" ]]; then
     cat >>$ROOTFS/etc/jitsi/videobridge/sip-communicator.properties <<EOF
