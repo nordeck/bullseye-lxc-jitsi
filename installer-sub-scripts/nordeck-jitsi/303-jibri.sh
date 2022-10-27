@@ -216,7 +216,9 @@ update-ca-certificates
 EOS
 
 # snd_aloop module
-[ -z "$(egrep '^snd_aloop' /etc/modules)" ] && echo snd_aloop >>/etc/modules
+[ -z "$(egrep '^snd_aloop' /etc/modules)" ] && \
+    cat $MACH_JITSI_HOST/etc/modules.custom.alsa >>/etc/modules
+
 cp $MACH_JITSI_HOST/etc/modprobe.d/alsa-loopback.conf /etc/modprobe.d/
 rmmod -f snd_aloop || true
 modprobe snd_aloop || true
