@@ -227,9 +227,12 @@ cp /root/.ssh/jms.pub $ROOTFS/usr/share/jitsi-meet/static/
 # SYSTEM CONFIGURATION
 # ------------------------------------------------------------------------------
 # certificates
-cp /root/nordeck-certs/nordeck-CA.pem $ROOTFS/usr/local/share/ca-certificates/jms-CA.crt
-cp /root/nordeck-certs/nordeck-CA.pem $ROOTFS/usr/share/jitsi-meet/static/jms-CA.crt
-cp /root/nordeck-certs/nordeck-jitsi.key $ROOTFS/etc/ssl/private/nordeck-cert.key
+cp /root/nordeck-certs/nordeck-CA.pem \
+    $ROOTFS/usr/local/share/ca-certificates/jms-CA.crt
+cp /root/nordeck-certs/nordeck-CA.pem \
+    $ROOTFS/usr/share/jitsi-meet/static/jms-CA.crt
+cp /root/nordeck-certs/nordeck-jitsi.key \
+    $ROOTFS/etc/ssl/private/nordeck-cert.key
 cp /root/nordeck-certs/nordeck-jitsi.pem $ROOTFS/etc/ssl/certs/nordeck-cert.pem
 
 lxc-attach -n $MACH -- zsh <<EOS
@@ -439,6 +442,7 @@ done
 # ------------------------------------------------------------------------------
 # jitsi tools
 #cp $MACHINES/nordeck-jitsi-host/usr/local/sbin/add-jvb-node /usr/local/sbin/
-cp $MACHINES/nordeck-jitsi-host/usr/local/sbin/set-letsencrypt-cert /usr/local/sbin/
+cp $MACHINES/nordeck-jitsi-host/usr/local/sbin/set-letsencrypt-cert \
+    /usr/local/sbin/
 #chmod 744 /usr/local/sbin/add-jvb-node
 chmod 744 /usr/local/sbin/set-letsencrypt-cert
