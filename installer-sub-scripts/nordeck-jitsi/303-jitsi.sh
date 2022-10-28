@@ -222,6 +222,29 @@ apt-mark hold jitsi-meet-tokens
 EOS
 
 # ------------------------------------------------------------------------------
+# META
+# ------------------------------------------------------------------------------
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+mkdir -p /root/meta
+EOS
+
+# jvb
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+VERSION=\$(apt-cache policy jitsi-videobridge2 | grep Installed | rev | \
+    cut -d' ' -f1 | rev)
+echo \$VERSION > /root/meta/jvb-version
+EOS
+
+# jibri
+lxc-attach -n $MATCH -- zsh <<EOS
+set -e
+VERSION=\$(apt-cache policy jibri | grep Candidate | rev | cut -d' ' -f1 | rev)
+echo \$VERSION > /root/meta/jibri-version
+EOS
+
+# ------------------------------------------------------------------------------
 # JMS SSH KEY
 # ------------------------------------------------------------------------------
 # create ssh key if not exists
@@ -438,15 +461,6 @@ cp $ROOTFS/etc/jitsi/videobridge/jvb.conf \
     $ROOTFS/etc/jitsi/videobridge/jvb.conf.org
 cp $ROOTFS/etc/jitsi/videobridge/sip-communicator.properties \
     $ROOTFS/etc/jitsi/videobridge/sip-communicator.properties.org
-
-# meta
-lxc-attach -n $MACH -- zsh <<EOS
-set -e
-mkdir -p /root/meta
-VERSION=\$(apt-cache policy jitsi-videobridge2 | grep Installed | rev | \
-    cut -d' ' -f1 | rev)
-echo \$VERSION > /root/meta/jvb-version
-EOS
 
 # add the custom config
 cat etc/jitsi/videobridge/config.custom >>$ROOTFS/etc/jitsi/videobridge/config

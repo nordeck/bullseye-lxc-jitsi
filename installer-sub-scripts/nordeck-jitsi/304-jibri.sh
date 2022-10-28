@@ -228,14 +228,6 @@ sed -i "/^\s*\/\/ Recording$/a \
 \    hiddenDomain: 'recorder.$JITSI_FQDN'," \
     $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 
-# meta
-lxc-attach -n nordeck-jitsi -- zsh <<EOS
-set -e
-mkdir -p /root/meta
-VERSION=\$(apt-cache policy jibri | grep Candidate | rev | cut -d' ' -f1 | rev)
-echo \$VERSION > /root/meta/jibri-version
-EOS
-
 # ------------------------------------------------------------------------------
 # JIBRI
 # ------------------------------------------------------------------------------
