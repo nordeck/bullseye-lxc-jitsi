@@ -214,22 +214,6 @@ cp etc/opt/chrome/policies/managed/nordeck-policies.json \
 # JITSI CUSTOMIZATION FOR JIBRI
 # ------------------------------------------------------------------------------
 
-# jicofo config
-lxc-attach -n nordeck-jitsi -- zsh <<EOS
-set -e
-hocon -f /etc/jitsi/jicofo/jicofo.conf \
-    set jicofo.jibri-sip.brewery-jid "\"SipBrewery@internal.auth.$JITSI_FQDN\""
-hocon -f /etc/jitsi/jicofo/jicofo.conf \
-    set jicofo.jibri.brewery-jid "\"JibriBrewery@internal.auth.$JITSI_FQDN\""
-hocon -f /etc/jitsi/jicofo/jicofo.conf \
-    set jicofo.jibri.pending-timeout "90 seconds"
-EOS
-
-lxc-attach -n nordeck-jitsi -- zsh <<EOS
-set -e
-systemctl restart jicofo.service
-EOS
-
 # jitsi-meet config
 sed -i "/^\s*\/\/ Recording$/a \
 \\

@@ -380,7 +380,13 @@ cat etc/jitsi/jicofo/config.custom >>$ROOTFS/etc/jitsi/jicofo/config
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 hocon -f /etc/jitsi/jicofo/jicofo.conf \
-    set jicofo.conference.enable-auto-owner true
+    set jicofo.conference.enable-auto-owner false
+hocon -f /etc/jitsi/jicofo/jicofo.conf \
+    set jicofo.jibri-sip.brewery-jid "\"SipBrewery@internal.auth.$JITSI_FQDN\""
+hocon -f /etc/jitsi/jicofo/jicofo.conf \
+    set jicofo.jibri.brewery-jid "\"JibriBrewery@internal.auth.$JITSI_FQDN\""
+hocon -f /etc/jitsi/jicofo/jicofo.conf \
+    set jicofo.jibri.pending-timeout "90 seconds"
 EOS
 
 lxc-attach -n $MACH -- systemctl restart jicofo.service
