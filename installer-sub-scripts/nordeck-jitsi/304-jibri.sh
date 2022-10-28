@@ -206,15 +206,6 @@ set -e
 update-ca-certificates
 EOS
 
-# snd_aloop module
-[ -z "$(egrep '^snd_aloop' /etc/modules)" ] && \
-    cat $MACH_JITSI_HOST/etc/modules.custom.alsa >>/etc/modules
-
-cp $MACH_JITSI_HOST/etc/modprobe.d/alsa-loopback.conf /etc/modprobe.d/
-rmmod -f snd_aloop || true
-modprobe snd_aloop || true
-[[ "$DONT_CHECK_SND_ALOOP" = true ]] || [[ -n "$(lsmod | ack snd_aloop)" ]]
-
 # google chrome managed policies
 mkdir -p $ROOTFS/etc/opt/chrome/policies/managed
 cp etc/opt/chrome/policies/managed/nordeck-policies.json \
