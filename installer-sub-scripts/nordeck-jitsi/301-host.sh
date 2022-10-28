@@ -20,7 +20,6 @@ cd $MACHINES/$MACH
 # ------------------------------------------------------------------------------
 export DEBIAN_FRONTEND=noninteractive
 
-# jibri related packages
 apt-get $APT_PROXY -y install kmod alsa-utils
 
 # ------------------------------------------------------------------------------
@@ -52,3 +51,14 @@ chmod 744 /usr/local/sbin/set-letsencrypt-cert
 
 #cp usr/local/sbin/add-jvb-node /usr/local/sbin/
 #chmod 744 /usr/local/sbin/add-jvb-node
+#cp usr/local/sbin/add-jibri-node /usr/local/sbin/
+#chmod 744 /usr/local/sbin/add-jibri-node
+#cp usr/local/sbin/add-sip-node /usr/local/sbin/
+#chmod 744 /usr/local/sbin/add-sip-node
+
+# jibri-ephemeral-container service
+cp usr/local/sbin/jibri-ephemeral-start /usr/local/sbin/
+chmod 744 /usr/local/sbin/jibri-ephemeral-start
+cp usr/local/sbin/jibri-ephemeral-stop /usr/local/sbin/
+chmod 744 /usr/local/sbin/jibri-ephemeral-stop
+cp etc/systemd/system/jibri-ephemeral-container.service /etc/systemd/system/

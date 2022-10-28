@@ -12,7 +12,6 @@ cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
 JITSI_ROOTFS="/var/lib/lxc/nordeck-jitsi/rootfs"
-MACH_JITSI_HOST="$MACHINES/nordeck-jitsi-host"
 MACH_JITSI="$MACHINES/nordeck-jitsi"
 
 # ------------------------------------------------------------------------------
@@ -426,23 +425,8 @@ lxc-wait -n $MACH -s STOPPED
 find $ROOTFS/var/log/jitsi/jibri -type f -delete
 
 # ------------------------------------------------------------------------------
-# HOST CUSTOMIZATION FOR JIBRI AND JIBRI-SIP
+# ON HOST
 # ------------------------------------------------------------------------------
-# jitsi tools
-cp $MACH_JITSI_HOST/usr/local/sbin/add-jibri-node /usr/local/sbin/
-chmod 744 /usr/local/sbin/add-jibri-node
-cp $MACH_JITSI_HOST/usr/local/sbin/add-sip-node /usr/local/sbin/
-chmod 744 /usr/local/sbin/add-sip-node
-
-# jibri-ephemeral-container service
-cp $MACH_JITSI_HOST/usr/local/sbin/jibri-ephemeral-start /usr/local/sbin/
-cp $MACH_JITSI_HOST/usr/local/sbin/jibri-ephemeral-stop /usr/local/sbin/
-chmod 744 /usr/local/sbin/jibri-ephemeral-start
-chmod 744 /usr/local/sbin/jibri-ephemeral-stop
-
-cp $MACH_JITSI_HOST/etc/systemd/system/jibri-ephemeral-container.service \
-    /etc/systemd/system/
-
 systemctl daemon-reload
 systemctl enable jibri-ephemeral-container.service
 systemctl start jibri-ephemeral-container.service
