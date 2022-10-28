@@ -294,18 +294,6 @@ echo \$VERSION > /root/meta/jibri-version
 EOS
 
 # ------------------------------------------------------------------------------
-# JIBRI SSH KEY
-# ------------------------------------------------------------------------------
-# create ssh key if not exists
-if [[ ! -f /root/.ssh/jibri ]] || [[ ! -f /root/.ssh/jibri.pub ]]; then
-    rm -f /root/.ssh/jibri{,.pub}
-    ssh-keygen -qP '' -t rsa -b 4096 -f /root/.ssh/jibri
-fi
-
-# copy the public key to a downloadable place
-cp /root/.ssh/jibri.pub $JITSI_ROOTFS/usr/share/jitsi-meet/static/
-
-# ------------------------------------------------------------------------------
 # JIBRI
 # ------------------------------------------------------------------------------
 cp $ROOTFS/etc/jitsi/jibri/xorg-video-dummy.conf \
