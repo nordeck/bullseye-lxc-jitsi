@@ -12,6 +12,7 @@ cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
 JITSI_ROOTFS="/var/lib/lxc/nordeck-jitsi/rootfs"
+JIBRI_VERSION=$(cat $JITSI_ROOTFS/root/meta/jibri-version)
 
 # ------------------------------------------------------------------------------
 # INIT
@@ -172,7 +173,7 @@ lxc-attach -n $MACH -- zsh <<EOS
 set -e
 export DEBIAN_FRONTEND=noninteractive
 apt-get $APT_PROXY -y install openjdk-11-jre-headless
-apt-get $APT_PROXY -y install jibri
+apt-get $APT_PROXY -y install jibri=$JIBRI_VERSION
 apt-mark hold jibri
 EOS
 
@@ -214,14 +215,6 @@ cp etc/opt/chrome/policies/managed/nordeck-policies.json \
 # ------------------------------------------------------------------------------
 cp $ROOTFS/etc/jitsi/jibri/xorg-video-dummy.conf \
     $ROOTFS/etc/jitsi/jibri/xorg-video-dummy.conf.org
-
-# meta
-lxc-attach -n $MACH -- zsh <<EOS
-set -e
-mkdir -p /root/meta
-VERSION=\$(apt-cache policy jibri | grep Installed | rev | cut -d' ' -f1 | rev)
-echo \$VERSION > /root/meta/jibri-version
-EOS
 
 # jibri groups
 lxc-attach -n $MACH -- zsh <<EOS
