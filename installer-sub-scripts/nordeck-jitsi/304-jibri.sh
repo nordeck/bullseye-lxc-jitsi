@@ -296,9 +296,6 @@ EOS
 # ------------------------------------------------------------------------------
 # JIBRI SSH KEY
 # ------------------------------------------------------------------------------
-mkdir -p /root/.ssh
-chmod 700 /root/.ssh
-
 # create ssh key if not exists
 if [[ ! -f /root/.ssh/jibri ]] || [[ ! -f /root/.ssh/jibri.pub ]]; then
     rm -f /root/.ssh/jibri{,.pub}
