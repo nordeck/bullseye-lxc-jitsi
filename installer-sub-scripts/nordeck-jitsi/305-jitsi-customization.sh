@@ -21,6 +21,22 @@ echo
 echo "------------------- JITSI CUSTOMIZATION -------------------"
 
 # ------------------------------------------------------------------------------
+# CONFIG.JS
+# ------------------------------------------------------------------------------
+sed -i "/^\s*\/\/ Recording$/a \
+\\
+\n\
+\    recordingService: {\n\
+\        enabled: true,\n\
+\        sharingEnabled: true,\n\
+\        hideStorageWarning: false,\n\
+\    },\n\
+\n\
+\    liveStreamingEnabled: true,\n\
+\    hiddenDomain: 'recorder.$JITSI_FQDN'," \
+    $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
+
+# ------------------------------------------------------------------------------
 # JITSI-CUSTOMIZATION
 # ------------------------------------------------------------------------------
 FOLDER="/root/jitsi-customization"
