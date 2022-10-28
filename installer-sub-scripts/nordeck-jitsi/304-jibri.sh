@@ -211,24 +211,6 @@ cp etc/opt/chrome/policies/managed/nordeck-policies.json \
     $ROOTFS/etc/opt/chrome/policies/managed/
 
 # ------------------------------------------------------------------------------
-# JITSI CUSTOMIZATION FOR JIBRI
-# ------------------------------------------------------------------------------
-
-# jitsi-meet config
-sed -i "/^\s*\/\/ Recording$/a \
-\\
-\n\
-\    recordingService: {\n\
-\        enabled: true,\n\
-\        sharingEnabled: true,\n\
-\        hideStorageWarning: false,\n\
-\    },\n\
-\n\
-\    liveStreamingEnabled: true,\n\
-\    hiddenDomain: 'recorder.$JITSI_FQDN'," \
-    $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
-
-# ------------------------------------------------------------------------------
 # JIBRI
 # ------------------------------------------------------------------------------
 cp $ROOTFS/etc/jitsi/jibri/xorg-video-dummy.conf \

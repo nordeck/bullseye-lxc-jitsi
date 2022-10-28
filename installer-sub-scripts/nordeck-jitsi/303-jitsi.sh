@@ -496,6 +496,20 @@ lxc-attach -n $MACH -- systemctl restart jitsi-videobridge2.service
 # ------------------------------------------------------------------------------
 cp $JITSI_MEET_CONFIG $JITSI_MEET_CONFIG.org
 
+# jitsi-meet config
+sed -i "/^\s*\/\/ Recording$/a \
+\\
+\n\
+\    recordingService: {\n\
+\        enabled: true,\n\
+\        sharingEnabled: true,\n\
+\        hideStorageWarning: false,\n\
+\    },\n\
+\n\
+\    liveStreamingEnabled: true,\n\
+\    hiddenDomain: 'recorder.$JITSI_FQDN'," \
+    $ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
+
 # ------------------------------------------------------------------------------
 # INTERFACE_CONFIG.JS
 # ------------------------------------------------------------------------------
