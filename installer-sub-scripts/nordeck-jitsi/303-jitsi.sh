@@ -224,10 +224,6 @@ EOS
 # ------------------------------------------------------------------------------
 # JMS SSH KEY
 # ------------------------------------------------------------------------------
-mkdir -p /root/.ssh
-chmod 700 /root/.ssh
-cp $MACHINES/nordeck-jitsi-host/root/.ssh/jms-config /root/.ssh/
-
 # create ssh key if not exists
 if [[ ! -f /root/.ssh/jms ]] || [[ ! -f /root/.ssh/jms.pub ]]; then
     rm -f /root/.ssh/jms{,.pub}
@@ -444,13 +440,3 @@ for i in $(seq 0 9); do
     lxc-attach -n $MACH -- ping -c1 host.loc && break || true
     sleep 1
 done
-
-# ------------------------------------------------------------------------------
-# HOST CUSTOMIZATION FOR JITSI
-# ------------------------------------------------------------------------------
-# jitsi tools
-#cp $MACHINES/nordeck-jitsi-host/usr/local/sbin/add-jvb-node /usr/local/sbin/
-cp $MACHINES/nordeck-jitsi-host/usr/local/sbin/set-letsencrypt-cert \
-    /usr/local/sbin/
-#chmod 744 /usr/local/sbin/add-jvb-node
-chmod 744 /usr/local/sbin/set-letsencrypt-cert

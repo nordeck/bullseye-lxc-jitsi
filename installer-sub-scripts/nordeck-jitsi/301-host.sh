@@ -22,3 +22,20 @@ export DEBIAN_FRONTEND=noninteractive
 
 # jibri related packages
 apt-get $APT_PROXY -y install kmod alsa-utils
+
+# ------------------------------------------------------------------------------
+# SSH FOLDER
+# ------------------------------------------------------------------------------
+mkdir -p /root/.ssh
+chmod 700 /root/.ssh
+
+cp root/.ssh/jms-config /root/.ssh/
+
+# ------------------------------------------------------------------------------
+# TOOLS
+# ------------------------------------------------------------------------------
+cp usr/local/sbin/set-letsencrypt-cert /usr/local/sbin/
+chmod 744 /usr/local/sbin/set-letsencrypt-cert
+
+#cp usr/local/sbin/add-jvb-node /usr/local/sbin/
+#chmod 744 /usr/local/sbin/add-jvb-node
