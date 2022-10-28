@@ -12,7 +12,6 @@ cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
 JITSI_ROOTFS="/var/lib/lxc/nordeck-jitsi/rootfs"
-MACH_JITSI="$MACHINES/nordeck-jitsi"
 
 # ------------------------------------------------------------------------------
 # INIT
