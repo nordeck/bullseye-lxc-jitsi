@@ -14,3 +14,11 @@ cd $MACHINES/$MACH
 # INIT
 # ------------------------------------------------------------------------------
 [[ "$DONT_RUN_JITSI_HOST" = true ]] && exit
+
+# ------------------------------------------------------------------------------
+# PACKAGES
+# ------------------------------------------------------------------------------
+export DEBIAN_FRONTEND=noninteractive
+
+# jibri related packages
+apt-get $APT_PROXY -y install kmod alsa-utils
