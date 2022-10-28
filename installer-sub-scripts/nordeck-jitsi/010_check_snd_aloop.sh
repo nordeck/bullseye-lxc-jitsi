@@ -25,11 +25,13 @@ Probably it is "linux-image-$ARCH" for your case.
 
 EOF
 
-    [ "$IS_IN_LXC" = true ] && cat <<EOF
+    if [ "$IS_IN_LXC" = true ]; then
+        cat <<EOF
 If this is a container, please load the snd_aloop module to the host
 permanently
 
 EOF
+    fi
 
     false
 fi
