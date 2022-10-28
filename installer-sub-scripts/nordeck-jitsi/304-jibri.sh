@@ -213,47 +213,6 @@ cp etc/opt/chrome/policies/managed/nordeck-policies.json \
 # ------------------------------------------------------------------------------
 # JITSI CUSTOMIZATION FOR JIBRI
 # ------------------------------------------------------------------------------
-# prosody config (recorder)
-cp $MACH_JITSI/etc/prosody/conf.avail/recorder.cfg.lua \
-   $JITSI_ROOTFS/etc/prosody/conf.avail/recorder.$JITSI_FQDN.cfg.lua
-sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" \
-    $JITSI_ROOTFS/etc/prosody/conf.avail/recorder.$JITSI_FQDN.cfg.lua
-ln -s ../conf.avail/recorder.$JITSI_FQDN.cfg.lua \
-    $JITSI_ROOTFS/etc/prosody/conf.d/
-
-# prosody config (sip)
-cp $MACH_JITSI/etc/prosody/conf.avail/sip.cfg.lua \
-   $JITSI_ROOTFS/etc/prosody/conf.avail/sip.$JITSI_FQDN.cfg.lua
-sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" \
-    $JITSI_ROOTFS/etc/prosody/conf.avail/sip.$JITSI_FQDN.cfg.lua
-ln -s ../conf.avail/sip.$JITSI_FQDN.cfg.lua \
-    $JITSI_ROOTFS/etc/prosody/conf.d/
-
-# add recorder and sip accounts into admins list
-sed -i -r "0,/^\s*admins/ s/(^\s*admins).*/\1 = { \
-\"focus@auth.$JITSI_FQDN\", \
-\"recorder@recorder.$JITSI_FQDN\", \
-\"sip@sip.$JITSI_FQDN\" }/" \
-    $JITSI_ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua
-
-lxc-attach -n nordeck-jitsi -- zsh <<EOS
-set -e
-systemctl restart prosody.service
-EOS
-
-# prosody register
-PASSWD1=$(openssl rand -hex 20)
-PASSWD2=$(openssl rand -hex 20)
-
-lxc-attach -n nordeck-jitsi -- zsh <<EOS
-set -e
-prosodyctl unregister jibri auth.$JITSI_FQDN || true
-prosodyctl register jibri auth.$JITSI_FQDN $PASSWD1
-prosodyctl unregister recorder recorder.$JITSI_FQDN || true
-prosodyctl register recorder recorder.$JITSI_FQDN $PASSWD2
-prosodyctl unregister sip sip.$JITSI_FQDN || true
-prosodyctl register sip sip.$JITSI_FQDN $PASSWD2
-EOS
 
 # jicofo config
 lxc-attach -n nordeck-jitsi -- zsh <<EOS
