@@ -73,10 +73,10 @@ The `JMS` server contains:
 Create a deployment key for each customer
 
 ```bash
-ssh-keygen -t rsa -b 4096 -f jitsi-deploy
+ssh-keygen -t rsa -b 4096 -f jitsi-deploy-customer
 ```
 
-Add the content of `jitsi-deploy.pub` as a deployment key on `GitHub`.
+Add the content of `jitsi-deploy-customer.pub` as a deployment key on `GitHub`.
 
 ![deployment key](docs/images/deployment_key.png)
 
@@ -111,7 +111,7 @@ Copy the private part of the deployment key into `/root/.ssh/` folder. Its name
 must be `deploy.key`
 
 ```bash
-cp jitsi-deploy /root/.ssh/deploy.key
+cp jitsi-deploy-customer /root/.ssh/deploy.key
 chmod 600 /root/.ssh/deploy.key
 ```
 
