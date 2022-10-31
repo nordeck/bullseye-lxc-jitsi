@@ -65,7 +65,7 @@ The `JMS` server contains:
   _If there are additional `JVBs` or `Jibris` which access `JMS` through the
   public IP_
 
-- `TCP/10000`\
+- `UDP/10000`\
   _If there is an enabled `JVB` on `JMS`_
 
 #### Creating the deployment key
