@@ -39,7 +39,7 @@ sed -i "/^\s*\/\/ Recording$/a \
 
 # dial-plan
 if [[ "$DONT_RUN_SIP_DIAL_PLAN" != true ]]; then
-    sed -i "/#var config =/a \
+    sed -i "/^var config =/a \
 \\
 \n\
 \    peopleSearchQueryTypes: ['conferenceRooms'],\n\
