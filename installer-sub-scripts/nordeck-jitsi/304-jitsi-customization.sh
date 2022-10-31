@@ -44,7 +44,7 @@ sed -i "/^\s*\/\/ Recording$/a \
     $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 
 # ------------------------------------------------------------------------------
-# JITSI-CUSTOMIZATION
+# CUSTOMIZATION FOLDER & TOOLS
 # ------------------------------------------------------------------------------
 FOLDER="/root/jitsi-customization"
 
