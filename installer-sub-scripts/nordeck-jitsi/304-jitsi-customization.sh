@@ -33,7 +33,6 @@ fi
 
 # recording
 sed -i "/^\s*\/\/ Recording$/a \
-\n\
 \    recordingService: {\n\
 \        enabled: true,\n\
 \        sharingEnabled: true,\n\
