@@ -157,6 +157,8 @@ EOS
 
 sed -i "/HOSTNAME/ s~\".*\"~\"0.0.0.0\"~" \
     $ROOTFS/home/sip-dial-plan/app/config.ts
+sed -i "/TOKEN_SECRET/ s~\".*\"~\"$APP_SECRET\"~" \
+    $ROOTFS/home/sip-dial-plan/app/config.ts
 
 # systemd
 cp etc/systemd/system/sip-dial-plan.service $ROOTFS/etc/systemd/system/
