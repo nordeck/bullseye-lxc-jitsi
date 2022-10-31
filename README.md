@@ -2,6 +2,14 @@
 
 `Jitsi` cluster based on `LXC`.
 
+- [JMS (Jitsi Meet Server)](#jms-jitsi-meet-server)
+  - [Prerequisites](#prerequisites)
+    - [Supported distribution](#supported-distribution)
+    - [Server specifications](#server-specifications)
+    - [DNS records](#dns-records)
+    - [Public ports](#public-ports)
+    - [Deployment key](#deployment-key)
+
 ## JMS (Jitsi Meet Server)
 
 The `JMS` server contains:
