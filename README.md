@@ -9,6 +9,12 @@
     - [DNS records](#dns-records)
     - [Public ports](#public-ports)
     - [Deployment key](#deployment-key)
+  - [Installation](#installation)
+    - [Login to the server](#login-to-the-server)
+    - [Installer script](#installer-script)
+    - [Installer config](#installer-config)
+    - [Deployment key](#deployment-key)
+    - [Running the installer](#running-the-installer)
 
 ## JMS (Jitsi Meet Server)
 
@@ -67,9 +73,54 @@ The `JMS` server contains:
 Create a deployment key for each customer
 
 ```bash
-ssh-keygen -t rsa -b 4096 -f deploy
+ssh-keygen -t rsa -b 4096 -f jitsi-deploy
 ```
 
-Add the content of `deploy.pub` as a deployment key on `GitHub`.
+Add the content of `jitsi-deploy.pub` as a deployment key on `GitHub`.
 
 ![deployment key](docs/images/deployment_key.png)
+
+### Installation
+
+#### Login to the server
+
+Login to the server as `root` user
+
+#### Installer script
+
+Download `ni`, the Nordeck Installer script
+
+```bash
+cd /root
+wget -O ni
+https://raw.githubusercontent.com/nordeck/bullseye-lxc-base/main/installer/ni
+```
+
+#### Installer config
+
+Copy [nordeck-jitsi.conf](installer/nordeck-jitsi.conf) into `/root/` folder and
+customize it if needed, For example add FQDNs into it:
+
+```bash
+echo export JITSI_FQDN=jitsi.nordeck.corp >>nordeck-jitsi.conf
+echo export TURN_FQDN=turn.nordeck.corp >>nordeck-jitsi.conf
+```
+
+#### Deployment key
+
+Copy the private part of the deployment key into `/root/.ssh/` folder. Its name
+must be `jitsi-deploy`
+
+```bash
+cp jitsi-deploy /root/.ssh/
+chmod 600 /root/.ssh/jitsi-deploy
+```
+
+#### Running the installer
+
+Run the installer
+
+```bash
+cd /root
+bash ni nordeck-jitsi
+```
