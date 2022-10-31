@@ -238,7 +238,7 @@ echo \$VERSION > /root/meta/jvb-version
 EOS
 
 # jibri
-lxc-attach -n $MATCH -- zsh <<EOS
+lxc-attach -n $MACH -- zsh <<EOS
 set -e
 VERSION=\$(apt-cache policy jibri | grep Candidate | rev | cut -d' ' -f1 | rev)
 echo \$VERSION > /root/meta/jibri-version
