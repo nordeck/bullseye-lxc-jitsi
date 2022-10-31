@@ -18,7 +18,7 @@ The `JMS` server contains:
 - `TURN`
 
 - `JVB`\
-  _This service may be disabled if there are additional `JVB`s_
+  _This service may be disabled if there are additional `JVBs`_
 
 ### Prerequisites
 
@@ -34,8 +34,8 @@ The `JMS` server contains:
 
 #### DNS records
 
-- `DNS A record` for `JMS`\
+- `DNS A record` for `JMS` which points this server\
   e.g. `jitsi.nordeck.corp`
 
-- `DNS CNAME record` for `TURN`\
-  e.g. `turn.norec.corp`
+- `DNS CNAME record` for `TURN` as an alias for `JMS`\
+  e.g. `turn.nordeck.corp`
