@@ -231,9 +231,14 @@ RECORDER_PASSWD=$(openssl rand -hex 20)
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 mkdir -p /root/meta
+chmod 700 /root/meta
+
 echo $JITSI_FQDN >/root/meta/jitsi-fqdn
+
 echo $JIBRI_PASSWD >/root/meta/jibri-passwd
+chmod 600 /root/meta/jibri-passwd
 echo $RECORDER_PASSWD >/root/meta/recorder-passwd
+chmod 600 /root/meta/recorder-passwd
 EOS
 
 # jvb
