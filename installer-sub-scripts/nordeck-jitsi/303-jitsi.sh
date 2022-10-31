@@ -373,6 +373,14 @@ ln -s ../conf.avail/sip.$JITSI_FQDN.cfg.lua \
 cp usr/share/jitsi-meet/prosody-plugins/*.lua \
     $ROOTFS/usr/share/jitsi-meet/prosody-plugins/
 
+# token related
+sed -i '/\s*app_secret=/a \
+\    allow_empty_token = false' \
+    $ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua
+sed -i '/^Component .conference\./,/admins/!b; /\s*"token_verification"/a \
+\        "token_affiliation";' \
+    $ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua
+
 # restart
 lxc-attach -n $MACH -- systemctl daemon-reload
 lxc-attach -n $MACH -- systemctl restart prosody.service
