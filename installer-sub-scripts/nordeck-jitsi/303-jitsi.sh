@@ -225,9 +225,15 @@ EOS
 # ------------------------------------------------------------------------------
 # META
 # ------------------------------------------------------------------------------
+JIBRI_PASSWD=$(openssl rand -hex 20)
+RECORDER_PASSWD=$(openssl rand -hex 20)
+
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 mkdir -p /root/meta
+echo $JITSI_FQDN >/root/meta/jitsi-fqdn
+echo $JIBRI_PASSWD >/root/meta/jibri-passwd
+echo $RECORDER_PASSWD >/root/meta/recorder-passwd
 EOS
 
 # jvb
@@ -383,17 +389,14 @@ lxc-attach -n $MACH -- systemctl daemon-reload
 lxc-attach -n $MACH -- systemctl restart prosody.service
 
 # register
-PASSWD1=$(openssl rand -hex 20)
-PASSWD2=$(openssl rand -hex 20)
-
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 prosodyctl unregister jibri auth.$JITSI_FQDN || true
-prosodyctl register jibri auth.$JITSI_FQDN $PASSWD1
+prosodyctl register jibri auth.$JITSI_FQDN $JIBRI_PASSWD
 prosodyctl unregister recorder recorder.$JITSI_FQDN || true
-prosodyctl register recorder recorder.$JITSI_FQDN $PASSWD2
+prosodyctl register recorder recorder.$JITSI_FQDN $RECORDER_PASSWD
 prosodyctl unregister sip sip.$JITSI_FQDN || true
-prosodyctl register sip sip.$JITSI_FQDN $PASSWD2
+prosodyctl register sip sip.$JITSI_FQDN $RECORDER_PASSWD
 EOS
 
 # ------------------------------------------------------------------------------
