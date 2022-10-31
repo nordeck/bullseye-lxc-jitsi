@@ -108,11 +108,11 @@ echo export TURN_FQDN=turn.nordeck.corp >>nordeck-jitsi.conf
 #### Deployment key
 
 Copy the private part of the deployment key into `/root/.ssh/` folder. Its name
-must be `jitsi-deploy`
+must be `deploy`
 
 ```bash
-cp jitsi-deploy /root/.ssh/
-chmod 600 /root/.ssh/jitsi-deploy
+cp jitsi-deploy /root/.ssh/deploy
+chmod 600 /root/.ssh/deploy
 ```
 
 #### Running the installer
