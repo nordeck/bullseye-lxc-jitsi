@@ -18,6 +18,7 @@ echo JITSI="$IP" >> $INSTALLER/000-source
 
 JITSI_MEET_CONFIG="$ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js"
 JITSI_MEET_INTERFACE="$ROOTFS/usr/share/jitsi-meet/interface_config.js"
+PROSODY_CONFIG="$ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua"
 
 # ------------------------------------------------------------------------------
 # NFTABLES RULES
@@ -324,25 +325,22 @@ EOS
 # ------------------------------------------------------------------------------
 # PROSODY
 # ------------------------------------------------------------------------------
-cp $ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua \
-    $ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua.org
+cp $PROSODY_CONFIG $ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua.org
 
 mkdir -p $ROOTFS/etc/systemd/system/prosody.service.d
 cp etc/systemd/system/prosody.service.d/override.conf \
     $ROOTFS/etc/systemd/system/prosody.service.d/
 
 # turns
-sed -i "/turns.*tcp/ s/host\s*=[^,]*/host = \"$TURN_FQDN\"/" \
-    $ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua
-sed -i "/turns.*tcp/ s/5349/443/" \
-    $ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua
+sed -i "/turns.*tcp/ s/host\s*=[^,]*/host = \"$TURN_FQDN\"/" $PROSODY_CONFIG
+sed -i "/turns.*tcp/ s/5349/443/" $PROSODY_CONFIG
 
 # recorder and sip into admin list
 sed -i -r "0,/^\s*admins/ s/(^\s*admins).*/\1 = { \
 \"focus@auth.$JITSI_FQDN\", \
 \"recorder@recorder.$JITSI_FQDN\", \
 \"sip@sip.$JITSI_FQDN\" }/" \
-    $ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua
+    $PROSODY_CONFIG
 
 # network
 cp etc/prosody/conf.avail/network.cfg.lua $ROOTFS/etc/prosody/conf.avail/
@@ -350,8 +348,7 @@ ln -s ../conf.avail/network.cfg.lua $ROOTFS/etc/prosody/conf.d/
 
 sed -i "/rate *=.*kb.s/  s/[0-9]*kb/1024kb/" \
     $ROOTFS/etc/prosody/prosody.cfg.lua
-sed -i "s/^-- \(https_ports = { };\)/\1/" \
-    $ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua
+sed -i "s/^-- \(https_ports = { };\)/\1/" $PROSODY_CONFIG
 
 # recorder
 cp etc/prosody/conf.avail/recorder.cfg.lua \
@@ -376,10 +373,10 @@ cp usr/share/jitsi-meet/prosody-plugins/*.lua \
 # token related
 sed -i '/\s*app_secret=/a \
 \    allow_empty_token = false' \
-    $ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua
+    $PROSODY_CONFIG
 sed -i '/^Component .conference\./,/admins/!b; /\s*"token_verification"/a \
 \        "token_affiliation";' \
-    $ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua
+    $PROSODY_CONFIG
 
 # restart
 lxc-attach -n $MACH -- systemctl daemon-reload
