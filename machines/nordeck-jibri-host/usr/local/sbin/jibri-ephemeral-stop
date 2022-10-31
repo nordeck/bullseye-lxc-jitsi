@@ -1,1 +1,17 @@
-../../../../nordeck-jitsi-host/usr/local/sbin/jibri-ephemeral-stop
+#!/bin/bash
+
+# ------------------------------------------------------------------------------
+# JIBRI-EPHEMERAL-STOP
+# ------------------------------------------------------------------------------
+#
+# Stop the ephemeral Jibri containers.
+#
+# ------------------------------------------------------------------------------
+lxc-autostart -s -g nordeck-jibri -t 30
+lxc-autostart -k -g nordeck-jibri
+
+for i in $(seq 10); do
+    sleep 1
+    [[ -z "$(lxc-ls -g nordeck-jibri | grep -v nordeck-jibri-template)" ]] && \
+        exit 0
+done
