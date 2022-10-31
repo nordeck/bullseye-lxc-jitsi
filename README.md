@@ -13,7 +13,7 @@ The `JMS` server contains:
   _XMPP server_
 
 - `Jicofo`\
-  _`Jitsi` conference focus service_
+  _Jitsi conference focus service_
 
 - `TURN`
 
@@ -53,3 +53,15 @@ The `JMS` server contains:
 
 - `TCP/10000`\
   _If there is an enabled `JVB` on `JMS`_
+
+#### Deployment key
+
+Create a deployment key for each customer
+
+```bash
+ssh-keygen -t rsa -b 4096 -f deploy
+```
+
+Add the content of `deploy.pub` as a deployment key on `GitHub`.
+
+![deployment key](docs/images/deployment_key.png)
