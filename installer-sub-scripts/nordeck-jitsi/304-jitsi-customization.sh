@@ -23,6 +23,7 @@ echo "------------------- JITSI CUSTOMIZATION -------------------"
 # ------------------------------------------------------------------------------
 # CONFIG.JS
 # ------------------------------------------------------------------------------
+# recording
 sed -i "/^\s*\/\/ Recording$/a \
 \\
 \n\
@@ -35,6 +36,16 @@ sed -i "/^\s*\/\/ Recording$/a \
 \    liveStreamingEnabled: true,\n\
 \    hiddenDomain: 'recorder.$JITSI_FQDN'," \
     $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
+
+# dial-plan
+if [[ "$DONT_RUN_SIP_DIAL_PLAN" != true ]]; then
+    sed -i "/#var config =/a \
+\\
+\n\
+\    peopleSearchQueryTypes: ['conferenceRooms'],\n\
+\    peopleSearchUrl: 'https://$JITSI_HOST/get-dial-plan'," \
+        $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
+fi
 
 # ------------------------------------------------------------------------------
 # JITSI-CUSTOMIZATION
