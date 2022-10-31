@@ -8,7 +8,7 @@
     - [Server specifications](#server-specifications)
     - [DNS records](#dns-records)
     - [Public ports](#public-ports)
-    - [Deployment key](#deployment-key)
+    - [Creating the deployment key](#creating-the-deployment-key)
   - [Installation](#installation)
     - [Login to the server](#login-to-the-server)
     - [Installer script](#installer-script)
@@ -68,7 +68,7 @@ The `JMS` server contains:
 - `TCP/10000`\
   _If there is an enabled `JVB` on `JMS`_
 
-#### Deployment key
+#### Creating the deployment key
 
 Create a deployment key for each customer
 
