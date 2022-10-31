@@ -1,4 +1,4 @@
-# Bullseye LXC Jitsi
+# Jitsi Cluster
 
 `Jitsi` cluster based on `LXC`.
 
