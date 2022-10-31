@@ -92,8 +92,7 @@ Download `ni`, the Nordeck Installer script
 
 ```bash
 cd /root
-wget -O ni
-https://raw.githubusercontent.com/nordeck/bullseye-lxc-base/main/installer/ni
+wget -O ni https://raw.githubusercontent.com/nordeck/bullseye-lxc-base/main/installer/ni
 ```
 
 #### Installer config
