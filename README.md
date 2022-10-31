@@ -39,3 +39,17 @@ The `JMS` server contains:
 
 - `DNS CNAME record` for `TURN` as an alias for `JMS`\
   e.g. `turn.nordeck.corp`
+
+#### Public ports
+
+- `TCP/443`
+
+- `TCP/80`\
+  _If Lets Encrypt is used_
+
+- `TCP/5222`\
+  _If there are additional `JVBs` or `Jibris` which access `JMS` through the
+  public IP_
+
+- `TCP/10000`\
+  _If there is an enabled `JVB` on `JMS`_
