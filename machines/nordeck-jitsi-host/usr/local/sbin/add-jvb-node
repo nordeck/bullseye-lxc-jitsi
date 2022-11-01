@@ -103,16 +103,8 @@ export JVB_VERSION=$JVB_VERSION
 
 cd /tmp
 bash ni $APP_CONFIG || (rm -f /root/.ssh/deploy.key; false)
-
 rm -f /root/.ssh/deploy.key
-EOS
 
-
-# ------------------------------------------------------------------------------
-# configuration
-# ------------------------------------------------------------------------------
-ssh_ <<EOS
-set -e
 sed -i 's/shard.HOSTNAME=.*/shard.HOSTNAME=$JITSI_FQDN/' \
     $JVB_ROOTFS/etc/jitsi/videobridge/sip-communicator.properties
 sed -i 's/shard.PASSWORD=.*/shard.PASSWORD=$SHARD_PASSWD/' \
@@ -124,11 +116,8 @@ EOS
 [[ -n "$(ssh_ dig +short $JITSI_FQDN)" ]] || \
     ssh_ "echo '$EXTERNAL_IP $JITSI_FQDN' >> $JVB_ROOTFS/etc/hosts"
 
-ssh_ <<EOS
-set -e
-lxc-attach -n nordeck-jvb systemctl stop jitsi-videobridge2.service
-lxc-attach -n nordeck-jvb systemctl start jitsi-videobridge2.service
-EOS
+ssh_ lxc-attach -n nordeck-jvb systemctl stop jitsi-videobridge2.service
+ssh_ lxc-attach -n nordeck-jvb systemctl start jitsi-videobridge2.service
 
 
 # ------------------------------------------------------------------------------
