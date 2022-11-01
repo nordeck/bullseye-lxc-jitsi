@@ -146,3 +146,18 @@ bash ni nordeck-jitsi
 
 - `TCP/9090`\
   _The signaling port... This port must be accessible for `JMS`_
+
+#### 2.1.4 JMS public key
+
+The `JMS` public SSH key must be in `/root/.ssh/authorized_keys`.
+
+```bash
+mkdir -p /root/.ssh
+chmod 700 /root/.ssh
+
+# if there is a self-signed certificate, run it with --no-check-certificate
+# wget --no-check-certificate -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
+
+wget -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
+cat /tmp/jms.pub >>/root/.ssh/authorized_keys
+```
