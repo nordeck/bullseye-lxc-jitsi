@@ -16,6 +16,11 @@
     - [1.2.4 Deployment key](#124-deployment-key)
     - [1.2.5 Running the installer](#125-running-the-installer)
 - [2. Additional JVB (Jitsi Video Bridge)](#2-additional-jvb-jitsi-video-bridge)
+  - [2.1 Prerequisites](#21-prerequisites)
+    - [2.1.1 Supported distribution](#211-supported-distribution)
+    - [2.1.2 Server specifications](#212-server-specifications)
+    - [2.1.3 Ports](#213-ports)
+    - [2.1.4 JMS public key](#214-jms-public-key)
 
 ## 1. JMS (Jitsi Meet Server)
 
@@ -149,7 +154,7 @@ bash ni nordeck-jitsi
 
 #### 2.1.4 JMS public key
 
-The `JMS` public SSH key must be in `/root/.ssh/authorized_keys`.
+The `JMS` public SSH key must be in `/root/.ssh/authorized_keys` on `JVB`.
 
 ```bash
 mkdir -p /root/.ssh
