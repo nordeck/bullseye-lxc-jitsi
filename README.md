@@ -7,7 +7,7 @@
     - [1.1.1 Supported distribution](#111-supported-distribution)
     - [1.1.2 Server specifications](#112-server-specifications)
     - [1.1.3 DNS records](#113-dns-records)
-    - [1.1.4 Public ports](#114-public-ports)
+    - [1.1.4 Ports](#114-ports)
     - [1.1.5 Creating the deployment key](#115-creating-the-deployment-key)
   - [1.2 Installation](#12-installation)
     - [1.2.1 Login to the server](#121-login-to-the-server)
@@ -15,7 +15,7 @@
     - [1.2.3 Installer config](#123-installer-config)
     - [1.2.4 Deployment key](#124-deployment-key)
     - [1.2.5 Running the installer](#125-running-the-installer)
-- [2. Additional JVB (Jitsi Video Bridge](#2-additional-jvb-jitsi-video-bridge)
+- [2. Additional JVB (Jitsi Video Bridge)](#2-additional-jvb-jitsi-video-bridge)
 
 ## 1. JMS (Jitsi Meet Server)
 
@@ -45,7 +45,7 @@ The `JMS` server contains:
 
 - At least 2 CPU cores
 - At least 8 GB RAM
-- At least 20 GB disk
+- At least 8 GB disk
 
 #### 1.1.3 DNS records
 
@@ -55,7 +55,7 @@ The `JMS` server contains:
 - `DNS CNAME record` for `TURN` as an alias for `JMS`\
   e.g. `turn.nordeck.corp`
 
-#### 1.1.4 Public ports
+#### 1.1.4 Ports
 
 - `TCP/443`
 
@@ -125,3 +125,24 @@ Run the installer
 cd /root
 bash ni nordeck-jitsi
 ```
+
+## 2. Additional JVB (Jitsi Video Bridge)
+
+### 2.1 Prerequisites
+
+#### 2.1.1 Supported distribution
+
+`Debian 11 Bullseye`
+
+#### 2.1.2 Server specifications
+
+- At least 2 CPU cores
+- At least 4 GB RAM
+- At least 8 GB disk
+
+#### 2.1.3 Ports
+
+- `UDP/10000`
+
+- `TCP/9090`\
+  _The signaling port... This port must be accessible for `JMS`_
