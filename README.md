@@ -2,21 +2,22 @@
 
 `Jitsi` cluster based on `LXC`.
 
-- [JMS (Jitsi Meet Server)](#jms-jitsi-meet-server)
-  - [Prerequisites](#prerequisites)
-    - [Supported distribution](#supported-distribution)
-    - [Server specifications](#server-specifications)
-    - [DNS records](#dns-records)
-    - [Public ports](#public-ports)
-    - [Creating the deployment key](#creating-the-deployment-key)
-  - [Installation](#installation)
-    - [Login to the server](#login-to-the-server)
-    - [Installer script](#installer-script)
-    - [Installer config](#installer-config)
-    - [Deployment key](#deployment-key)
-    - [Running the installer](#running-the-installer)
+- [1. JMS (Jitsi Meet Server)](#1-jms-jitsi-meet-server)
+  - [1.1 Prerequisites](#11-prerequisites)
+    - [1.1.1 Supported distribution](#111-supported-distribution)
+    - [1.1.2 Server specifications](#112-server-specifications)
+    - [1.1.3 DNS records](#113-dns-records)
+    - [1.1.4 Public ports](#114-public-ports)
+    - [1.1.5 Creating the deployment key](#115-creating-the-deployment-key)
+  - [1.2 Installation](#12-installation)
+    - [1.2.1 Login to the server](#121-login-to-the-server)
+    - [1.2.2 Installer script](#122-installer-script)
+    - [1.2.3 Installer config](#123-installer-config)
+    - [1.2.4 Deployment key](#124-deployment-key)
+    - [1.2.5 Running the installer](#125-running-the-installer)
+- [2. Additional JVB (Jitsi Video Bridge](#2-additional-jvb-jitsi-video-bridge)
 
-## JMS (Jitsi Meet Server)
+## 1. JMS (Jitsi Meet Server)
 
 The `JMS` server contains:
 
@@ -34,19 +35,19 @@ The `JMS` server contains:
 - `JVB`\
   _This service may be disabled if there are additional `JVBs`_
 
-### Prerequisites
+### 1.1 Prerequisites
 
-#### Supported distribution
+#### 1.1.1 Supported distribution
 
 `Debian 11 Bullseye`
 
-#### Server specifications
+#### 1.1.2 Server specifications
 
 - At least 2 CPU cores
 - At least 8 GB RAM
 - At least 20 GB disk
 
-#### DNS records
+#### 1.1.3 DNS records
 
 - `DNS A record` for `JMS` which points this server\
   e.g. `jitsi.nordeck.corp`
@@ -54,7 +55,7 @@ The `JMS` server contains:
 - `DNS CNAME record` for `TURN` as an alias for `JMS`\
   e.g. `turn.nordeck.corp`
 
-#### Public ports
+#### 1.1.4 Public ports
 
 - `TCP/443`
 
@@ -68,7 +69,7 @@ The `JMS` server contains:
 - `UDP/10000`\
   _If there is an enabled `JVB` on `JMS`_
 
-#### Creating the deployment key
+#### 1.1.5 Creating the deployment key
 
 Create a deployment key for each customer
 
@@ -81,13 +82,13 @@ Add the content of `jitsi-deploy-customer_name.pub` as a deployment key on
 
 ![deployment key](docs/images/deployment_key.png)
 
-### Installation
+### 1.2 Installation
 
-#### Login to the server
+#### 1.2.1 Login to the server
 
 Login to the server as `root` user
 
-#### Installer script
+#### 1.2.2 Installer script
 
 Download `ni`, the Nordeck Installer script
 
@@ -96,7 +97,7 @@ cd /root
 wget -O ni https://raw.githubusercontent.com/nordeck/bullseye-lxc-base/main/installer/ni
 ```
 
-#### Installer config
+#### 1.2.3 Installer config
 
 Copy [nordeck-jitsi.conf](installer/nordeck-jitsi.conf) into `/root/` folder and
 customize it if needed, For example add FQDNs into it:
@@ -106,7 +107,7 @@ echo export JITSI_FQDN=jitsi.nordeck.corp >>nordeck-jitsi.conf
 echo export TURN_FQDN=turn.nordeck.corp >>nordeck-jitsi.conf
 ```
 
-#### Deployment key
+#### 1.2.4 Deployment key
 
 Copy the private part of the deployment key into `/root/.ssh/` folder. Its name
 must be `deploy.key`
@@ -116,7 +117,7 @@ cp jitsi-deploy-customer_name /root/.ssh/deploy.key
 chmod 600 /root/.ssh/deploy.key
 ```
 
-#### Running the installer
+#### 1.2.5 Running the installer
 
 Run the installer
 
