@@ -20,7 +20,9 @@
     - [2.1.1 Supported distribution](#211-supported-distribution)
     - [2.1.2 Server specifications](#212-server-specifications)
     - [2.1.3 Ports](#213-ports)
-    - [2.1.4 JMS public key](#214-jms-public-key)
+    - [2.1.4 SSH server](#214-ssh-server)
+    - [2.1.5 JMS public key](#215-jms-public-key)
+  - [2.2 Installation](#22-installation)
 
 ## 1. JMS (Jitsi Meet Server)
 
@@ -152,7 +154,15 @@ bash ni nordeck-jitsi
 - `TCP/9090`\
   _The signaling port... This port must be accessible for `JMS`_
 
-#### 2.1.4 JMS public key
+#### 2.1.4 SSH server
+
+Install `openssh-server` if not already exists:
+
+```bash
+apt-get install openssh-server
+```
+
+#### 2.1.5 JMS public key
 
 The `JMS` public SSH key must be in `/root/.ssh/authorized_keys` on `JVB`.
 
@@ -165,4 +175,13 @@ chmod 700 /root/.ssh
 
 wget -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
 cat /tmp/jms.pub >>/root/.ssh/authorized_keys
+```
+
+### 2.2 Installation
+
+Login as `root` to `JMS` and run `add-jvb-node` command using `JVB`'s IP
+address:
+
+```bash
+add-jvb-node <JVB-IP-address>
 ```
