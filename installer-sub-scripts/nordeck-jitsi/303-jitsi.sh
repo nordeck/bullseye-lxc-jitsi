@@ -225,33 +225,44 @@ EOS
 # ------------------------------------------------------------------------------
 # META
 # ------------------------------------------------------------------------------
-JIBRI_PASSWD=$(openssl rand -hex 20)
-RECORDER_PASSWD=$(openssl rand -hex 20)
-
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 mkdir -p /root/meta
 chmod 700 /root/meta
 
 echo $JITSI_FQDN >/root/meta/jitsi-fqdn
-
-echo $JIBRI_PASSWD >/root/meta/jibri-passwd
-chmod 600 /root/meta/jibri-passwd
-echo $RECORDER_PASSWD >/root/meta/recorder-passwd
-chmod 600 /root/meta/recorder-passwd
 EOS
 
 # jvb
+JVB_SECRET=$(egrep '^JVB_SECRET=' $ROOTFS/etc/jitsi/videobridge/config | \
+             cut -d '=' -f2)
+JVB_SHARD_PASSWD=$(egrep '^org.jitsi.videobridge.xmpp.user.shard.PASSWORD=' \
+    $ROOTFS/etc/jitsi/videobridge/sip-communicator.properties | \
+    cut -d '=' -f2)
+
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
+echo $JVB_SECRET >/root/meta/jvb-secret
+chmod 600 /root/meta/jvb-secret
+echo $JVB_SHARD_PASSWD >/root/meta/jvb-shard-passwd
+chmod 600 /root/meta/jvb-shard-passwd
+
 VERSION=\$(apt-cache policy jitsi-videobridge2 | grep Installed | rev | \
     cut -d' ' -f1 | rev)
 echo \$VERSION > /root/meta/jvb-version
 EOS
 
 # jibri
+JIBRI_PASSWD=$(openssl rand -hex 20)
+RECORDER_PASSWD=$(openssl rand -hex 20)
+
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
+echo $JIBRI_PASSWD >/root/meta/jibri-passwd
+chmod 600 /root/meta/jibri-passwd
+echo $RECORDER_PASSWD >/root/meta/recorder-passwd
+chmod 600 /root/meta/recorder-passwd
+
 VERSION=\$(apt-cache policy jibri | grep Candidate | rev | cut -d' ' -f1 | rev)
 echo \$VERSION > /root/meta/jibri-version
 EOS
