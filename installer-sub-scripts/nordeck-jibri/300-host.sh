@@ -30,7 +30,7 @@ apt-get $APT_PROXY -y install kmod alsa-utils
 # ------------------------------------------------------------------------------
 # snd_aloop config
 cp etc/modprobe.d/alsa-loopback.conf /etc/modprobe.d/
-[ -z "$(egrep '^snd_aloop' /etc/modules)" ] && \
+[[ -z "$(egrep '^snd_aloop' /etc/modules)" ]] && \
     cat etc/modules.custom.alsa >>/etc/modules
 
 # load module
@@ -51,7 +51,7 @@ Probably it is "linux-image-$ARCH" for your case.
 
 EOF
 
-    if [ "$IS_IN_LXC" = true ]; then
+    if [[ "$IS_IN_LXC" = true ]]; then
         cat <<EOF
 If this is a container, please load the snd_aloop module to the host
 permanently
