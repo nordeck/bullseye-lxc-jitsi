@@ -62,13 +62,9 @@ fi
 # ------------------------------------------------------------------------------
 # cluster related parameters
 # ------------------------------------------------------------------------------
-JITSI_FQDN=$(egrep '^JVB_HOSTNAME=' $JITSI_ROOTFS/etc/jitsi/videobridge/config | \
-             cut -d '=' -f2)
-JVB_SECRET=$(egrep '^JVB_SECRET=' $JITSI_ROOTFS/etc/jitsi/videobridge/config | \
-             cut -d '=' -f2)
-SHARD_PASSWD=$(egrep '^org.jitsi.videobridge.xmpp.user.shard.PASSWORD' \
-    $JITSI_ROOTFS/etc/jitsi/videobridge/sip-communicator.properties | \
-    cut -d '=' -f2)
+JITSI_FQDN=$(cat $JITSI_ROOTFS/root/meta/jitsi-fqdn || true)
+JVB_SECRET=$(cat $JITSI_ROOTFS/root/meta/jvb-secret || true)
+JVB_SHARD_PASSWD=$(cat $JITSI_ROOTFS/root/meta/jvb-shard-passwd || true)
 JVB_VERSION=$(cat $JITSI_ROOTFS/root/meta/jvb-version || true)
 EXTERNAL_IP=$(dig -4 +short myip.opendns.com a @resolver1.opendns.com)
 
@@ -96,7 +92,7 @@ rm -f /root/.ssh/deploy.key
 
 sed -i 's/shard.HOSTNAME=.*/shard.HOSTNAME=$JITSI_FQDN/' \
     $JVB_ROOTFS/etc/jitsi/videobridge/sip-communicator.properties
-sed -i 's/shard.PASSWORD=.*/shard.PASSWORD=$SHARD_PASSWD/' \
+sed -i 's/shard.PASSWORD=.*/shard.PASSWORD=$JVB_SHARD_PASSWD/' \
     $JVB_ROOTFS/etc/jitsi/videobridge/sip-communicator.properties
 sed -i 's/^JVB_SECRET=.*/JVB_SECRET=$JVB_SECRET/' \
     $JVB_ROOTFS/etc/jitsi/videobridge/config
