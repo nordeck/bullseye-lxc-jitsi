@@ -9,11 +9,13 @@ set -e
 # Usage:
 #     add-jvb-node <NODE-ADDRESS>
 # ------------------------------------------------------------------------------
-NODE=$1
 SSH_CONFIG="/root/.ssh/jms-config"
-INSTALLER="https://raw.githubusercontent.com/nordeck/bullseye-lxc-base/main/installer/ni"
+
+APP="nordeck-jvb"
 APP_REPO="ssh://git@github.com:22/nordeck/bullseye-lxc-jitsi.git"
-APP_CONFIG="nordeck-jvb.conf"
+INSTALLER="https://raw.githubusercontent.com/nordeck/bullseye-lxc-base/main/installer/ni"
+NODE=$1
+
 JITSI_ROOTFS="/var/lib/lxc/nordeck-jitsi/rootfs"
 JVB_ROOTFS="/var/lib/lxc/nordeck-jvb/rootfs"
 
@@ -70,19 +72,6 @@ SHARD_PASSWD=$(egrep '^org.jitsi.videobridge.xmpp.user.shard.PASSWORD' \
 JVB_VERSION=$(cat $JITSI_ROOTFS/root/meta/jvb-version || true)
 EXTERNAL_IP=$(dig -4 +short myip.opendns.com a @resolver1.opendns.com)
 
-
-# ------------------------------------------------------------------------------
-# repository
-# ------------------------------------------------------------------------------
-if [[ ! -f "/tmp/app-repo/installer/$APP_CONFIG" ]]; then
-    rm -rf /tmp/app-repo
-    git clone --depth=1 $APP_REPO /tmp/app-repo \
-        --config core.sshCommand="ssh \
-            -i /root/.ssh/deploy.key \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null"
-fi
-
 # ------------------------------------------------------------------------------
 # installation
 # ------------------------------------------------------------------------------
@@ -93,16 +82,16 @@ apt-get -y install wget
 wget $INSTALLER -O /tmp/ni -T 30
 EOS
 
-scp_ /tmp/app-repo/installer/$APP_CONFIG /tmp/$APP_CONFIG
 scp_ /root/.ssh/deploy.key /root/.ssh/
 
 ssh_ <<EOS
 set -e
+export APP_REPO=$APP_REPO
 export JITSI_FQDN=$JITSI_FQDN
 export JVB_VERSION=$JVB_VERSION
 
 cd /tmp
-bash ni $APP_CONFIG || (rm -f /root/.ssh/deploy.key; false)
+bash ni $APP || (rm -f /root/.ssh/deploy.key; false)
 rm -f /root/.ssh/deploy.key
 
 sed -i 's/shard.HOSTNAME=.*/shard.HOSTNAME=$JITSI_FQDN/' \
