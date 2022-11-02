@@ -242,9 +242,9 @@ JVB_SHARD_PASSWD=$(egrep '^org.jitsi.videobridge.xmpp.user.shard.PASSWORD=' \
 
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
-echo $JVB_SECRET >/root/meta/jvb-secret
+echo '$JVB_SECRET' >/root/meta/jvb-secret
 chmod 600 /root/meta/jvb-secret
-echo $JVB_SHARD_PASSWD >/root/meta/jvb-shard-passwd
+echo '$JVB_SHARD_PASSWD' >/root/meta/jvb-shard-passwd
 chmod 600 /root/meta/jvb-shard-passwd
 
 VERSION=\$(apt-cache policy jitsi-videobridge2 | grep Installed | rev | \
@@ -258,9 +258,9 @@ RECORDER_PASSWD=$(openssl rand -hex 20)
 
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
-echo $JIBRI_PASSWD >/root/meta/jibri-passwd
+echo '$JIBRI_PASSWD' >/root/meta/jibri-passwd
 chmod 600 /root/meta/jibri-passwd
-echo $RECORDER_PASSWD >/root/meta/recorder-passwd
+echo '$RECORDER_PASSWD' >/root/meta/recorder-passwd
 chmod 600 /root/meta/recorder-passwd
 
 VERSION=\$(apt-cache policy jibri | grep Candidate | rev | cut -d' ' -f1 | rev)
