@@ -23,7 +23,7 @@
     - [2.1.4 SSH server](#214-ssh-server)
     - [2.1.5 JMS public key](#215-jms-public-key)
   - [2.2 Installation](#22-installation)
-- [3. Additional Jibri)](#3-additional-jibri)
+- [3. Additional Jibri](#3-additional-jibri)
   - [3.1 Prerequisites](#31-prerequisites)
     - [3.1.1 Supported distribution](#311-supported-distribution)
     - [3.1.2 Server specifications](#312-server-specifications)
