@@ -52,7 +52,8 @@ The `JMS` server contains:
 - `Jicofo`\
   _Jitsi conference focus service_
 
-- `TURN`
+- `Coturn`
+  _The TURN server_
 
 - `JVB`\
   _This service may be disabled if there are additional `JVBs`_
@@ -147,7 +148,7 @@ chmod 600 /root/.ssh/deploy.key
 ```
 
 _Don't delete the deployment key after the setup because it will be used to add
-the additional nodes_
+the additional nodes._
 
 #### 1.2.5 Running the installer
 
