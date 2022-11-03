@@ -99,6 +99,7 @@ export JITSI_FQDN=$JITSI_FQDN
 export JIBRI_VERSION=$JIBRI_VERSION
 export JIBRI_PASSWD=$JIBRI_PASSWD
 export RECORDER_PASSWD=$RECORDER_PASSWD
+export APT_PROXY=$APT_PROXY
 
 cd /tmp
 bash ni $APP || (rm -f /root/.ssh/deploy.key; false)

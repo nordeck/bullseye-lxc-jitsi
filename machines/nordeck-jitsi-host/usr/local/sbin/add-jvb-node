@@ -87,6 +87,7 @@ export JITSI_FQDN=$JITSI_FQDN
 export JVB_VERSION=$JVB_VERSION
 export JVB_SECRET=$JVB_SECRET
 export JVB_SHARD_PASSWD=$JVB_SHARD_PASSWD
+export APT_PROXY=$APT_PROXY
 
 cd /tmp
 bash ni $APP || (rm -f /root/.ssh/deploy.key; false)
