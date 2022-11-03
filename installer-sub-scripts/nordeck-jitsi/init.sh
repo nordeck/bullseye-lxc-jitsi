@@ -22,6 +22,8 @@ echo
 
 [[ -z "$JITSI_FQDN" ]] && echo "JITSI_FQDN not found" && false
 [[ -z "$TURN_FQDN" ]] && echo "TURN_FQDN not found" && false
+[[ -z "$(dig +short $JITSI_FQDN)" ]] && echo "unresolvable JITSI_FQDN" && false
+[[ -z "$(dig +short $TURN_FQDN)" ]] && echo "unresolvable TURN_FQDN" && false
 
 # ------------------------------------------------------------------------------
 # INSTALLER CONFIGURATION

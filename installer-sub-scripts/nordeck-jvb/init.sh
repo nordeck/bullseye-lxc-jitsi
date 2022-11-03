@@ -21,6 +21,7 @@ cd $INSTALLER
 echo
 
 [[ -z "$JITSI_FQDN" ]] && echo "JITSI_FQDN not found" && false
+[[ -z "$(dig +short $JITSI_FQDN)" ]] && echo "unresolvable JITSI_FQDN" && false
 [[ -z "$JVB_SECRET" ]] && echo "JVB_SECRET not found" && false
 [[ -z "$JVB_SHARD_PASSWD" ]] && echo "JVB_SHARD_PASSWD not found" && false
 
