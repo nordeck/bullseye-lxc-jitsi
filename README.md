@@ -43,8 +43,8 @@
 
 The `JMS` server contains:
 
-- `Jitsi-Meet` web interface\
-  _published through `Nginx`_
+- `Jitsi-Meet`\
+  _Jitsi web interface published through `Nginx`_
 
 - `Prosody`\
   _XMPP server_
