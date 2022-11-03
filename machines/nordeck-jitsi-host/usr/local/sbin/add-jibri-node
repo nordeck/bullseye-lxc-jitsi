@@ -60,12 +60,13 @@ fi
 
 
 # ------------------------------------------------------------------------------
-# cluster related parameters
+# exports
 # ------------------------------------------------------------------------------
 JITSI_FQDN=$(cat $JITSI_ROOTFS/root/meta/jitsi-fqdn || true)
 JIBRI_VERSION=$(cat $JITSI_ROOTFS/root/meta/jibri-version || true)
 JIBRI_PASSWD=$(cat $JITSI_ROOTFS/root/meta/jibri-passwd || true)
 RECORDER_PASSWD=$(cat $JITSI_ROOTFS/root/meta/recorder-passwd || true)
+
 
 # ------------------------------------------------------------------------------
 # uploads

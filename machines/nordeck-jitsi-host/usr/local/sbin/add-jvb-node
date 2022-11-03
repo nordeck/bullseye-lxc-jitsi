@@ -60,7 +60,7 @@ fi
 
 
 # ------------------------------------------------------------------------------
-# cluster related parameters
+# exports
 # ------------------------------------------------------------------------------
 JITSI_FQDN=$(cat $JITSI_ROOTFS/root/meta/jitsi-fqdn || true)
 JVB_SECRET=$(cat $JITSI_ROOTFS/root/meta/jvb-secret || true)
