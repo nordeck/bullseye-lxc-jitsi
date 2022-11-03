@@ -219,9 +219,10 @@ EOS
 mkdir -p $ROOTFS/home/jibri/.ssh
 chmod 700 $ROOTFS/home/jibri/.ssh
 cp home/jibri/.ssh/jibri-config $ROOTFS/home/jibri/.ssh/
-[[ -f /root/.ssh/jibri ]] && \
-    cp /root/.ssh/jibri $ROOTFS/home/jibri/.ssh/ || \
-    true
+
+if [[ -f /root/.ssh/jibri ]]; then
+    cp /root/.ssh/jibri $ROOTFS/home/jibri/.ssh/
+fi
 
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
@@ -242,11 +243,23 @@ chown jibri:jibri /usr/local/nordeck/recordings -R
 EOS
 
 # pki
+if [[ -f /root/.ssh/jms-CA.crt ]]; then
+    cp /root/.ssh/jms-CA.crt $ROOTFS/usr/local/share/ca-certificates/
+fi
+
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
+update-ca-certificates
+
 mkdir -p /home/jibri/.pki/nssdb
 chmod 700 /home/jibri/.pki
 chmod 700 /home/jibri/.pki/nssdb
+
+if [[ -f "/usr/local/share/ca-certificates/jms-CA.crt" ]]; then
+    certutil -A -n 'jitsi' -i /usr/local/share/ca-certificates/jms-CA.crt \
+        -t 'TCu,Cu,Tu' -d sql:/home/jibri/.pki/nssdb/
+fi
+
 chown jibri:jibri /home/jibri/.pki -R
 EOS
 
