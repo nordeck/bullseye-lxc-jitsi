@@ -327,3 +327,4 @@ find $ROOTFS/var/log/jitsi/jibri -type f -delete
 # ------------------------------------------------------------------------------
 systemctl daemon-reload
 systemctl enable jibri-ephemeral-container.service
+systemctl start jibri-ephemeral-container.service

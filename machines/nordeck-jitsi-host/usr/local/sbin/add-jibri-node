@@ -68,7 +68,7 @@ JIBRI_PASSWD=$(cat $JITSI_ROOTFS/root/meta/jibri-passwd || true)
 RECORDER_PASSWD=$(cat $JITSI_ROOTFS/root/meta/recorder-passwd || true)
 
 # ------------------------------------------------------------------------------
-# certs and keys
+# uploads
 # ------------------------------------------------------------------------------
 if [[ -f /root/.ssh/jibri ]]; then
     scp_ /root/.ssh/jibri /root/.ssh/
@@ -103,9 +103,6 @@ cd /tmp
 bash ni $APP || (rm -f /root/.ssh/deploy.key; false)
 rm -f /root/.ssh/deploy.key
 EOS
-
-ssh_ systemctl stop jibri-ephemeral-container.service
-ssh_ systemctl start jibri-ephemeral-container.service
 
 
 # ------------------------------------------------------------------------------
