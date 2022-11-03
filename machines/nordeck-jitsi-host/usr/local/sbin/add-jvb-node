@@ -66,7 +66,7 @@ JITSI_FQDN=$(cat $JITSI_ROOTFS/root/meta/jitsi-fqdn || true)
 JVB_SECRET=$(cat $JITSI_ROOTFS/root/meta/jvb-secret || true)
 JVB_SHARD_PASSWD=$(cat $JITSI_ROOTFS/root/meta/jvb-shard-passwd || true)
 JVB_VERSION=$(cat $JITSI_ROOTFS/root/meta/jvb-version || true)
-EXTERNAL_IP=$(dig -4 +short myip.opendns.com a @resolver1.opendns.com)
+
 
 # ------------------------------------------------------------------------------
 # installation
@@ -92,9 +92,6 @@ cd /tmp
 bash ni $APP || (rm -f /root/.ssh/deploy.key; false)
 rm -f /root/.ssh/deploy.key
 EOS
-
-[[ -n "$(ssh_ dig +short $JITSI_FQDN)" ]] || \
-    ssh_ "echo '$EXTERNAL_IP $JITSI_FQDN' >> $JVB_ROOTFS/etc/hosts"
 
 ssh_ lxc-attach -n nordeck-jvb systemctl stop jitsi-videobridge2.service
 ssh_ lxc-attach -n nordeck-jvb systemctl start jitsi-videobridge2.service

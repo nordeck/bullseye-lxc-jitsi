@@ -66,7 +66,6 @@ JITSI_FQDN=$(cat $JITSI_ROOTFS/root/meta/jitsi-fqdn || true)
 JIBRI_VERSION=$(cat $JITSI_ROOTFS/root/meta/jibri-version || true)
 JIBRI_PASSWD=$(cat $JITSI_ROOTFS/root/meta/jibri-passwd || true)
 RECORDER_PASSWD=$(cat $JITSI_ROOTFS/root/meta/recorder-passwd || true)
-EXTERNAL_IP=$(dig -4 +short myip.opendns.com a @resolver1.opendns.com)
 
 # ------------------------------------------------------------------------------
 # certs and keys
@@ -78,6 +77,7 @@ fi
 if [[ -f "$JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt" ]]; then
     scp_ $JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt /root/.ssh/
 fi
+
 
 # ------------------------------------------------------------------------------
 # installation
@@ -103,9 +103,6 @@ cd /tmp
 bash ni $APP || (rm -f /root/.ssh/deploy.key; false)
 rm -f /root/.ssh/deploy.key
 EOS
-
-[[ -n "$(ssh_ dig +short $JITSI_FQDN)" ]] || \
-    ssh_ "echo '$EXTERNAL_IP $JITSI_FQDN' >> $JIBRI_ROOTFS/etc/hosts"
 
 ssh_ systemctl stop jibri-ephemeral-container.service
 ssh_ systemctl start jibri-ephemeral-container.service
