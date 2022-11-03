@@ -71,11 +71,18 @@ The `JMS` server contains:
 
 #### 1.1.3 DNS records
 
-- `DNS A record` for `JMS` which points this server\
+- `DNS A record` for `JMS` which points to this server\
   e.g. `jitsi.nordeck.corp`
 
 - `DNS CNAME record` for `TURN` as an alias for `JMS`\
   e.g. `turn.nordeck.corp`
+
+Both FQDNs must be resolvable. Test them using the following commands:
+
+```bash
+host jitsi.nordeck.corp
+host turn.nordeck.corp
+```
 
 #### 1.1.4 Ports
 
