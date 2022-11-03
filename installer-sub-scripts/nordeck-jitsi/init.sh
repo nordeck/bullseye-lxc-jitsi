@@ -20,8 +20,8 @@ cd $INSTALLER
 # ------------------------------------------------------------------------------
 echo
 
-[[ -z "$JITSI_FQDN" ]] && echo "No FQDN for Jitsi" && false
-[[ -z "$TURN_FQDN" ]] && echo "No FQDN for Turn" && false
+[[ -z "$JITSI_FQDN" ]] && echo "JITSI_FQDN not found" && false
+[[ -z "$TURN_FQDN" ]] && echo "TURN_FQDN not found" && false
 
 # ------------------------------------------------------------------------------
 # INSTALLER CONFIGURATION
