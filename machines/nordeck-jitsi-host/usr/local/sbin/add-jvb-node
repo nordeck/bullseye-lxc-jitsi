@@ -93,9 +93,6 @@ bash ni $APP || (rm -f /root/.ssh/deploy.key; false)
 rm -f /root/.ssh/deploy.key
 EOS
 
-ssh_ lxc-attach -n nordeck-jvb systemctl stop jitsi-videobridge2.service
-ssh_ lxc-attach -n nordeck-jvb systemctl start jitsi-videobridge2.service
-
 
 # ------------------------------------------------------------------------------
 # completed
