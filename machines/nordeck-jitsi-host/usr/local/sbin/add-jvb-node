@@ -85,17 +85,12 @@ set -e
 export APP_REPO=$APP_REPO
 export JITSI_FQDN=$JITSI_FQDN
 export JVB_VERSION=$JVB_VERSION
+export JVB_SECRET=$JVB_SECRET
+export JVB_SHARD_PASSWD=$JVB_SHARD_PASSWD
 
 cd /tmp
 bash ni $APP || (rm -f /root/.ssh/deploy.key; false)
 rm -f /root/.ssh/deploy.key
-
-sed -i 's/shard.HOSTNAME=.*/shard.HOSTNAME=$JITSI_FQDN/' \
-    $JVB_ROOTFS/etc/jitsi/videobridge/sip-communicator.properties
-sed -i 's/shard.PASSWORD=.*/shard.PASSWORD=$JVB_SHARD_PASSWD/' \
-    $JVB_ROOTFS/etc/jitsi/videobridge/sip-communicator.properties
-sed -i 's/^JVB_SECRET=.*/JVB_SECRET=$JVB_SECRET/' \
-    $JVB_ROOTFS/etc/jitsi/videobridge/config
 EOS
 
 [[ -n "$(ssh_ dig +short $JITSI_FQDN)" ]] || \

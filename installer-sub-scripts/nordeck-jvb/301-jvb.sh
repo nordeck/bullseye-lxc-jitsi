@@ -178,6 +178,14 @@ hocon -f /etc/jitsi/videobridge/jvb.conf \
     set videobridge.ice.udp.port 10000
 EOS
 
+# cluster related
+sed -i "s/shard.HOSTNAME=.*/shard.HOSTNAME=$JITSI_FQDN/" \
+    $ROOTFS/etc/jitsi/videobridge/sip-communicator.properties
+sed -i "s/shard.PASSWORD=.*/shard.PASSWORD=$JVB_SHARD_PASSWD/" \
+    $ROOTFS/etc/jitsi/videobridge/sip-communicator.properties
+sed -i "s/^JVB_SECRET=.*/JVB_SECRET=$JVB_SECRET/" \
+    $ROOTFS/etc/jitsi/videobridge/config
+
 # NAT harvester. these will be needed if this is an in-house server.
 cat etc/jitsi/videobridge/sip-communicator.custom.properties \
     >>$ROOTFS/etc/jitsi/videobridge/sip-communicator.properties
