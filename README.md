@@ -52,7 +52,7 @@ The `JMS` server contains:
 - `Jicofo`\
   _Jitsi conference focus service_
 
-- `Coturn`
+- `Coturn`\
   _The TURN server_
 
 - `JVB`\
