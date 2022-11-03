@@ -38,15 +38,15 @@ CORES=$(nproc --all)
 for c in $(seq $CPI $CPI $N); do
     (( ID = c / $CPI ))
 
-    lxc-stop -k -n eb-sip-$ID 2>/dev/null
-    lxc-wait -n eb-sip-$ID -s STOPPED 2>/dev/null
-    rm -rf /var/lib/lxc/eb-sip-$ID
+    lxc-stop -k -n nordeck-sip-$ID 2>/dev/null
+    lxc-wait -n nordeck-sip-$ID -s STOPPED 2>/dev/null
+    rm -rf /var/lib/lxc/nordeck-sip-$ID
     sleep 2
 
     (( VID0 = ID * 2 ))
     (( VID1 = VID0 + 1 ))
 
-    lxc-copy -n eb-sip-template -N eb-sip-$ID -e \
+    lxc-copy -n nordeck-sip-template -N nordeck-sip-$ID -e \
         -m bind=/dev/video$VID0:/dev/video0:rw \
         -m bind=/dev/video$VID1:/dev/video1:rw
 done
