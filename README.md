@@ -224,8 +224,9 @@ add-jvb-node <JVB-IP-address>
 
 - At least 4 CPU cores for each `Jibri` instance.
 - At least 4 GB RAM for each `Jibri` instance.
-- At least 8 GB disk
+- At least 8 GB disk.
 - More disk space if recorded files will be stored on this server.
+- Maximum 16 `Jibri` instances supported on a single server.
 
 #### 3.1.3 Ports
 
@@ -275,8 +276,8 @@ add-jibri-node <JIBRI-IP-address>
 
 - At least 8 CPU cores for each `video-sip-gateway` instance.
 - At least 8 GB RAM for each `video-sip-gateway` instance.
-- At least 8 GB disk
-- Maximum 4 instances supported on a single server.
+- At least 8 GB disk.
+- Maximum 4 `video-sip-gateway` instances supported on a single server.
 
 #### 4.1.3 Ports
 
