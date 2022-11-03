@@ -265,6 +265,10 @@ EOS
 
 # jibri config
 cp etc/jitsi/jibri/jibri.conf $ROOTFS/etc/jitsi/jibri/
+sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" $ROOTFS/etc/jitsi/jibri/jibri.conf
+sed -i "s/___JIBRI_PASSWD___/$JIBRI_PASSWD/" $ROOTFS/etc/jitsi/jibri/jibri.conf
+sed -i "s/___RECORDER_PASSWD___/$RECORDER_PASSWD/" \
+    $ROOTFS/etc/jitsi/jibri/jibri.conf
 
 # the customized scripts
 cp usr/local/bin/finalize-recording.sh $ROOTFS/usr/local/bin/
