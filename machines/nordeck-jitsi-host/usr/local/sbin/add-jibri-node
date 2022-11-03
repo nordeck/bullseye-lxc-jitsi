@@ -64,7 +64,20 @@ fi
 # ------------------------------------------------------------------------------
 JITSI_FQDN=$(cat $JITSI_ROOTFS/root/meta/jitsi-fqdn || true)
 JIBRI_VERSION=$(cat $JITSI_ROOTFS/root/meta/jibri-version || true)
+JIBRI_PASSWD=$(cat $JITSI_ROOTFS/root/meta/jibri-passwd || true)
+RECORDER_PASSWD=$(cat $JITSI_ROOTFS/root/meta/recorder-passwd || true)
 EXTERNAL_IP=$(dig -4 +short myip.opendns.com a @resolver1.opendns.com)
+
+# ------------------------------------------------------------------------------
+# certs and keys
+# ------------------------------------------------------------------------------
+if [[ -f /root/.ssh/jibri ]]; then
+    scp_ /root/.ssh/jibri /root/.ssh/
+fi
+
+if [[ -f "$JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt" ]]; then
+    scp_ $JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt /root/.ssh/
+fi
 
 # ------------------------------------------------------------------------------
 # installation
@@ -83,6 +96,8 @@ set -e
 export APP_REPO=$APP_REPO
 export JITSI_FQDN=$JITSI_FQDN
 export JIBRI_VERSION=$JIBRI_VERSION
+export JIBRI_PASSWD=$JIBRI_PASSWD
+export RECORDER_PASSWD=$RECORDER_PASSWD
 
 cd /tmp
 bash ni $APP || (rm -f /root/.ssh/deploy.key; false)
