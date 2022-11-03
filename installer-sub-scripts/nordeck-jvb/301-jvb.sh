@@ -158,21 +158,6 @@ apt-mark hold jitsi-videobridge2
 EOS
 
 # ------------------------------------------------------------------------------
-# META
-# ------------------------------------------------------------------------------
-lxc-attach -n $MACH -- zsh <<EOS
-set -e
-mkdir -p /root/meta
-chmod 700 /root/meta
-
-echo $JITSI_FQDN >/root/meta/jitsi-fqdn
-
-VERSION=\$(apt-cache policy jitsi-videobridge2 | grep Installed | rev | \
-    cut -d' ' -f1 | rev)
-echo \$VERSION > /root/meta/jvb-version
-EOS
-
-# ------------------------------------------------------------------------------
 # JVB
 # ------------------------------------------------------------------------------
 cp $ROOTFS/etc/jitsi/videobridge/config $ROOTFS/etc/jitsi/videobridge/config.org
