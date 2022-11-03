@@ -20,7 +20,9 @@ cd $INSTALLER
 # ------------------------------------------------------------------------------
 echo
 
-[[ -z "$JITSI_FQDN" ]] && echo "No FQDN for Jitsi" && false
+[[ -z "$JITSI_FQDN" ]] && echo "JITSI_FQDN not found" && false
+[[ -z "$JIBRI_PASSWD" ]] && echo "JIBRI_PASSWD not found" && false
+[[ -z "$RECORDER_PASSWD" ]] && echo "RECORDER_PASSWD not found" && false
 
 # ------------------------------------------------------------------------------
 # INSTALLER CONFIGURATION
