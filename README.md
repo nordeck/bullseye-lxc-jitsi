@@ -23,6 +23,14 @@
     - [2.1.4 SSH server](#214-ssh-server)
     - [2.1.5 JMS public key](#215-jms-public-key)
   - [2.2 Installation](#22-installation)
+- [3. Additional Jibri)](#3-additional-jibri)
+  - [3.1 Prerequisites](#31-prerequisites)
+    - [3.1.1 Supported distribution](#311-supported-distribution)
+    - [3.1.2 Server specifications](#312-server-specifications)
+    - [3.1.3 Ports](#313-ports)
+    - [3.1.4 SSH server](#314-ssh-server)
+    - [3.1.5 JMS public key](#315-jms-public-key)
+  - [3.2 Installation](#32-installation)
 
 ## 1. JMS (Jitsi Meet Server)
 
@@ -184,4 +192,56 @@ address:
 
 ```bash
 add-jvb-node <JVB-IP-address>
+```
+
+## 3. Additional Jibri
+
+### 3.1 Prerequisites
+
+#### 3.1.1 Supported distribution
+
+`Debian 11 Bullseye`
+
+#### 3.1.2 Server specifications
+
+- At least 4 CPU cores for each `Jibri` instance.
+- At least 4 GB RAM for each `Jibri` instance.
+- At least 8 GB disk for the host.
+- At least +4 GB disk for each `Jibri` instance.
+- More disk space if recorded files are stored on this server.
+
+#### 3.1.3 Ports
+
+There is no public port for `Jibri`.
+
+#### 3.1.4 SSH server
+
+Install `openssh-server` if not already exists:
+
+```bash
+apt-get install openssh-server
+```
+
+#### 3.1.5 JMS public key
+
+The `JMS` public SSH key must be in `/root/.ssh/authorized_keys` on `Jibri`.
+
+```bash
+mkdir -p /root/.ssh
+chmod 700 /root/.ssh
+
+# if there is a self-signed certificate, run it with --no-check-certificate
+# wget --no-check-certificate -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
+
+wget -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
+cat /tmp/jms.pub >>/root/.ssh/authorized_keys
+```
+
+### 3.2 Installation
+
+Login as `root` to `JMS` and run `add-jibri-node` command using `Jibri`'s IP
+address:
+
+```bash
+add-jibri-node <JIBRI-IP-address>
 ```
