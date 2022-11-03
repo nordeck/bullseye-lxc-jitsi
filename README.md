@@ -265,7 +265,7 @@ add-jibri-node <JIBRI-IP-address>
 - At least 8 CPU cores for each `video-sip-gateway` instance.
 - At least 8 GB RAM for each `video-sip-gateway` instance.
 - At least 8 GB disk
-- Maximum 4 instances is supported on a single server.
+- Maximum 4 instances supported on a single server.
 
 #### 4.1.3 Ports
 
