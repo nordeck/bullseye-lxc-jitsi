@@ -146,6 +146,9 @@ cp jitsi-deploy-customer_name /root/.ssh/deploy.key
 chmod 600 /root/.ssh/deploy.key
 ```
 
+_Don't delete the deployment key after the setup because it will be used to add
+the additional nodes_
+
 #### 1.2.5 Running the installer
 
 Run the installer
