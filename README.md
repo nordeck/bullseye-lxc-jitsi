@@ -31,6 +31,13 @@
     - [3.1.4 SSH server](#314-ssh-server)
     - [3.1.5 JMS public key](#315-jms-public-key)
   - [3.2 Installation](#32-installation)
+- [4. Additional Video SIP Gateway](#4-additional-video-sip-gateway)
+  - [4.1 Prerequisites](#41-prerequisites)
+    - [4.1.1 Supported distribution](#411-supported-distribution)
+    - [4.1.2 Server specifications](#412-server-specifications)
+    - [4.1.3 Ports](#413-ports)
+    - [4.1.4 SSH server](#414-ssh-server)
+    - [4.1.5 JMS public key](#415-jms-public-key)
 
 ## 1. JMS (Jitsi Meet Server)
 
@@ -206,9 +213,8 @@ add-jvb-node <JVB-IP-address>
 
 - At least 4 CPU cores for each `Jibri` instance.
 - At least 4 GB RAM for each `Jibri` instance.
-- At least 8 GB disk for the host.
-- At least +4 GB disk for each `Jibri` instance.
-- More disk space if recorded files are stored on this server.
+- At least 8 GB disk
+- More disk space if recorded files will be stored on this server.
 
 #### 3.1.3 Ports
 
@@ -244,4 +250,47 @@ address:
 
 ```bash
 add-jibri-node <JIBRI-IP-address>
+```
+
+## 4. Additional Video SIP Gateway
+
+### 4.1 Prerequisites
+
+#### 4.1.1 Supported distribution
+
+`Debian 11 Bullseye`
+
+#### 4.1.2 Server specifications
+
+- At least 8 CPU cores for each `video-sip-gateway` instance.
+- At least 8 GB RAM for each `video-sip-gateway` instance.
+- At least 8 GB disk
+- Maximum 4 instances is supported on a single server.
+
+#### 4.1.3 Ports
+
+There is no public port for `video-sip-gateway`.
+
+#### 4.1.4 SSH server
+
+Install `openssh-server` if not already exists:
+
+```bash
+apt-get install openssh-server
+```
+
+#### 4.1.5 JMS public key
+
+The `JMS` public SSH key must be in `/root/.ssh/authorized_keys` on
+`video-sip-gateway`.
+
+```bash
+mkdir -p /root/.ssh
+chmod 700 /root/.ssh
+
+# if there is a self-signed certificate, run it with --no-check-certificate
+# wget --no-check-certificate -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
+
+wget -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
+cat /tmp/jms.pub >>/root/.ssh/authorized_keys
 ```
