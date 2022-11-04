@@ -80,7 +80,7 @@ if [[ -f "$JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt" ]]; then
 fi
 
 if [[ -f "$JITSI_ROOTFS/root/meta/pjsua.config" ]]; then
-    scp_ $JITSI_ROOTFS/tmp/
+    scp_ $JITSI_ROOTFS/root/meta/pjsua.config /tmp/
 fi
 
 
