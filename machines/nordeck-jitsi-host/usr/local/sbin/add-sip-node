@@ -79,6 +79,10 @@ if [[ -f "$JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt" ]]; then
     scp_ $JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt /root/.ssh/
 fi
 
+if [[ -f "$JITSI_ROOTFS/root/meta/pjsua.config" ]]; then
+    scp_ $JITSI_ROOTFS/tmp/
+fi
+
 
 # ------------------------------------------------------------------------------
 # installation
