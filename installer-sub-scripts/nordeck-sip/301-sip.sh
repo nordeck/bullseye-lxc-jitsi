@@ -289,7 +289,8 @@ EOS
 cp etc/jitsi/jibri/jibri.conf $ROOTFS/etc/jitsi/jibri/
 sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" $ROOTFS/etc/jitsi/jibri/jibri.conf
 sed -i "s/___JIBRI_PASSWD___/$JIBRI_PASSWD/" $ROOTFS/etc/jitsi/jibri/jibri.conf
-sed -i "s/___SIP_PASSWD___/$SIP_PASSWD/" $ROOTFS/etc/jitsi/jibri/jibri.conf
+sed -i "s/___JIBRI_SIP_PASSWD___/$JIBRI_SIP_PASSWD/" \
+    $ROOTFS/etc/jitsi/jibri/jibri.conf
 
 # asoundrc
 cp home/jibri/.asoundrc $ROOTFS/home/jibri/
