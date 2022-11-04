@@ -184,6 +184,9 @@ bash ni nordeck-jitsi
 - `TCP/9090`\
   _The signaling port... This port must be accessible for `JMS`_
 
+- `TCP/22`\
+  _`SSH` port... This port must be accessible for `JMS`_
+
 #### 2.1.4 SSH server
 
 Install `openssh-server` if not already exists:
@@ -234,7 +237,9 @@ add-jvb-node <JVB-IP-ADDRESS>
 
 #### 3.1.3 Public Ports
 
-There is no public port for `Jibri`.
+- `TCP/22`
+  \
+  _`SSH` port... This port must be accessible for `JMS`_
 
 #### 3.1.4 SSH server
 
@@ -285,7 +290,9 @@ add-jibri-node <JIBRI-IP-ADDRESS>
 
 #### 4.1.3 Public Ports
 
-There is no public port for `video-sip-gateway`.
+- `TCP/22`
+  \
+  _`SSH` port... This port must be accessible for `JMS`_
 
 #### 4.1.4 SSH server
 
