@@ -36,5 +36,5 @@ cp usr/local/sbin/add-jvb-node /usr/local/sbin/
 chmod 744 /usr/local/sbin/add-jvb-node
 cp usr/local/sbin/add-jibri-node /usr/local/sbin/
 chmod 744 /usr/local/sbin/add-jibri-node
-#cp usr/local/sbin/add-sip-node /usr/local/sbin/
-#chmod 744 /usr/local/sbin/add-sip-node
+cp usr/local/sbin/add-sip-node /usr/local/sbin/
+chmod 744 /usr/local/sbin/add-sip-node
