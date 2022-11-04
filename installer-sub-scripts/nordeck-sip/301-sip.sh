@@ -362,7 +362,12 @@ chmod 755 /usr/local/bin/pjsua
 EOS
 
 # pjsua config
-cp etc/jitsi/jibri/pjsua.config $ROOTFS/etc/jitsi/jibri/
+if [[ -f "/tmp/pjsua.config" ]]; then
+    cp /tmp/pjsua.config $ROOTFS/etc/jitsi/jibri/
+    rm -f /tmp/pjsua.config
+else
+    cp etc/jitsi/jibri/pjsua.config $ROOTFS/etc/jitsi/jibri/
+fi
 
 # pjsua scripts
 cp opt/jitsi/jibri/pjsua.sh $ROOTFS/opt/jitsi/jibri/pjsua.sh
