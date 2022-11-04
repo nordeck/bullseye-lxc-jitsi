@@ -197,7 +197,7 @@ apt-get install openssh-server
 
 #### 2.1.5 JMS public key
 
-The `JMS` public SSH key must be in `/root/.ssh/authorized_keys` on `JVB`.
+The SSH public key of `JMS` must be in `/root/.ssh/authorized_keys` on `JVB`.
 
 ```bash
 mkdir -p /root/.ssh
@@ -251,7 +251,7 @@ apt-get install openssh-server
 
 #### 3.1.5 JMS public key
 
-The `JMS` public SSH key must be in `/root/.ssh/authorized_keys` on `Jibri`.
+The SSH public key of `JMS` must be in `/root/.ssh/authorized_keys` on `Jibri`.
 
 ```bash
 mkdir -p /root/.ssh
@@ -304,7 +304,7 @@ apt-get install openssh-server
 
 #### 4.1.5 JMS public key
 
-The `JMS` public SSH key must be in `/root/.ssh/authorized_keys` on
+The SSH public key of `JMS` must be in `/root/.ssh/authorized_keys` on
 `video-sip-gateway`.
 
 ```bash
