@@ -40,6 +40,7 @@
     - [4.1.5 JMS public key](#415-jms-public-key)
   - [4.2 Configuration](#42-configuration)
   - [4.3 Installation](#43-installation)
+  - [4.4 Updating the PJSUA configuration](#44-updating-the-pjsua-configuration)
 
 ## 1. JMS (Jitsi Meet Server)
 
@@ -342,3 +343,23 @@ Login as `root` to `JMS` and run `add-sip-node` command using
 ```bash
 add-sip-node <SIP-IP-ADDRESS>
 ```
+
+### 4.4 Updating the PJSUA configuration
+
+First, update the template file to change the `PJSUA` configuration. The
+template file is in the `nordeck-jitsi` container.
+
+- Path in container:\
+  `/root/meta/pjsua.config`
+
+- Path on host:\
+  `/var/lib/lxc/nordeck-jitsi/rootfs/root/meta/pjsua.config`
+
+Then run `update-sip-node` command using `video-sip-gateway`'s IP address:
+
+```bash
+update-sip-node <SIP-IP-ADDRESS>
+```
+
+_Be careful, if there is an active SIP session while running this command, it
+will be canceled._
