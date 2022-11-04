@@ -1,0 +1,113 @@
+#!/bin/bash
+set -e
+
+# ------------------------------------------------------------------------------
+# ADD-SIP-NODE
+# ------------------------------------------------------------------------------
+# Add an additional video-sip-gateway node to the cluster.
+#
+# Usage:
+#     add-sip-node <NODE-ADDRESS>
+# ------------------------------------------------------------------------------
+SSH_CONFIG="/root/.ssh/jms-config"
+
+APP="nordeck-sip"
+APP_REPO="ssh://git@github.com:22/nordeck/bullseye-lxc-jitsi.git"
+INSTALLER="https://raw.githubusercontent.com/nordeck/bullseye-lxc-base/main/installer/ni"
+NODE=$1
+
+JITSI_ROOTFS="/var/lib/lxc/nordeck-jitsi/rootfs"
+SIP_ROOTFS="/var/lib/lxc/nordeck-sip-template/rootfs"
+
+ssh_() {
+    ssh -F $SSH_CONFIG $NODE -- "$@"
+}
+
+scp_() {
+    scp -F $SSH_CONFIG $1 $NODE:$2
+}
+
+
+# ------------------------------------------------------------------------------
+# trap on exit
+# ------------------------------------------------------------------------------
+function on_exit {
+    if [[ "$COMPLETED" != true ]]; then
+        cat <<EOF
+
+Something went wrong. The installation couldn't be completed!
+EOF
+        exit 1
+    else
+        cat <<EOF
+
+Completed successfully!
+EOF
+        exit 0
+    fi
+}
+
+COMPLETED=false
+trap on_exit EXIT
+
+if [[ -z "$NODE" ]]; then
+    cat <<EOF
+Usage:
+       add-jibri-node <NODE-ADDRESS>
+EOF
+    exit 1
+fi
+
+
+# ------------------------------------------------------------------------------
+# exports
+# ------------------------------------------------------------------------------
+JITSI_FQDN=$(cat $JITSI_ROOTFS/root/meta/jitsi-fqdn || true)
+JIBRI_VERSION=$(cat $JITSI_ROOTFS/root/meta/jibri-version || true)
+JIBRI_PASSWD=$(cat $JITSI_ROOTFS/root/meta/jibri-passwd || true)
+JIBRI_SIP_PASSWD=$(cat $JITSI_ROOTFS/root/meta/jibri-sip-passwd || true)
+
+
+# ------------------------------------------------------------------------------
+# uploads
+# ------------------------------------------------------------------------------
+if [[ -f /root/.ssh/jibri ]]; then
+    scp_ /root/.ssh/jibri /root/.ssh/
+fi
+
+if [[ -f "$JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt" ]]; then
+    scp_ $JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt /root/.ssh/
+fi
+
+
+# ------------------------------------------------------------------------------
+# installation
+# ------------------------------------------------------------------------------
+ssh_ <<EOS
+set -e
+apt-get -y --allow-releaseinfo-change update
+apt-get -y install wget
+wget $INSTALLER -O /tmp/ni -T 30
+EOS
+
+scp_ /root/.ssh/deploy.key /root/.ssh/
+
+ssh_ <<EOS
+set -e
+export APP_REPO=$APP_REPO
+export JITSI_FQDN=$JITSI_FQDN
+export JIBRI_VERSION=$JIBRI_VERSION
+export JIBRI_PASSWD=$JIBRI_PASSWD
+export JIBRI_SIP_PASSWD=$JIBRI_SIP_PASSWD
+export APT_PROXY=$APT_PROXY
+
+cd /tmp
+bash ni $APP || (rm -f /root/.ssh/deploy.key; false)
+rm -f /root/.ssh/deploy.key
+EOS
+
+
+# ------------------------------------------------------------------------------
+# completed
+# ------------------------------------------------------------------------------
+COMPLETED=true
