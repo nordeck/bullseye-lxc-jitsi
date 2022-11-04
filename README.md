@@ -7,7 +7,7 @@
     - [1.1.1 Supported distribution](#111-supported-distribution)
     - [1.1.2 Server specifications](#112-server-specifications)
     - [1.1.3 DNS records](#113-dns-records)
-    - [1.1.4 Ports](#114-ports)
+    - [1.1.4 Public Ports](#114-public-ports)
     - [1.1.5 Creating the deployment key](#115-creating-the-deployment-key)
   - [1.2 Installation](#12-installation)
     - [1.2.1 Login to the server](#121-login-to-the-server)
@@ -19,7 +19,7 @@
   - [2.1 Prerequisites](#21-prerequisites)
     - [2.1.1 Supported distribution](#211-supported-distribution)
     - [2.1.2 Server specifications](#212-server-specifications)
-    - [2.1.3 Ports](#213-ports)
+    - [2.1.3 Public Ports](#213-public-ports)
     - [2.1.4 SSH server](#214-ssh-server)
     - [2.1.5 JMS public key](#215-jms-public-key)
   - [2.2 Installation](#22-installation)
@@ -27,7 +27,7 @@
   - [3.1 Prerequisites](#31-prerequisites)
     - [3.1.1 Supported distribution](#311-supported-distribution)
     - [3.1.2 Server specifications](#312-server-specifications)
-    - [3.1.3 Ports](#313-ports)
+    - [3.1.3 Public Ports](#313-public-ports)
     - [3.1.4 SSH server](#314-ssh-server)
     - [3.1.5 JMS public key](#315-jms-public-key)
   - [3.2 Installation](#32-installation)
@@ -35,7 +35,7 @@
   - [4.1 Prerequisites](#41-prerequisites)
     - [4.1.1 Supported distribution](#411-supported-distribution)
     - [4.1.2 Server specifications](#412-server-specifications)
-    - [4.1.3 Ports](#413-ports)
+    - [4.1.3 Public Ports](#413-public-ports)
     - [4.1.4 SSH server](#414-ssh-server)
     - [4.1.5 JMS public key](#415-jms-public-key)
   - [4.2 Configuration](#42-configuration)
@@ -88,7 +88,7 @@ host jitsi.nordeck.corp
 host turn.nordeck.corp
 ```
 
-#### 1.1.4 Ports
+#### 1.1.4 Public Ports
 
 - `TCP/443`
 
@@ -176,7 +176,7 @@ bash ni nordeck-jitsi
 - At least 4 GB RAM
 - At least 8 GB disk
 
-#### 2.1.3 Ports
+#### 2.1.3 Public Ports
 
 - `UDP/10000`
 
@@ -231,7 +231,7 @@ add-jvb-node <JVB-IP-ADDRESS>
 - More disk space if recorded files will be stored on this server.
 - Maximum 16 `Jibri` instances supported on a single server.
 
-#### 3.1.3 Ports
+#### 3.1.3 Public Ports
 
 There is no public port for `Jibri`.
 
@@ -282,7 +282,7 @@ add-jibri-node <JIBRI-IP-ADDRESS>
 - At least 8 GB disk.
 - Maximum 4 `video-sip-gateway` instances supported on a single server.
 
-#### 4.1.3 Ports
+#### 4.1.3 Public Ports
 
 There is no public port for `video-sip-gateway`.
 
