@@ -255,6 +255,7 @@ EOS
 # jibri
 JIBRI_PASSWD=$(openssl rand -hex 20)
 RECORDER_PASSWD=$(openssl rand -hex 20)
+JIBRI_SIP_PASSWD=$RECORDER_PASSWD
 
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
@@ -262,6 +263,8 @@ echo '$JIBRI_PASSWD' >/root/meta/jibri-passwd
 chmod 600 /root/meta/jibri-passwd
 echo '$RECORDER_PASSWD' >/root/meta/recorder-passwd
 chmod 600 /root/meta/recorder-passwd
+echo '$JIBRI_SIP_PASSWD' >/root/meta/jibri-sip-passwd
+chmod 600 /root/meta/jibri-sip-passwd
 
 VERSION=\$(apt-cache policy jibri | grep Candidate | rev | cut -d' ' -f1 | rev)
 echo \$VERSION > /root/meta/jibri-version
