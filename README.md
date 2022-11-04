@@ -38,6 +38,8 @@
     - [4.1.3 Ports](#413-ports)
     - [4.1.4 SSH server](#414-ssh-server)
     - [4.1.5 JMS public key](#415-jms-public-key)
+  - [4.2 Configuration](#42-configuration)
+  - [4.3 Installation](#43-installation)
 
 ## 1. JMS (Jitsi Meet Server)
 
@@ -209,7 +211,7 @@ Login as `root` to `JMS` and run `add-jvb-node` command using `JVB`'s IP
 address:
 
 ```bash
-add-jvb-node <JVB-IP-address>
+add-jvb-node <JVB-IP-ADDRESS>
 ```
 
 ## 3. Additional Jibri
@@ -261,7 +263,7 @@ Login as `root` to `JMS` and run `add-jibri-node` command using `Jibri`'s IP
 address:
 
 ```bash
-add-jibri-node <JIBRI-IP-address>
+add-jibri-node <JIBRI-IP-ADDRESS>
 ```
 
 ## 4. Additional Video SIP Gateway
@@ -305,4 +307,37 @@ chmod 700 /root/.ssh
 
 wget -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
 cat /tmp/jms.pub >>/root/.ssh/authorized_keys
+```
+
+### 4.2 Configuration
+
+Before adding the `video-sip-gateway` node, update `pjsua.config` template on
+`JMS` according to your environment. `add-sip-node` command uses it to configure
+the nodes.
+
+The template file is in the `nordeck-jitsi` container.
+
+- Path in container:\
+  `/root/meta/pjsua.config`
+
+- Path on host:\
+  `/var/lib/lxc/nordeck-jitsi/rootfs/root/meta/pjsua.config`
+
+Add SIP account info using the following format:
+
+```conf
+--id "jitsi <sip:<SIP_USER>@127.0.0.1>"
+--registrar=sip:<SIP_SERVER_ADDRESS>
+--realm=*
+--username=<SIP_USER>
+--password=<SIP_PASSWORD>
+```
+
+### 4.3 Installation
+
+Login as `root` to `JMS` and run `add-sip-node` command using
+`video-sip-gateway`'s IP address:
+
+```bash
+add-sip-node <SIP-IP-ADDRESS>
 ```
