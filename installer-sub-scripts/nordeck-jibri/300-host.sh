@@ -33,7 +33,7 @@ cp etc/modprobe.d/alsa-loopback.conf /etc/modprobe.d/
 [[ -z "$(egrep '^snd_aloop' /etc/modules)" ]] && \
     cat etc/modules.custom.alsa >>/etc/modules
 
-# load module
+# load snd_aloop
 rmmod -f snd_aloop || true
 modprobe snd_aloop || true
 
@@ -54,7 +54,7 @@ EOF
     if [[ "$IS_IN_LXC" = true ]]; then
         cat <<EOF
 If this is a container, please load the snd_aloop module to the host
-permanently
+permanently.
 
 EOF
     fi
