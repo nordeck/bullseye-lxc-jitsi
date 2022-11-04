@@ -23,7 +23,7 @@ echo
 [[ -z "$JITSI_FQDN" ]] && echo "JITSI_FQDN not found" && false
 [[ -z "$(dig +short $JITSI_FQDN)" ]] && echo "unresolvable JITSI_FQDN" && false
 [[ -z "$JIBRI_PASSWD" ]] && echo "JIBRI_PASSWD not found" && false
-[[ -z "$RECORDER_PASSWD" ]] && echo "RECORDER_PASSWD not found" && false
+[[ -z "$SIP_PASSWD" ]] && echo "SIP_PASSWD not found" && false
 
 # ------------------------------------------------------------------------------
 # INSTALLER CONFIGURATION
