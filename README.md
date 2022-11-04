@@ -324,7 +324,7 @@ The template file is in the `nordeck-jitsi` container.
 - Path on host:\
   `/var/lib/lxc/nordeck-jitsi/rootfs/root/meta/pjsua.config`
 
-Add SIP account info using the following format:
+Add SIP account info into it using the following format:
 
 ```conf
 --id "jitsi <sip:<SIP_USER>@127.0.0.1>"
