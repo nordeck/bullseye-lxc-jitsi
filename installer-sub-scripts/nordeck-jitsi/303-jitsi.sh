@@ -270,6 +270,10 @@ VERSION=\$(apt-cache policy jibri | grep Candidate | rev | cut -d' ' -f1 | rev)
 echo \$VERSION > /root/meta/jibri-version
 EOS
 
+# sip
+cp $MACHINES/nordeck-sip-template/etc/jitsi/jibri/pjsua.config \
+    $ROOTFS/root/meta/
+
 # ------------------------------------------------------------------------------
 # JMS SSH KEY
 # ------------------------------------------------------------------------------
