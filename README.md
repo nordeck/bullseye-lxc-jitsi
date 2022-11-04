@@ -96,8 +96,8 @@ host turn.nordeck.corp
   _If Lets Encrypt is used_
 
 - `TCP/5222`\
-  _If there are additional `JVBs` or `Jibris` which access `JMS` through the
-  public IP_
+  _If there are additional `JVB`, `Jibri` or `Video-SIP-Gateway` nodes which
+  access `JMS` through the public IP_
 
 - `UDP/10000`\
   _If there is an enabled `JVB` on `JMS`_
