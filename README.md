@@ -209,8 +209,8 @@ cat /tmp/jms.pub >>/root/.ssh/authorized_keys
 
 ### 2.2 Installation
 
-Login as `root` to `JMS` and run `add-jvb-node` command using `JVB`'s IP
-address:
+Login as `root` to `JMS` and run `add-jvb-node` command using IP address of
+`JVB`:
 
 ```bash
 add-jvb-node <JVB-IP-ADDRESS>
@@ -261,8 +261,8 @@ cat /tmp/jms.pub >>/root/.ssh/authorized_keys
 
 ### 3.2 Installation
 
-Login as `root` to `JMS` and run `add-jibri-node` command using `Jibri`'s IP
-address:
+Login as `root` to `JMS` and run `add-jibri-node` command using IP address of
+`Jibri`:
 
 ```bash
 add-jibri-node <JIBRI-IP-ADDRESS>
@@ -337,8 +337,8 @@ Add SIP account info into it using the following format:
 
 ### 4.3 Installation
 
-Login as `root` to `JMS` and run `add-sip-node` command using
-`video-sip-gateway`'s IP address:
+Login as `root` to `JMS` and run `add-sip-node` command using IP address of
+`video-sip-gateway`:
 
 ```bash
 add-sip-node <SIP-IP-ADDRESS>
@@ -355,7 +355,7 @@ template file is in the `nordeck-jitsi` container.
 - Path on host:\
   `/var/lib/lxc/nordeck-jitsi/rootfs/root/meta/pjsua.config`
 
-Then run `update-sip-node` command using `video-sip-gateway`'s IP address:
+Then run `update-sip-node` command using IP address of `video-sip-gateway`:
 
 ```bash
 update-sip-node <SIP-IP-ADDRESS>
