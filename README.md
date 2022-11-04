@@ -52,12 +52,13 @@ The `JMS` server contains:
   _XMPP server_
 
 - `Jicofo`\
-  _Jitsi conference focus service_
+  _Jitsi Conference Focus service_
 
 - `Coturn`\
-  _The TURN server_
+  _TURN server_
 
 - `JVB`\
+  _Jitsi Video Bridge service_\
   _This service may be disabled if there are additional `JVBs`_
 
 ### 1.1 Prerequisites
