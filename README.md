@@ -2,6 +2,13 @@
 
 `Jitsi` cluster based on `LXC`.
 
+```txt
+╭───
+│
+│
+╰───
+```
+
 - [1. JMS (Jitsi Meet Server)](#1-jms-jitsi-meet-server)
   - [1.1 Prerequisites](#11-prerequisites)
     - [1.1.1 Supported distribution](#111-supported-distribution)
