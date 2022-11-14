@@ -234,16 +234,12 @@ echo $JITSI_FQDN >/root/meta/jitsi-fqdn
 EOS
 
 # jvb
-JVB_SECRET=$(egrep '^JVB_SECRET=' $ROOTFS/etc/jitsi/videobridge/config | \
-             cut -d '=' -f2)
 JVB_SHARD_PASSWD=$(egrep '^org.jitsi.videobridge.xmpp.user.shard.PASSWORD=' \
     $ROOTFS/etc/jitsi/videobridge/sip-communicator.properties | \
     cut -d '=' -f2)
 
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
-echo '$JVB_SECRET' >/root/meta/jvb-secret
-chmod 600 /root/meta/jvb-secret
 echo '$JVB_SHARD_PASSWD' >/root/meta/jvb-shard-passwd
 chmod 600 /root/meta/jvb-shard-passwd
 
