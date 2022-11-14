@@ -63,7 +63,6 @@ fi
 # exports
 # ------------------------------------------------------------------------------
 JITSI_FQDN=$(cat $JITSI_ROOTFS/root/meta/jitsi-fqdn || true)
-JVB_SECRET=$(cat $JITSI_ROOTFS/root/meta/jvb-secret || true)
 JVB_SHARD_PASSWD=$(cat $JITSI_ROOTFS/root/meta/jvb-shard-passwd || true)
 JVB_VERSION=$(cat $JITSI_ROOTFS/root/meta/jvb-version || true)
 
@@ -85,7 +84,6 @@ set -e
 export APP_REPO=$APP_REPO
 export JITSI_FQDN=$JITSI_FQDN
 export JVB_VERSION=$JVB_VERSION
-export JVB_SECRET=$JVB_SECRET
 export JVB_SHARD_PASSWD=$JVB_SHARD_PASSWD
 export DONT_RUN_HOST_CUSTOM_CA=true
 export APT_PROXY=$APT_PROXY
