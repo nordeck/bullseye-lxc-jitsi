@@ -60,7 +60,6 @@ EOS
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 export DEBIAN_FRONTEND=noninteractive
-apt-get $APT_PROXY -y install gnupg
 apt-get $APT_PROXY -y install redis
 EOS
 
@@ -94,7 +93,6 @@ EOS
 # ------------------------------------------------------------------------------
 # COMPONENT-SIDECAR
 # ------------------------------------------------------------------------------
-# add here the env transfer
 lxc-attach -n $MACH -- systemctl restart jitsi-component-sidecar.service
 
 # ------------------------------------------------------------------------------
