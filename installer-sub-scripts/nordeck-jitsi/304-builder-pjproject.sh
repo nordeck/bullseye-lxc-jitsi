@@ -51,6 +51,33 @@ EOS
 # ------------------------------------------------------------------------------
 # PJPROJECT
 # ------------------------------------------------------------------------------
+# build
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+mkdir -p /home/dev/src
+chown dev:dev /home/dev/src
+rm -rf /home/dev/src/pjproject
+EOS
+
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+su -l dev <<EOSS
+    set -e
+
+    cd ~/src
+    git clone -b $PJPROJECT_BRANCH $PJPROJECT_REPO
+    cd pjproject
+
+    ./configure
+    make dep
+    make
+EOSS
+EOS
+
+# store
+mkdir -p /root/nordeck-store
+cp $ROOTFS/home/dev/src/pjproject/pjsip-apps/bin/pjsua-x86_64-unknown-linux-gnu \
+    /root/nordeck-store/pjsua
 
 # ------------------------------------------------------------------------------
 # CONTAINER SERVICES
