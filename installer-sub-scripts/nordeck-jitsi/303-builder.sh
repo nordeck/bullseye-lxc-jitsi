@@ -90,7 +90,10 @@ EOS
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 export DEBIAN_FRONTEND=noninteractive
-apt-get $APT_PROXY -y install unzip git
+apt-get $APT_PROXY -y install gnupg unzip
+apt-get $APT_PROXY -y install unzip jq
+apt-get $APT_PROXY -y install git devscripts debhelper
+apt-get $APT_PROXY -y install build-essential
 EOS
 
 # ------------------------------------------------------------------------------
