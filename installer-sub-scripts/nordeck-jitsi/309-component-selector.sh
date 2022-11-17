@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# SIP-DIAL-PLAN.SH
+# COMPONENT-SELECTOR.SH
 # ------------------------------------------------------------------------------
 set -e
 source $INSTALLER/000-source
@@ -7,14 +7,14 @@ source $INSTALLER/000-source
 # ------------------------------------------------------------------------------
 # ENVIRONMENT
 # ------------------------------------------------------------------------------
-MACH="nordeck-sip-dial-plan"
+MACH="nordeck-component-selector"
 cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
 DNS_RECORD=$(grep "address=/$MACH/" /etc/dnsmasq.d/nordeck-jitsi | head -n1)
 IP=${DNS_RECORD##*/}
 SSH_PORT="30$(printf %03d ${IP##*.})"
-echo SIP_DIAL_PLAN="$IP" >> $INSTALLER/000-source
+echo COMPONENT_SELECTOR="$IP" >> $INSTALLER/000-source
 
 # ------------------------------------------------------------------------------
 # NFTABLES RULES
@@ -28,7 +28,7 @@ nft add element nordeck-nat tcp2port { $SSH_PORT : 22 }
 # ------------------------------------------------------------------------------
 # INIT
 # ------------------------------------------------------------------------------
-[[ "$DONT_RUN_SIP_DIAL_PLAN" = true ]] && exit
+[[ "$DONT_RUN_COMPONENT_SELECTOR" = true ]] && exit
 
 echo
 echo "-------------------------- $MACH --------------------------"
@@ -65,7 +65,7 @@ cat >> /var/lib/lxc/$MACH/config <<EOF
 
 # Start options
 lxc.start.auto = 1
-lxc.start.order = 310
+lxc.start.order = 309
 lxc.start.delay = 2
 lxc.group = nordeck-group
 lxc.group = onboot
@@ -108,66 +108,8 @@ EOS
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 export DEBIAN_FRONTEND=noninteractive
-apt-get $APT_PROXY -y install unzip git
-EOS
-
-# ------------------------------------------------------------------------------
-# SYSTEM CONFIGURATION
-# ------------------------------------------------------------------------------
-# deno
-lxc-attach -n $MACH -- zsh <<EOS
-set -e
-cd /tmp
-wget -T 30 -O deno.zip \
-    https://github.com/denoland/deno/releases/latest/download/deno-x86_64-unknown-linux-gnu.zip
-unzip -o deno.zip
-cp /tmp/deno /usr/local/bin/
-deno --version
-EOS
-
-# ------------------------------------------------------------------------------
-# SIP-DIAL-PLAN
-# ------------------------------------------------------------------------------
-# sip-dial-plan user
-lxc-attach -n $MACH -- zsh <<EOS
-set -e
-adduser sip-dial-plan --system --group --disabled-password --shell /bin/zsh \
-    --gecos ''
-EOS
-
-cp $MACHINE_COMMON/home/user/.tmux.conf $ROOTFS/home/sip-dial-plan/
-cp $MACHINE_COMMON/home/user/.zshrc $ROOTFS/home/sip-dial-plan/
-cp $MACHINE_COMMON/home/user/.vimrc $ROOTFS/home/sip-dial-plan/
-
-lxc-attach -n $MACH -- zsh <<EOS
-set -e
-chown sip-dial-plan:sip-dial-plan /home/sip-dial-plan/.tmux.conf
-chown sip-dial-plan:sip-dial-plan /home/sip-dial-plan/.vimrc
-chown sip-dial-plan:sip-dial-plan /home/sip-dial-plan/.zshrc
-EOS
-
-# application
-lxc-attach -n $MACH -- zsh <<EOS
-set -e
-su -l sip-dial-plan <<EOSS
-    set -e
-    git clone https://github.com/jitsi-contrib/sip-dial-plan.git app
-EOSS
-EOS
-
-sed -i "/HOSTNAME/ s~\".*\"~\"0.0.0.0\"~" \
-    $ROOTFS/home/sip-dial-plan/app/config.ts
-sed -i "/TOKEN_SECRET/ s~\".*\"~\"$APP_SECRET\"~" \
-    $ROOTFS/home/sip-dial-plan/app/config.ts
-
-# systemd
-cp etc/systemd/system/sip-dial-plan.service $ROOTFS/etc/systemd/system/
-
-lxc-attach -n $MACH -- zsh <<EOS
-set -e
-systemctl daemon-reload
-systemctl enable sip-dial-plan.service
-systemctl start sip-dial-plan.service
+apt-get $APT_PROXY -y install gnupg
+apt-get $APT_PROXY -y install redis
 EOS
 
 # ------------------------------------------------------------------------------
