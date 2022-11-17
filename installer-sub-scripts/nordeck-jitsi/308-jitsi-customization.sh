@@ -23,8 +23,8 @@ echo "------------------- JITSI CUSTOMIZATION -------------------"
 # ------------------------------------------------------------------------------
 # CONFIG.JS
 # ------------------------------------------------------------------------------
-# dial-plan
-if [[ "$DONT_RUN_SIP_DIAL_PLAN" != true ]]; then
+# dialplan
+if [[ "$DONT_RUN_DIALPLAN" != true ]]; then
     sed -i "/^var config =/a \
 \    peopleSearchQueryTypes: ['conferenceRooms'],\n\
 \    peopleSearchUrl: 'https://$JITSI_FQDN/get-dial-plan',\n" \
