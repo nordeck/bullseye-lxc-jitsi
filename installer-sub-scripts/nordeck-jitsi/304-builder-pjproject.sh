@@ -11,8 +11,8 @@ MACH="nordeck-builder"
 cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
-PJPROJECT_REPO="https://github.com/jitsi/pjproject"
-PJPROJECT_BRANCH="jibri-2.10-dev1"
+PROJECT_REPO="https://github.com/jitsi/pjproject"
+PROJECT_BRANCH="jibri-2.10-dev1"
 
 # ------------------------------------------------------------------------------
 # INIT
@@ -65,7 +65,7 @@ su -l dev <<EOSS
     set -e
 
     cd ~/src
-    git clone -b $PJPROJECT_BRANCH $PJPROJECT_REPO
+    git clone -b $PROJECT_BRANCH $PROJECT_REPO
     cd pjproject
 
     ./configure
