@@ -131,13 +131,12 @@ npm install npm -g
 EOS
 
 # jitsi-component-selector
-cp /root/nordeck-store/jitsi-component-selector.deb \
-    $ROOTFS/var/cache/apt/archives/
+cp /root/nordeck-store/jitsi-component-selector.deb $ROOTFS/tmp/
 
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 export DEBIAN_FRONTEND=noninteractive
-dpkg -i /var/cache/apt/archives/jitsi-component-selector.deb
+dpkg -i /tmp/jitsi-component-selector.deb
 EOS
 
 # ------------------------------------------------------------------------------
