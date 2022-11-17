@@ -92,6 +92,12 @@ dpkg -i /tmp/jitsi-component-sidecar.deb
 EOS
 
 # ------------------------------------------------------------------------------
+# COMPONENT-SIDECAR
+# ------------------------------------------------------------------------------
+# add here the env transfer
+lxc-attach -n $MACH -- systemctl restart jitsi-component-sidecar.service
+
+# ------------------------------------------------------------------------------
 # CONTAINER SERVICES
 # ------------------------------------------------------------------------------
 lxc-attach -n $MACH -- systemctl stop jibri-xorg.service
