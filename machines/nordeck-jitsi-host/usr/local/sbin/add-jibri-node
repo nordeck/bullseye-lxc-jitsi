@@ -80,7 +80,7 @@ if [[ -f "$JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt" ]]; then
 fi
 
 if [[ -f "/root/nordeck-store/jitsi-component-sidecar.deb" ]]; then
-    scp_ /root/nordeck-store/jitsi-component-sidecar.deb /tmp/
+    scp_ /root/nordeck-store/jitsi-component-sidecar.deb /root/
 fi
 
 

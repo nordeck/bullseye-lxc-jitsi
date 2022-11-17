@@ -319,13 +319,13 @@ EOS
 # ------------------------------------------------------------------------------
 # PJSUA
 # ------------------------------------------------------------------------------
-mv /tmp/pjsua $ROOTFS/usr/local/bin/pjsua
+mv /root/pjsua $ROOTFS/usr/local/bin/pjsua
 chmod 755 $ROOTFS/usr/local/bin/pjsua
 
 # pjsua config
-if [[ -f "/tmp/pjsua.config" ]]; then
-    cp /tmp/pjsua.config $ROOTFS/etc/jitsi/jibri/
-    rm -f /tmp/pjsua.config
+if [[ -f "/root/pjsua.config" ]]; then
+    cp /root/pjsua.config $ROOTFS/etc/jitsi/jibri/
+    rm -f /root/pjsua.config
 else
     cp etc/jitsi/jibri/pjsua.config $ROOTFS/etc/jitsi/jibri/
 fi
