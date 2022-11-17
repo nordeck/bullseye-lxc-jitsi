@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# COMPONENT-SELECTOR.SH
+# COMPONENT-SIDECAR.SH
 # ------------------------------------------------------------------------------
 set -e
 source $INSTALLER/000-source
@@ -11,17 +11,17 @@ MACH="nordeck-builder"
 cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
-PROJECT_REPO="https://github.com/jitsi/jitsi-component-selector.git"
+PROJECT_REPO="https://github.com/jitsi/jitsi-component-sidecar.git"
 DEBFULLNAME="Nordeck Jitsi Team"
 DEBEMAIL="info@nordeck.net"
 
 # ------------------------------------------------------------------------------
 # INIT
 # ------------------------------------------------------------------------------
-[[ "$DONT_BUILD_COMPONENT_SELECTOR" = true ]] && exit
+[[ "$DONT_BUILD_COMPONENT_SIDECAR" = true ]] && exit
 
 echo
-echo "------------------- COMPONENT SELECTOR --------------------"
+echo "-------------------- COMPONENT SIDECAR --------------------"
 
 # ------------------------------------------------------------------------------
 # CONTAINER
@@ -37,14 +37,14 @@ for i in $(seq 0 9); do
 done
 
 # ------------------------------------------------------------------------------
-# JITSI-COMPONENT-SELECTOR
+# JITSI-COMPONENT-SIDECAR
 # ------------------------------------------------------------------------------
 # build
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 mkdir -p /home/dev/src
 chown dev:dev /home/dev/src
-rm -rf /home/dev/src/jitsi-component-selector*
+rm -rf /home/dev/src/jitsi-component-sidecar*
 EOS
 
 lxc-attach -n $MACH -- zsh <<EOS
@@ -54,7 +54,7 @@ su -l dev <<EOSS
 
     cd ~/src
     git clone $PROJECT_REPO
-    cd ~/src/jitsi-component-selector/resources
+    cd ~/src/jitsi-component-sidecar/resources
 
     export DEBFULLNAME=$DEBFULLNAME
     export DEBEMAIL=$DEBEMAIL
@@ -64,8 +64,8 @@ EOS
 
 # store
 mkdir -p /root/nordeck-store
-cp $ROOTFS/home/dev/src/jitsi-component-selector_*_all.deb \
-    /root/nordeck-store/jitsi-component-selector.deb
+cp $ROOTFS/home/dev/src/jitsi-component-sidecar_*_all.deb \
+    /root/nordeck-store/jitsi-component-sidecar.deb
 
 # ------------------------------------------------------------------------------
 # CONTAINER SERVICES
