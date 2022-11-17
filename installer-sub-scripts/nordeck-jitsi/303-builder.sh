@@ -55,7 +55,6 @@ lxc.start.auto = 0
 lxc.start.order = 303
 lxc.start.delay = 2
 lxc.group = nordeck-group
-lxc.group = onboot
 EOF
 
 # start the container
