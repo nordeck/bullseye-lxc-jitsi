@@ -130,6 +130,15 @@ apt-get $APT_PROXY -y install nodejs
 npm install npm -g
 EOS
 
+# jitsi-component-selector
+cp /root/nordeck-store/jitsi-component-selector.deb /var/cache/apt/archives/
+
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+export DEBIAN_FRONTEND=noninteractive
+dpkg -i /var/cache/apt/archives/jitsi-component-selector.deb
+EOS
+
 # ------------------------------------------------------------------------------
 # CONTAINER SERVICES
 # ------------------------------------------------------------------------------
