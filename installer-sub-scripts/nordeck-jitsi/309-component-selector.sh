@@ -131,7 +131,8 @@ npm install npm -g
 EOS
 
 # jitsi-component-selector
-cp /root/nordeck-store/jitsi-component-selector.deb /var/cache/apt/archives/
+cp /root/nordeck-store/jitsi-component-selector.deb \
+    $ROOTFS/var/cache/apt/archives/
 
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
