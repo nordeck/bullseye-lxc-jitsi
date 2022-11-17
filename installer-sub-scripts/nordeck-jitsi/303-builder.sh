@@ -119,6 +119,25 @@ EOS
 # SYSTEM CONFIGURATION
 # ------------------------------------------------------------------------------
 # dev user
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+adduser dev --system --group --disabled-password --shell /bin/zsh --gecos ''
+EOS
+
+cp $MACHINE_COMMON/home/user/.tmux.conf $ROOTFS/home/dev/
+cp $MACHINE_COMMON/home/user/.zshrc $ROOTFS/home/dev/
+cp $MACHINE_COMMON/home/user/.vimrc $ROOTFS/home/dev/
+
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+chown dev:dev /home/dev/.tmux.conf
+chown dev:dev /home/dev/.vimrc
+chown dev:dev /home/dev/.zshrc
+EOS
+
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
 # CONTAINER SERVICES
