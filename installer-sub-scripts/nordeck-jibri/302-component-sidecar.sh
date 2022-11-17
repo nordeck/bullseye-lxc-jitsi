@@ -87,6 +87,9 @@ cp /root/jitsi-component-sidecar.deb $ROOTFS/tmp/
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 export DEBIAN_FRONTEND=noninteractive
+debconf-set-selections <<< "\
+    jitsi-component-sidecar jitsi-component-sidecar/selector-address \
+    string $JITSI_FQDN"
 dpkg -i /tmp/jitsi-component-sidecar.deb
 EOS
 
