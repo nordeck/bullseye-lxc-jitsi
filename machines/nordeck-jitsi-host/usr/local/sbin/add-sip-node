@@ -83,6 +83,8 @@ if [[ -f "$JITSI_ROOTFS/root/meta/pjsua.config" ]]; then
     scp_ $JITSI_ROOTFS/root/meta/pjsua.config /tmp/
 fi
 
+scp_ /root/nordeck-store/pjsua /tmp/
+
 
 # ------------------------------------------------------------------------------
 # installation
