@@ -82,6 +82,15 @@ apt-get $APT_PROXY -y install nodejs
 npm install npm -g
 EOS
 
+# jitsi-component-sidecar
+cp /root/jitsi-component-sidecar.deb $ROOTFS/tmp/
+
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+export DEBIAN_FRONTEND=noninteractive
+dpkg -i /tmp/jitsi-component-sidecar.deb
+EOS
+
 # ------------------------------------------------------------------------------
 # CONTAINER SERVICES
 # ------------------------------------------------------------------------------
