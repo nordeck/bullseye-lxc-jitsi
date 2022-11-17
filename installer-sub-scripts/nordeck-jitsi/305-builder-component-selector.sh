@@ -44,7 +44,7 @@ lxc-attach -n $MACH -- zsh <<EOS
 set -e
 mkdir -p /home/dev/src
 chown dev:dev /home/dev/src
-rm -rf /home/dev/src/jitsi-component-selector*
+rm -rf /home/dev/src/jitsi-component-selector* || true
 EOS
 
 lxc-attach -n $MACH -- zsh <<EOS
