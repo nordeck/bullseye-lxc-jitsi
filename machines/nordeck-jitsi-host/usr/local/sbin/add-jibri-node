@@ -79,6 +79,10 @@ if [[ -f "$JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt" ]]; then
     scp_ $JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt /root/.ssh/
 fi
 
+if [[ -f "/root/nordeck-store/jitsi-component-sidecar.deb" ]]; then
+    scp_ /root/nordeck-store/jitsi-component-sidecar.deb /tmp/
+fi
+
 
 # ------------------------------------------------------------------------------
 # installation
