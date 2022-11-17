@@ -39,6 +39,7 @@
 
 #
 #JITSI_SIP_JIBRI_FEATURE='sip-outbound-call'
+JITSI_SIP_JIBRI_FEATURE='sip-outbound-call'
 
 #
 #KEY_PREFIX_PATTERN='^(.*)/(.*)$'
