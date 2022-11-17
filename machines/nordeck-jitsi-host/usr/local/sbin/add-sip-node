@@ -85,6 +85,10 @@ fi
 
 scp_ /root/nordeck-store/pjsua /root/
 
+if [[ -f "$JITSI_ROOTFS/root/meta/env.sidecar.sip" ]]; then
+    scp_ $JITSI_ROOTFS/root/meta/env.sidecar.sip /root/env.sidecar
+fi
+
 
 # ------------------------------------------------------------------------------
 # installation
