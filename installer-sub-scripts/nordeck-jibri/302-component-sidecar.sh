@@ -64,6 +64,24 @@ apt-get $APT_PROXY -y install gnupg
 apt-get $APT_PROXY -y install redis
 EOS
 
+# nodejs
+cp etc/apt/sources.list.d/nodesource.list $ROOTFS/etc/apt/sources.list.d/
+
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+wget -T 30 -qO /tmp/nodesource.gpg.key \
+    https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+cat /tmp/nodesource.gpg.key | gpg --dearmor >/usr/share/keyrings/nodesource.gpg
+apt-get $APT_PROXY update
+EOS
+
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+export DEBIAN_FRONTEND=noninteractive
+apt-get $APT_PROXY -y install nodejs
+npm install npm -g
+EOS
+
 # ------------------------------------------------------------------------------
 # CONTAINER SERVICES
 # ------------------------------------------------------------------------------
