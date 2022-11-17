@@ -65,7 +65,7 @@ cat >> /var/lib/lxc/$MACH/config <<EOF
 
 # Start options
 lxc.start.auto = 1
-lxc.start.order = 308
+lxc.start.order = 309
 lxc.start.delay = 2
 lxc.group = nordeck-group
 lxc.group = onboot

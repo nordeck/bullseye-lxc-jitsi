@@ -107,7 +107,7 @@ lxc.mount.entry = $SHARED/recordings usr/local/nordeck/recordings none bind 0 0
 
 # Start options
 lxc.start.auto = 1
-lxc.start.order = 306
+lxc.start.order = 307
 lxc.start.delay = 2
 lxc.group = nordeck-group
 lxc.group = onboot
