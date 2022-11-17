@@ -11,8 +11,6 @@ MACH="nordeck-sip-template"
 cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
-PJPROJECT_REPO="https://github.com/jitsi/pjproject"
-PJPROJECT_BRANCH="jibri-2.10-dev1"
 
 # ------------------------------------------------------------------------------
 # INIT
@@ -178,17 +176,6 @@ export DEBIAN_FRONTEND=noninteractive
 apt-mark hold jibri
 EOS
 
-# pjproject releated packages
-lxc-attach -n $MACH -- zsh <<EOS
-set -e
-export DEBIAN_FRONTEND=noninteractive
-apt-get $APT_PROXY -y install build-essential git
-apt-get $APT_PROXY -y install libv4l-dev libsdl2-dev libavcodec-dev \
-    libavdevice-dev libavfilter-dev libavformat-dev libavresample-dev \
-    libavutil-dev libswresample-dev libswscale-dev libasound2-dev libopus-dev \
-    libvpx-dev
-EOS
-
 # removed packages
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
@@ -332,34 +319,8 @@ EOS
 # ------------------------------------------------------------------------------
 # PJSUA
 # ------------------------------------------------------------------------------
-# build
-lxc-attach -n $MACH -- zsh <<EOS
-set -e
-mkdir /home/jibri/src
-chown jibri:jibri /home/jibri/src
-EOS
-
-lxc-attach -n $MACH -- zsh <<EOS
-set -e
-su -l jibri <<EOSS
-    set -e
-
-    cd ~/src
-    git clone -b $PJPROJECT_BRANCH $PJPROJECT_REPO
-    cd pjproject
-
-    ./configure
-    make dep
-    make
-EOSS
-EOS
-
-lxc-attach -n $MACH -- zsh <<EOS
-set -e
-cp /home/jibri/src/pjproject/pjsip-apps/bin/pjsua-x86_64-unknown-linux-gnu \
-    /usr/local/bin/pjsua
-chmod 755 /usr/local/bin/pjsua
-EOS
+mv /tmp/pjsua $ROOTFS/usr/local/bin/pjsua
+chmod 755 $ROOTFS/usr/local/bin/pjsua
 
 # pjsua config
 if [[ -f "/tmp/pjsua.config" ]]; then
