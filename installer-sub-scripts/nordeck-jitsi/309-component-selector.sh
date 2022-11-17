@@ -140,6 +140,13 @@ dpkg -i /tmp/jitsi-component-selector.deb
 EOS
 
 # ------------------------------------------------------------------------------
+# COMPONENT-SELECTOR
+# ------------------------------------------------------------------------------
+cp etc/jitsi/selector/env $ROOTFS/etc/jitsi/selector/
+
+lxc-attach -n $MACH -- systemctl restart jitsi-component-selector.service
+
+# ------------------------------------------------------------------------------
 # CONTAINER SERVICES
 # ------------------------------------------------------------------------------
 lxc-stop -n $MACH
