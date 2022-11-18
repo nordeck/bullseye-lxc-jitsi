@@ -71,20 +71,34 @@ JIBRI_SIP_PASSWD=$(cat $JITSI_ROOTFS/root/meta/jibri-sip-passwd || true)
 # ------------------------------------------------------------------------------
 # uploads
 # ------------------------------------------------------------------------------
+ssh_ "rm -f /root/.ssh/jibri"
 if [[ -f /root/.ssh/jibri ]]; then
     scp_ /root/.ssh/jibri /root/.ssh/
 fi
 
+ssh_ "rm -f /root/.ssh/jms-CA.crt"
 if [[ -f "$JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt" ]]; then
     scp_ $JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt /root/.ssh/
 fi
 
+ssh_ "rm -f /root/pjsua.config"
 if [[ -f "$JITSI_ROOTFS/root/meta/pjsua.config" ]]; then
     scp_ $JITSI_ROOTFS/root/meta/pjsua.config /root/
 fi
 
 scp_ /root/nordeck-store/pjsua /root/
 
+ssh_ "rm -f /root/.ssh/sidecar.key"
+if [[ -f /root/.ssh/sidecar.key ]]; then
+    scp_ /root/.ssh/sidecar.key /root/.ssh/
+fi
+
+ssh_ "rm -f /root/.ssh/sidecar.pem"
+if [[ -f /root/.ssh/sidecar.pem ]]; then
+    scp_ /root/.ssh/sidecar.pem /root/.ssh/
+fi
+
+ssh_ "rm -f /root/env.sidecar"
 if [[ -f "$JITSI_ROOTFS/root/meta/env.sidecar.sip" ]]; then
     scp_ $JITSI_ROOTFS/root/meta/env.sidecar.sip /root/env.sidecar
 fi
