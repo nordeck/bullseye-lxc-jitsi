@@ -97,12 +97,12 @@ EOS
 # COMPONENT-SIDECAR
 # ------------------------------------------------------------------------------
 if [[ -f "/root/.ssh/sidecar.key" ]] && [[ -f "/root/.ssh/sidecar.pem" ]]; then
-    cp /root/.ssh/sidecar.key /etc/jitsi/sidecar/asap.key
-    cp /root/.ssh/sidecar.pem /etc/jitsi/sidecar/asap.pem
+    cp /root/.ssh/sidecar.key $ROOTFS/etc/jitsi/sidecar/asap.key
+    cp /root/.ssh/sidecar.pem $ROOTFS/etc/jitsi/sidecar/asap.pem
 fi
 
 if [[ -f "/root/env.sidecar" ]]; then
-    cp /root/env.sidecar $ROOTFS//etc/jitsi/sidecar/env
+    cp /root/env.sidecar $ROOTFS/etc/jitsi/sidecar/env
 else
     cp etc/jitsi/sidecar/env $ROOTFS/etc/jitsi/sidecar/
 fi
