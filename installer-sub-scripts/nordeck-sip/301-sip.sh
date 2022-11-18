@@ -325,7 +325,6 @@ chmod 755 $ROOTFS/usr/local/bin/pjsua
 # pjsua config
 if [[ -f "/root/pjsua.config" ]]; then
     cp /root/pjsua.config $ROOTFS/etc/jitsi/jibri/
-    rm -f /root/pjsua.config
 else
     cp etc/jitsi/jibri/pjsua.config $ROOTFS/etc/jitsi/jibri/
 fi
