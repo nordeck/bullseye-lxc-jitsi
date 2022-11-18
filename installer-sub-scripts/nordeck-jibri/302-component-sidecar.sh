@@ -96,14 +96,22 @@ EOS
 # ------------------------------------------------------------------------------
 # COMPONENT-SIDECAR
 # ------------------------------------------------------------------------------
+if [[ -f "/root/.ssh/sidecar.key" ]] && [[ -f "/root/.ssh/sidecar.pem" ]]; then
+    cp /root/.ssh/sidecar.key /etc/jitsi/sidecar/asap.key
+    cp /root/.ssh/sidecar.pem /etc/jitsi/sidecar/asap.pem
+fi
+
 if [[ -f "/root/env.sidecar" ]]; then
     cp /root/env.sidecar $ROOTFS//etc/jitsi/sidecar/env
-    rm -f /root/env.sidecar
 else
     cp etc/jitsi/sidecar/env $ROOTFS/etc/jitsi/sidecar/
 fi
-
 sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" $ROOTFS/etc/jitsi/sidecar/env
+
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+chown jitsi-sidecar:jitsi /etc/jitsi/sidecar/*
+EOS
 
 lxc-attach -n $MACH -- systemctl restart jitsi-component-sidecar.service
 
