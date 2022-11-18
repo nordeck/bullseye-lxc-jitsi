@@ -83,6 +83,11 @@ fi
 
 scp_ /root/nordeck-store/pjsua /root/
 
+ssh_ "rm -f /root/jitsi-component-sidecar.deb"
+if [[ -f "/root/nordeck-store/jitsi-component-sidecar.deb" ]]; then
+    scp_ /root/nordeck-store/jitsi-component-sidecar.deb /root/
+fi
+
 ssh_ "rm -f /root/.ssh/sidecar.key"
 if [[ -f /root/.ssh/sidecar.key ]]; then
     scp_ /root/.ssh/sidecar.key /root/.ssh/
