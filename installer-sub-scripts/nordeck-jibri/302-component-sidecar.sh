@@ -97,12 +97,14 @@ EOS
 # COMPONENT-SIDECAR
 # ------------------------------------------------------------------------------
 if [[ -f "/root/env.sidecar" ]]; then
-    cp /root/env.sidecar $ROOTFS/usr/share/jitsi-component-sidecar/env
+    cp /root/env.sidecar $ROOTFS//etc/jitsi/sidecar/env
     rm -f /root/env.sidecar
 else
-    cp usr/share/jitsi-component-sidecar/env \
-        $ROOTFS/usr/share/jitsi-component-sidecar/
+    cp etc/jitsi/sidecar/env \
+        $ROOTFS/etc/jitsi/sidecar/env
 fi
+
+sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" $ROOTFS/etc/jitsi/sidecar/env
 
 lxc-attach -n $MACH -- systemctl restart jitsi-component-sidecar.service
 
