@@ -71,11 +71,6 @@ JIBRI_SIP_PASSWD=$(cat $JITSI_ROOTFS/root/meta/jibri-sip-passwd || true)
 # ------------------------------------------------------------------------------
 # uploads
 # ------------------------------------------------------------------------------
-ssh_ "rm -f /root/.ssh/jibri"
-if [[ -f /root/.ssh/jibri ]]; then
-    scp_ /root/.ssh/jibri /root/.ssh/
-fi
-
 ssh_ "rm -f /root/.ssh/jms-CA.crt"
 if [[ -f "$JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt" ]]; then
     scp_ $JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt /root/.ssh/
