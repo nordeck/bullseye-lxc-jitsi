@@ -83,6 +83,14 @@ if [[ -f "/root/nordeck-store/jitsi-component-sidecar.deb" ]]; then
     scp_ /root/nordeck-store/jitsi-component-sidecar.deb /root/
 fi
 
+if [[ -f /root/.ssh/sidecar.key ]]; then
+    scp_ /root/.ssh/sidecar.key /root/.ssh/
+fi
+
+if [[ -f /root/.ssh/sidecar.pem ]]; then
+    scp_ /root/.ssh/sidecar.pem /root/.ssh/
+fi
+
 if [[ -f "$JITSI_ROOTFS/root/meta/env.sidecar.jibri" ]]; then
     scp_ $JITSI_ROOTFS/root/meta/env.sidecar.jibri /root/env.sidecar
 fi
