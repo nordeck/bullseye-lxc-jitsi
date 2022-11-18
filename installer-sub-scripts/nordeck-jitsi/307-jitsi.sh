@@ -295,6 +295,19 @@ fi
 cp /root/.ssh/jibri.pub $ROOTFS/usr/share/jitsi-meet/static/
 
 # ------------------------------------------------------------------------------
+# SIDECAR KEYS
+# ------------------------------------------------------------------------------
+# create sidecar keys if not exist
+if [[ ! -f /root/.ssh/sidecar.key ]] || [[ ! -f /root/.ssh/sidecar.pem ]]; then
+    rm -f /root/.ssh/sidecar.{key,pem}
+
+    ssh-keygen -qP '' -t rsa -b 4096 -m PEM -f /root/.ssh/sidecar.key
+    openssl rsa -in /root/.ssh/sidecar.key -pubout -outform PEM \
+        -out /root/.ssh/sidecar.pem
+    rm -f /root/.ssh/sidecar.key.pub
+fi
+
+# ------------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
 # ------------------------------------------------------------------------------
 # certificates
