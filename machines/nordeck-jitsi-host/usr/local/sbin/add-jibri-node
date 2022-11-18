@@ -82,22 +82,26 @@ if [[ -f "$JITSI_ROOTFS/usr/local/share/ca-certificates/jms-CA.crt" ]]; then
 fi
 
 ssh_ "rm -f /root/jitsi-component-sidecar.deb"
-if [[ -f "/root/nordeck-store/jitsi-component-sidecar.deb" ]]; then
+if [[ -f "/root/nordeck-store/jitsi-component-sidecar.deb" ]] && \
+   [[ "DONT_RUN_COMPONENT_SIDECAR" != false ]]; then
     scp_ /root/nordeck-store/jitsi-component-sidecar.deb /root/
 fi
 
 ssh_ "rm -f /root/.ssh/sidecar.key"
-if [[ -f /root/.ssh/sidecar.key ]]; then
+if [[ -f /root/.ssh/sidecar.key ]] && \
+   [[ "DONT_RUN_COMPONENT_SIDECAR" != false ]]; then
     scp_ /root/.ssh/sidecar.key /root/.ssh/
 fi
 
 ssh_ "rm -f /root/.ssh/sidecar.pem"
-if [[ -f /root/.ssh/sidecar.pem ]]; then
+if [[ -f /root/.ssh/sidecar.pem ]] && \
+   [[ "DONT_RUN_COMPONENT_SIDECAR" != false ]]; then
     scp_ /root/.ssh/sidecar.pem /root/.ssh/
 fi
 
 ssh_ "rm -f /root/env.sidecar"
-if [[ -f "$JITSI_ROOTFS/root/meta/env.sidecar.jibri" ]]; then
+if [[ -f "$JITSI_ROOTFS/root/meta/env.sidecar.jibri" ]] && \
+   [[ "DONT_RUN_COMPONENT_SIDECAR" != false ]]; then
     scp_ $JITSI_ROOTFS/root/meta/env.sidecar.jibri /root/env.sidecar
 fi
 
