@@ -100,8 +100,7 @@ if [[ -f "/root/env.sidecar" ]]; then
     cp /root/env.sidecar $ROOTFS//etc/jitsi/sidecar/env
     rm -f /root/env.sidecar
 else
-    cp etc/jitsi/sidecar/env \
-        $ROOTFS/etc/jitsi/sidecar/env
+    cp etc/jitsi/sidecar/env $ROOTFS/etc/jitsi/sidecar/
 fi
 
 sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" $ROOTFS/etc/jitsi/sidecar/env
