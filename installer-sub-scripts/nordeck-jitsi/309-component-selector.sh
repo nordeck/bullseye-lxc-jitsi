@@ -186,6 +186,7 @@ cp /root/.ssh/sidecar.pem $JITSI_ROOTFS/var/www/asap/server/$HASH.pem
 # COMPONENT-SELECTOR
 # ------------------------------------------------------------------------------
 cp etc/jitsi/selector/env $ROOTFS/etc/jitsi/selector/
+sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" $ROOTFS/etc/jitsi/selector/env
 
 lxc-attach -n $MACH -- systemctl restart jitsi-component-selector.service
 
