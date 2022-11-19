@@ -19,6 +19,8 @@ echo COMPONENT_SELECTOR="$IP" >> $INSTALLER/000-source
 JITSI_MACH="nordeck-jitsi"
 JITSI_ROOTFS="/var/lib/lxc/$JITSI_MACH/rootfs"
 
+KID_SIDECAR="jitsi/default"
+
 # ------------------------------------------------------------------------------
 # NFTABLES RULES
 # ------------------------------------------------------------------------------
@@ -148,7 +150,7 @@ EOS
 echo -e "$JITSI\t$JITSI_FQDN" >> $ROOTFS/etc/hosts
 
 # ------------------------------------------------------------------------------
-# ASAP
+# ASAP KEY SERVER
 # ------------------------------------------------------------------------------
 rm -rf $JITSI_ROOTFS/var/www/asap
 cp -arp $MACHINES/$JITSI_MACH/var/www/asap $JITSI_ROOTFS/var/www/
@@ -163,6 +165,22 @@ ln -s /etc/nginx/sites-available/asap.conf \
 
 lxc-attach -qn $JITSI_MACH -- true && \
     lxc-attach -n $JITSI_MACH -- systemctl restart nginx.service
+
+# ------------------------------------------------------------------------------
+# SIDECAR KEYS
+# ------------------------------------------------------------------------------
+# create sidecar keys if not exist
+if [[ ! -f /root/.ssh/sidecar.key ]] || [[ ! -f /root/.ssh/sidecar.pem ]]; then
+    rm -f /root/.ssh/sidecar.{key,pem}
+
+    ssh-keygen -qP '' -t rsa -b 4096 -m PEM -f /root/.ssh/sidecar.key
+    openssl rsa -in /root/.ssh/sidecar.key -pubout -outform PEM \
+        -out /root/.ssh/sidecar.pem
+    rm -f /root/.ssh/sidecar.key.pub
+fi
+
+HASH=$(echo -n "$KID_SIDECAR" | sha256sum | awk '{print $1}')
+cp /root/.ssh/sidecar.key.pub $JITSI_ROOTFS/var/www/asap/server/$HASH.pem
 
 # ------------------------------------------------------------------------------
 # COMPONENT-SELECTOR

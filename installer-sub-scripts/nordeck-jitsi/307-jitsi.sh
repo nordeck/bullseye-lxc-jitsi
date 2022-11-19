@@ -20,8 +20,6 @@ JITSI_MEET_CONFIG="$ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js"
 JITSI_MEET_INTERFACE="$ROOTFS/usr/share/jitsi-meet/interface_config.js"
 PROSODY_CONFIG="$ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua"
 
-KID_SIDECAR="jitsi/default"
-
 # ------------------------------------------------------------------------------
 # NFTABLES RULES
 # ------------------------------------------------------------------------------
@@ -295,22 +293,6 @@ fi
 
 # copy the public key to a downloadable place
 cp /root/.ssh/jibri.pub $ROOTFS/usr/share/jitsi-meet/static/
-
-# ------------------------------------------------------------------------------
-# SIDECAR KEYS
-# ------------------------------------------------------------------------------
-# create sidecar keys if not exist
-if [[ ! -f /root/.ssh/sidecar.key ]] || [[ ! -f /root/.ssh/sidecar.pem ]]; then
-    rm -f /root/.ssh/sidecar.{key,pem}
-
-    ssh-keygen -qP '' -t rsa -b 4096 -m PEM -f /root/.ssh/sidecar.key
-    openssl rsa -in /root/.ssh/sidecar.key -pubout -outform PEM \
-        -out /root/.ssh/sidecar.pem
-    rm -f /root/.ssh/sidecar.key.pub
-fi
-
-HASH=$(echo -n "$KID_SIDECAR" | sha256sum | awk '{print $1}')
-cp /root/.ssh/sidecar.key.pub $ROOTFS/var/www/asap/server/$HASH.pem
 
 # ------------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
