@@ -149,6 +149,14 @@ EOS
 # ------------------------------------------------------------------------------
 echo -e "$JITSI\t$JITSI_FQDN" >> $ROOTFS/etc/hosts
 
+cp /root/nordeck-certs/nordeck-CA.pem \
+    $ROOTFS/usr/local/share/ca-certificates/jms-CA.crt
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+export DEBIAN_FRONTEND=noninteractive
+update-ca-certificates
+EOS
+
 # ------------------------------------------------------------------------------
 # ASAP KEY SERVER
 # ------------------------------------------------------------------------------
