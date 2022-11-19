@@ -15,6 +15,7 @@ COMPONENT_TYPE='JIBRI'
 
 #
 #ENABLE_STOP_INSTANCE=true
+ENABLE_STOP_INSTANCE=true
 
 # The environment name used by the selector to make selection decisions
 #ENVIRONMENT='default-env'
