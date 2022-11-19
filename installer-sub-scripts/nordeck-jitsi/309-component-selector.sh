@@ -16,6 +16,9 @@ IP=${DNS_RECORD##*/}
 SSH_PORT="30$(printf %03d ${IP##*.})"
 echo COMPONENT_SELECTOR="$IP" >> $INSTALLER/000-source
 
+JITSI_MACH="nordeck-jitsi"
+JITSI_ROOTFS="/var/lib/lxc/$JITSI_MACH/rootfs"
+
 # ------------------------------------------------------------------------------
 # NFTABLES RULES
 # ------------------------------------------------------------------------------
@@ -138,6 +141,23 @@ set -e
 export DEBIAN_FRONTEND=noninteractive
 dpkg -i /tmp/jitsi-component-selector.deb
 EOS
+
+# ------------------------------------------------------------------------------
+# ASAP
+# ------------------------------------------------------------------------------
+rm -rf $JITSI_ROOTFS/var/www/asap
+cp -arp $MACHINES/$JITSI_MACH/var/www/asap $JITSI_ROOTFS/var/www/
+
+cp $MACHINES/$JITSI_MACH/etc/nginx/sites-available/asap.conf \
+    $JITSI_ROOTFS/etc/nginx/sites-available/
+sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" \
+    $JITSI_ROOTFS/etc/nginx/sites-available/asap.conf
+rm -f $JITSI_ROOTFS/etc/nginx/sites-enabled/asap.conf
+ln -s /etc/nginx/sites-available/asap.conf \
+    $JITSI_ROOTFS/etc/nginx/sites-enabled/
+
+lxc-attach -qn $JITSI_MACH -- true && \
+    lxc-attach -n $JITSI_MACH -- systemctl restart nginx.service
 
 # ------------------------------------------------------------------------------
 # COMPONENT-SELECTOR
