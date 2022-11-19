@@ -180,7 +180,7 @@ if [[ ! -f /root/.ssh/sidecar.key ]] || [[ ! -f /root/.ssh/sidecar.pem ]]; then
 fi
 
 HASH=$(echo -n "$KID_SIDECAR" | sha256sum | awk '{print $1}')
-cp /root/.ssh/sidecar.key.pub $JITSI_ROOTFS/var/www/asap/server/$HASH.pem
+cp /root/.ssh/sidecar.pem $JITSI_ROOTFS/var/www/asap/server/$HASH.pem
 
 # ------------------------------------------------------------------------------
 # COMPONENT-SELECTOR
