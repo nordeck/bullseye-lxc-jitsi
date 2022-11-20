@@ -156,6 +156,13 @@ unzip /tmp/chromedriver_linux64.zip -d /usr/local/bin/
 chmod 755 /usr/local/bin/chromedriver
 EOS
 
+# pjsua related
+lxc-attach -n $MACH -- zsh <<EOS
+set -e
+export DEBIAN_FRONTEND=noninteractive
+apt-get $APT_PROXY -y install libv4l-0
+EOS
+
 # jibri
 cp etc/apt/sources.list.d/jitsi-stable.list $ROOTFS/etc/apt/sources.list.d/
 lxc-attach -n $MACH -- zsh <<EOS
