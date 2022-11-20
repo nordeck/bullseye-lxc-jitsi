@@ -38,11 +38,6 @@ CORES=$(nproc --all)
 for c in $(seq $CPI $CPI $N); do
     (( ID = c / $CPI ))
 
-    lxc-stop -k -n nordeck-sip-$ID 2>/dev/null
-    lxc-wait -n nordeck-sip-$ID -s STOPPED 2>/dev/null
-    rm -rf /var/lib/lxc/nordeck-sip-$ID
-    sleep 2
-
     (( VID0 = ID * 2 ))
     (( VID1 = VID0 + 1 ))
 
