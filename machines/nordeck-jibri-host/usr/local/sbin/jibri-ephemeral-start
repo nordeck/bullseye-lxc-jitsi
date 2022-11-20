@@ -37,10 +37,5 @@ CORES=$(nproc --all)
 for c in $(seq $CPI $CPI $N); do
     (( ID = c / $CPI ))
 
-    lxc-stop -k -n nordeck-jibri-$ID 2>/dev/null
-    lxc-wait -n nordeck-jibri-$ID -s STOPPED 2>/dev/null
-    rm -rf /var/lib/lxc/nordeck-jibri-$ID
-    sleep 2
-
     lxc-copy -n nordeck-jibri-template -N nordeck-jibri-$ID -e
 done
