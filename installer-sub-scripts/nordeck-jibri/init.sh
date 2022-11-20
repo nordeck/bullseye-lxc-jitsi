@@ -29,3 +29,7 @@ echo
 # INSTALLER CONFIGURATION
 # ------------------------------------------------------------------------------
 cp -ap ../nordeck-base/* .
+
+set +e
+systemctl stop jibri-ephemeral-container.service
+set -e
