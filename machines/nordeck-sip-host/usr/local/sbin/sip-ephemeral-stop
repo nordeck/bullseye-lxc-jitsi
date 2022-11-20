@@ -12,5 +12,5 @@ lxc-autostart -k -g nordeck-sip
 
 for i in $(seq 10); do
     sleep 1
-    [[ -z "$(lxc-ls -g nordeck-sip | grep -v nordeck-sip-template)" ]] && exit 0
+    [[ -z "$(lxc-ls -1g nordeck-sip | grep -v nordeck-sip-template)" ]] && exit 0
 done
