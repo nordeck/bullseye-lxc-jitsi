@@ -361,4 +361,7 @@ find $ROOTFS/var/log/jitsi -type f -delete
 # ------------------------------------------------------------------------------
 systemctl daemon-reload
 systemctl enable sip-ephemeral-container.service
-systemctl start sip-ephemeral-container.service
+
+[[ "$DONT_RUN_COMPONENT_SIDECAR" = true ]] && \
+    systemctl start sip-ephemeral-container.service || \
+    true
