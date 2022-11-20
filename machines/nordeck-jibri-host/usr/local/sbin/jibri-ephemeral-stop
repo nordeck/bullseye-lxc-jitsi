@@ -12,6 +12,6 @@ lxc-autostart -k -g nordeck-jibri
 
 for i in $(seq 10); do
     sleep 1
-    [[ -z "$(lxc-ls -g nordeck-jibri | grep -v nordeck-jibri-template)" ]] && \
+    [[ -z "$(lxc-ls -1g nordeck-jibri | grep -v nordeck-jibri-template)" ]] && \
         exit 0
 done
