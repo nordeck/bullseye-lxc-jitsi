@@ -23,6 +23,7 @@ echo "-------------------------- $MACH --------------------------"
 # ------------------------------------------------------------------------------
 export DEBIAN_FRONTEND=noninteractive
 
+apt-get $APT_PROXY -y install uuid-runtime
 apt-get $APT_PROXY -y install kmod alsa-utils
 apt-get $APT_PROXY -y --install-recommends install v4l2loopback-dkms \
     v4l2loopback-utils
