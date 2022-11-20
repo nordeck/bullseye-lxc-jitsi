@@ -30,6 +30,9 @@ CPI=8
 # The total cores
 CORES=$(nproc --all)
 
+# Unique identifier
+TAG=$(uuidgen | sed 's/-//g')
+
 # The available cores count
 (( N = LIMIT * CPI ))
 (( M = CORES - RESERVED ))
@@ -41,7 +44,7 @@ for c in $(seq $CPI $CPI $N); do
     (( VID0 = ID * 2 ))
     (( VID1 = VID0 + 1 ))
 
-    lxc-copy -n nordeck-sip-template -N nordeck-sip-$ID -e \
+    lxc-copy -n nordeck-sip-template -N nordeck-sip-$TAG-$ID -e \
         -m bind=/dev/video$VID0:/dev/video0:rw \
         -m bind=/dev/video$VID1:/dev/video1:rw
 done
