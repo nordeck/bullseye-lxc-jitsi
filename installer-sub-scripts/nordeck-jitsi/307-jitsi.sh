@@ -270,6 +270,15 @@ EOS
 cp $MACHINES/nordeck-sip-template/etc/jitsi/jibri/pjsua.config \
     $ROOTFS/root/meta/
 
+# sidecar env files
+cp $MACHINES/nordeck-jibri-template/etc/jitsi/sidecar/env \
+    $ROOTFS/root/meta/env.sidecar.jibri
+sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" $ROOTFS/root/meta/env.sidecar.jibri
+
+cp $MACHINES/nordeck-sip-template/etc/jitsi/sidecar/env \
+    $ROOTFS/root/meta/env.sidecar.sip
+sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" $ROOTFS/root/meta/env.sidecar.sip
+
 # ------------------------------------------------------------------------------
 # JMS SSH KEY
 # ------------------------------------------------------------------------------
