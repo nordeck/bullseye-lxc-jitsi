@@ -59,7 +59,15 @@ fi
 # ------------------------------------------------------------------------------
 # uploads
 # ------------------------------------------------------------------------------
-scp_ $JITSI_ROOTFS/root/meta/pjsua.config /root/
+ssh_ "rm -f /root/pjsua.config"
+if [[ -f $JITSI_ROOTFS/root/meta/pjsua.config ]]; then
+    scp_ $JITSI_ROOTFS/root/meta/pjsua.config /root/
+fi
+
+ssh_ "rm -f /root/env.sidecar"
+if [[ -f "$JITSI_ROOTFS/root/meta/env.sidecar.sip" ]]; then
+    scp_ $JITSI_ROOTFS/root/meta/env.sidecar.sip /root/env.sidecar
+fi
 
 
 # ------------------------------------------------------------------------------
@@ -67,8 +75,16 @@ scp_ $JITSI_ROOTFS/root/meta/pjsua.config /root/
 # ------------------------------------------------------------------------------
 ssh_ <<EOS
 set -e
-cp /root/pjsua.config $SIP_ROOTFS/etc/jitsi/jibri/
-rm -f /root/pjsua.config
+
+if [[ -f /root/pjsua.config ]]; then
+    cp /root/pjsua.config $SIP_ROOTFS/etc/jitsi/jibri/
+    rm -f /root/pjsua.config
+fi
+
+if [[ -f /root/env.sidecar ]]; then
+    cp /root/env.sidecar $SIP_ROOTFS/etc/jitsi/sidecar/env
+    rm -f /root/env.sidecar
+fi
 
 systemctl stop sip-ephemeral-container.service
 systemctl start sip-ephemeral-container.service
