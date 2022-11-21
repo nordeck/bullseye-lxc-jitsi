@@ -2,12 +2,12 @@
 set -e
 
 # ------------------------------------------------------------------------------
-# UPDATE-SIP-NODE
+# UPDATE-SIP-CONFIG
 # ------------------------------------------------------------------------------
 # Update PJSUA configuration on an additional video-sip-gateway node.
 #
 # Usage:
-#     update-sip-node <NODE-ADDRESS>
+#     update-sip-config <NODE-ADDRESS>
 # ------------------------------------------------------------------------------
 SSH_CONFIG="/root/.ssh/jms-config"
 
