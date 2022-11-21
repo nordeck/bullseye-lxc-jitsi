@@ -375,19 +375,21 @@ add-sip-node <SIP-IP-ADDRESS>
 
 ### 4.4 Updating the PJSUA configuration
 
-First, update the template file to change the `PJSUA` configuration. The
-template file is in the `nordeck-jitsi` container.
+First, update the template files to change the `PJSUA` configuration. The
+template files are in the `nordeck-jitsi` container.
 
-- Path in container:\
-  `/root/meta/pjsua.config`
+- Paths in container:\
+  - `/root/meta/pjsua.config`
+  - `/root/meta/env.sidecar.sip`
 
-- Path on host:\
-  `/var/lib/lxc/nordeck-jitsi/rootfs/root/meta/pjsua.config`
+- Paths on host:\
+  - `/var/lib/lxc/nordeck-jitsi/rootfs/root/meta/pjsua.config`
+  - `/var/lib/lxc/nordeck-jitsi/rootfs/root/meta/env.sidecar.sip`
 
-Then run `update-sip-node` command using IP address of `video-sip-gateway`:
+Then run `update-sip-config` command using IP address of `video-sip-gateway`:
 
 ```bash
-update-sip-node <SIP-IP-ADDRESS>
+update-sip-config <SIP-IP-ADDRESS>
 ```
 
 _Be careful, if there is an active SIP session while running this command, it
