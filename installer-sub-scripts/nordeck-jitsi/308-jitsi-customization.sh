@@ -46,6 +46,11 @@ sed -i "/^\s*\/\/ Recording$/a \
 \    hiddenDomain: 'recorder.$JITSI_FQDN'," \
     $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 
+# disableTileEnlargement
+sed -i "/^\s*\/\/ disableTileEnlargement/a \
+\    disableTileEnlargement: true," \
+    $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
+
 # ------------------------------------------------------------------------------
 # CUSTOMIZATION FOLDER & TOOLS
 # ------------------------------------------------------------------------------
