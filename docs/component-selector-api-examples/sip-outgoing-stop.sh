@@ -1,0 +1,33 @@
+#!/bin/bash
+set -e
+
+# -----------------------------------------------------------------------------
+# Packages:
+#   apt-get install curl
+#
+# Usage:
+#   export JITSI_HOST="https://jitsi.nordeck.corp"
+#   export JITSI_ROOM="myroom"
+#
+#   bash sip-outgoing-stop.sh <SESSION_ID>
+# ------------------------------------------------------------------------------
+
+SESSION_ID="$1"
+
+JSON=$(cat <<EOF
+{
+  "sessionId": "$SESSION_ID",
+  "callParams": {
+    "callUrlInfo": {
+      "baseUrl": "$JITSI_HOST",
+      "callName": "$JITSI_ROOM"
+    }
+  }
+}
+EOF
+)
+
+curl -sk \
+  -X POST https://jitsi.nordeck.corp/jitsi-component-selector/sessions/stop \
+  --header "Content-Type: application/json" \
+  --data @- <<< $JSON
