@@ -9,7 +9,7 @@ set -e
 #   export JITSI_HOST="https://jitsi.nordeck.corp"
 #   export JITSI_ROOM="myroom"
 #
-#   bash sip-outgoing-stop.sh <SESSION_ID>
+#   bash sip-outbound-stop.sh <SESSION_ID>
 # ------------------------------------------------------------------------------
 
 SESSION_ID="$1"

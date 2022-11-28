@@ -10,10 +10,10 @@ set -e
 #   export JITSI_ROOM="myroom"
 #   export SIP_PASSWD="my-secret-password"
 #
-#   bash sip-outgoing-start.sh <CALLEE>
+#   bash sip-outbound-start.sh <CALLEE>
 #
 # Example:
-#   bash sip-outgoing-start.sh "sip:1001@freeswitch.mydomain.corp"
+#   bash sip-outbound-start.sh "sip:1001@freeswitch.mydomain.corp"
 # ------------------------------------------------------------------------------
 
 CALLEE="$1"
