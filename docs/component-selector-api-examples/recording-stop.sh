@@ -3,7 +3,7 @@ set -e
 
 # -----------------------------------------------------------------------------
 # Packages:
-#   apt-get install curl jq
+#   apt-get install curl
 #
 # Usage:
 #   export JITSI_HOST="https://jitsi.nordeck.corp"
@@ -33,4 +33,4 @@ EOF
 curl -sk \
   -X POST https://jitsi.nordeck.corp/jitsi-component-selector/sessions/stop \
   --header "Content-Type: application/json" \
-  --data @- <<< $JSON | jq '.'
+  --data @- <<< $JSON
