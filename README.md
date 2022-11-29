@@ -357,11 +357,11 @@ The template file is in the `nordeck-jitsi` container.
 Add SIP account info into it using the following format:
 
 ```conf
---id "jitsi <sip:<SIP_USER>@127.0.0.1>"
---registrar=sip:<SIP_SERVER_ADDRESS>
---realm=*
---username=<SIP_USER>
---password=<SIP_PASSWORD>
+--id "jitsi <sip:SIP_USER@SIP_SERVER_ADDRESS>"
+--registrar "sip:SIP_SERVER_ADDRESS"
+--realm "*"
+--username "SIP_USER"
+--password "SIP_PASSWORD"
 ```
 
 ### 4.3 Installation
