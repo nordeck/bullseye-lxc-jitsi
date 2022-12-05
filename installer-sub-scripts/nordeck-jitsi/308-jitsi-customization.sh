@@ -33,6 +33,10 @@ fi
 cat $MACHINES/nordeck-jitsi/etc/jitsi/meet/config.recording.js >> \
     $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 
+# livestreaming
+cat $MACHINES/nordeck-jitsi/etc/jitsi/meet/config.recording.js >> \
+    $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
+
 # disableTileEnlargement
 sed -i "/^\s*\/\/ disableTileEnlargement/a \
 \    disableTileEnlargement: true," \
