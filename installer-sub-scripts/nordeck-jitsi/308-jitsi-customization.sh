@@ -37,9 +37,8 @@ cat $MACHINES/nordeck-jitsi/etc/jitsi/meet/config.recording.js >> \
 cat $MACHINES/nordeck-jitsi/etc/jitsi/meet/config.recording.js >> \
     $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 
-# disableTileEnlargement
-sed -i "/^\s*\/\/ disableTileEnlargement/a \
-\    disableTileEnlargement: true," \
+# UI customizations
+cat $MACHINES/nordeck-jitsi/etc/jitsi/meet/config.ui.js >> \
     $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 
 # substitutions
