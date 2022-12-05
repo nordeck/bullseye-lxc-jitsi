@@ -30,18 +30,7 @@ if [[ "$DONT_RUN_DIALPLAN" != true ]]; then
 fi
 
 # recording
-sed -i "/^\s*\/\/ Recording$/a \
-\    recordingService: {\n\
-\        enabled: true,\n\
-\        sharingEnabled: true,\n\
-\        hideStorageWarning: false,\n\
-\    },\n\
-\n\
-\    liveStreaming: {\n\
-\        enabled: true,\n\
-\    },\n\
-\n\
-\    hiddenDomain: 'recorder.$JITSI_FQDN'," \
+cat $MACHINES/nordeck-jitsi/etc/jitsi/meet/config.recording.js >> \
     $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 
 # disableTileEnlargement
