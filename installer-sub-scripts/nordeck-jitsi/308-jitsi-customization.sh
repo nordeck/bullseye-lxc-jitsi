@@ -25,9 +25,7 @@ echo "------------------- JITSI CUSTOMIZATION -------------------"
 # ------------------------------------------------------------------------------
 # dialplan
 if [[ "$DONT_RUN_DIALPLAN" != true ]]; then
-    sed -i "/^var config =/a \
-\    peopleSearchQueryTypes: ['conferenceRooms'],\n\
-\    peopleSearchUrl: 'https://$JITSI_FQDN/get-dial-plan',\n" \
+    cat $MACHINES/nordeck-jitsi/etc/jitsi/meet/config.dialplan.js >> \
         $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 fi
 
@@ -49,6 +47,10 @@ sed -i "/^\s*\/\/ Recording$/a \
 # disableTileEnlargement
 sed -i "/^\s*\/\/ disableTileEnlargement/a \
 \    disableTileEnlargement: true," \
+    $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
+
+# substitutions
+sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" \
     $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 
 # ------------------------------------------------------------------------------
