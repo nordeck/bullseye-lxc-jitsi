@@ -369,13 +369,6 @@ cp etc/systemd/system/prosody.service.d/override.conf \
 sed -i "/turns.*tcp/ s/host\s*=[^,]*/host = \"$TURN_FQDN\"/" $PROSODY_CONFIG
 sed -i "/turns.*tcp/ s/5349/443/" $PROSODY_CONFIG
 
-# recorder and sip into admin list
-sed -i -r "0,/^\s*admins/ s/(^\s*admins).*/\1 = { \
-\"focus@auth.$JITSI_FQDN\", \
-\"recorder@recorder.$JITSI_FQDN\", \
-\"sip@sip.$JITSI_FQDN\" }/" \
-    $PROSODY_CONFIG
-
 # network
 cp etc/prosody/conf.avail/network.cfg.lua $ROOTFS/etc/prosody/conf.avail/
 ln -s ../conf.avail/network.cfg.lua $ROOTFS/etc/prosody/conf.d/
@@ -406,7 +399,8 @@ cp usr/share/jitsi-meet/prosody-plugins/*.lua \
 
 # token related
 sed -i '/\s*app_secret=/a \
-\    allow_empty_token = false' \
+\    allow_empty_token = false \
+\    enable_domain_verification = false' \
     $PROSODY_CONFIG
 sed -i '/^Component .conference\./,/admins/!b; /\s*"token_verification"/a \
 \        "token_affiliation";' \
