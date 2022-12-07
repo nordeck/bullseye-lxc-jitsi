@@ -3,13 +3,6 @@ set -e
 
 PARAMS=("$@")
 
-i=0
-for arg in "${PARAMS[@]}"; do
-    # update the hardcoded protocol which comes from Jibri
-    PARAMS[i]=$(echo $arg | sed 's/transport=tcp/transport=udp/')
-    (( i += 1 ))
-done
-
 # push display :0 view to virtual camera 1
 ffmpeg -f x11grab -r 30 -i :0.0 -pix_fmt yuv420p -f v4l2 /dev/video1 &
 sleep 0.8
