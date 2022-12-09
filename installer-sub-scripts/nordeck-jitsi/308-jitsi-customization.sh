@@ -7,10 +7,10 @@ source $INSTALLER/000-source
 # ------------------------------------------------------------------------------
 # ENVIRONMENT
 # ------------------------------------------------------------------------------
-MACH="nordeck-jitsi-host"
+MACH="$TAG-jitsi-host"
 cd $MACHINES/$MACH
 
-JITSI_ROOTFS="/var/lib/lxc/nordeck-jitsi/rootfs"
+JITSI_ROOTFS="/var/lib/lxc/$TAG-jitsi/rootfs"
 
 # ------------------------------------------------------------------------------
 # INIT
@@ -25,20 +25,20 @@ echo "------------------- JITSI CUSTOMIZATION -------------------"
 # ------------------------------------------------------------------------------
 # dialplan
 if [[ "$DONT_RUN_DIALPLAN" != true ]]; then
-    cat $MACHINES/nordeck-jitsi/etc/jitsi/meet/config.dialplan.js >> \
+    cat $MACHINES/$TAG-jitsi/etc/jitsi/meet/config.dialplan.js >> \
         $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 fi
 
 # recording
-cat $MACHINES/nordeck-jitsi/etc/jitsi/meet/config.recording.js >> \
+cat $MACHINES/$TAG-jitsi/etc/jitsi/meet/config.recording.js >> \
     $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 
 # livestreaming
-cat $MACHINES/nordeck-jitsi/etc/jitsi/meet/config.recording.js >> \
+cat $MACHINES/$TAG-jitsi/etc/jitsi/meet/config.recording.js >> \
     $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 
 # UI customizations
-cat $MACHINES/nordeck-jitsi/etc/jitsi/meet/config.ui.js >> \
+cat $MACHINES/$TAG-jitsi/etc/jitsi/meet/config.ui.js >> \
     $JITSI_ROOTFS/etc/jitsi/meet/$JITSI_FQDN-config.js
 
 # substitutions
