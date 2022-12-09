@@ -28,7 +28,7 @@ echo
 # ------------------------------------------------------------------------------
 # INSTALLER CONFIGURATION
 # ------------------------------------------------------------------------------
-cp -ap ../nordeck-base/* .
+cp -ap ../$TAG-base/* .
 
 set +e
 systemctl stop jibri-ephemeral-container.service
