@@ -7,7 +7,7 @@ source $INSTALLER/000-source
 # ------------------------------------------------------------------------------
 # ENVIRONMENT
 # ------------------------------------------------------------------------------
-MACH="nordeck-sip-template"
+MACH="$TAG-sip-template"
 cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
@@ -25,8 +25,8 @@ echo "-------------------------- $MACH --------------------------"
 # ------------------------------------------------------------------------------
 # stop the template container if it's running
 set +e
-lxc-stop -n nordeck-bullseye
-lxc-wait -n nordeck-bullseye -s STOPPED
+lxc-stop -n $TAG-bullseye
+lxc-wait -n $TAG-bullseye -s STOPPED
 set -e
 
 # remove the old container if exists
@@ -41,7 +41,7 @@ sleep 1
 set -e
 
 # create the new one
-lxc-copy -n nordeck-bullseye -N $MACH -p /var/lib/lxc/
+lxc-copy -n $TAG-bullseye -N $MACH -p /var/lib/lxc/
 
 # the shared directories
 mkdir -p $SHARED/cache
@@ -61,8 +61,8 @@ lxc.mount.entry = /dev/snd dev/snd none bind,optional,create=dir
 lxc.start.auto = 1
 lxc.start.order = 301
 lxc.start.delay = 2
-lxc.group = nordeck-group
-lxc.group = nordeck-sip
+lxc.group = $TAG-group
+lxc.group = $TAG-sip
 EOF
 
 # start the container
@@ -202,7 +202,7 @@ EOS
 
 # google chrome managed policies
 mkdir -p $ROOTFS/etc/opt/chrome/policies/managed
-cp etc/opt/chrome/policies/managed/nordeck-policies.json \
+cp etc/opt/chrome/policies/managed/$TAG-policies.json \
     $ROOTFS/etc/opt/chrome/policies/managed/
 
 # ------------------------------------------------------------------------------
