@@ -7,16 +7,16 @@ source $INSTALLER/000-source
 # ------------------------------------------------------------------------------
 # ENVIRONMENT
 # ------------------------------------------------------------------------------
-MACH="nordeck-component-selector"
+MACH="$TAG-component-selector"
 cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
-DNS_RECORD=$(grep "address=/$MACH/" /etc/dnsmasq.d/nordeck-jitsi | head -n1)
+DNS_RECORD=$(grep "address=/$MACH/" /etc/dnsmasq.d/$TAG-jitsi | head -n1)
 IP=${DNS_RECORD##*/}
 SSH_PORT="30$(printf %03d ${IP##*.})"
 echo COMPONENT_SELECTOR="$IP" >> $INSTALLER/000-source
 
-JITSI_MACH="nordeck-jitsi"
+JITSI_MACH="$TAG-jitsi"
 JITSI_ROOTFS="/var/lib/lxc/$JITSI_MACH/rootfs"
 
 KID_SIDECAR="jitsi/default"
@@ -25,10 +25,10 @@ KID_SIDECAR="jitsi/default"
 # NFTABLES RULES
 # ------------------------------------------------------------------------------
 # the public ssh
-nft delete element nordeck-nat tcp2ip { $SSH_PORT } 2>/dev/null || true
-nft add element nordeck-nat tcp2ip { $SSH_PORT : $IP }
-nft delete element nordeck-nat tcp2port { $SSH_PORT } 2>/dev/null || true
-nft add element nordeck-nat tcp2port { $SSH_PORT : 22 }
+nft delete element $TAG-nat tcp2ip { $SSH_PORT } 2>/dev/null || true
+nft add element $TAG-nat tcp2ip { $SSH_PORT : $IP }
+nft delete element $TAG-nat tcp2port { $SSH_PORT } 2>/dev/null || true
+nft add element $TAG-nat tcp2port { $SSH_PORT : 22 }
 
 # ------------------------------------------------------------------------------
 # INIT
@@ -43,8 +43,8 @@ echo "-------------------------- $MACH --------------------------"
 # ------------------------------------------------------------------------------
 # stop the template container if it's running
 set +e
-lxc-stop -n nordeck-bullseye
-lxc-wait -n nordeck-bullseye -s STOPPED
+lxc-stop -n $TAG-bullseye
+lxc-wait -n $TAG-bullseye -s STOPPED
 set -e
 
 # remove the old container if exists
@@ -57,7 +57,7 @@ sleep 1
 set -e
 
 # create the new one
-lxc-copy -n nordeck-bullseye -N $MACH -p /var/lib/lxc/
+lxc-copy -n $TAG-bullseye -N $MACH -p /var/lib/lxc/
 
 # the shared directories
 mkdir -p $SHARED/cache
@@ -72,7 +72,7 @@ cat >> /var/lib/lxc/$MACH/config <<EOF
 lxc.start.auto = 1
 lxc.start.order = 309
 lxc.start.delay = 2
-lxc.group = nordeck-group
+lxc.group = $TAG-group
 lxc.group = onboot
 EOF
 
@@ -136,7 +136,7 @@ npm install npm -g
 EOS
 
 # jitsi-component-selector
-cp /root/nordeck-store/jitsi-component-selector.deb $ROOTFS/tmp/
+cp /root/$TAG-store/jitsi-component-selector.deb $ROOTFS/tmp/
 
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
@@ -149,7 +149,7 @@ EOS
 # ------------------------------------------------------------------------------
 echo -e "$JITSI\t$JITSI_FQDN" >> $ROOTFS/etc/hosts
 
-cp /root/nordeck-certs/nordeck-CA.pem \
+cp /root/$TAG-certs/$TAG-CA.pem \
     $ROOTFS/usr/local/share/ca-certificates/jms-CA.crt
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
