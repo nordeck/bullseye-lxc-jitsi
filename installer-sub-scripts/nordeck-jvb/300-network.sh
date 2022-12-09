@@ -7,7 +7,7 @@ source $INSTALLER/000-source
 # ------------------------------------------------------------------------------
 # ENVIRONMENT
 # ------------------------------------------------------------------------------
-MACH="nordeck-jvb-host"
+MACH="$TAG-jvb-host"
 cd $MACHINES/$MACH
 
 # ------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ cd $MACHINES/$MACH
 # NETWORK CONFIG
 # ------------------------------------------------------------------------------
 # changed/added system files
-cp etc/dnsmasq.d/nordeck-jvb /etc/dnsmasq.d/
+cp etc/dnsmasq.d/$TAG-jvb /etc/dnsmasq.d/
 
 # ------------------------------------------------------------------------------
 # NETWORK RELATED SERVICES
