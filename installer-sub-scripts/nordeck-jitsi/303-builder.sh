@@ -7,7 +7,7 @@ source $INSTALLER/000-source
 # ------------------------------------------------------------------------------
 # ENVIRONMENT
 # ------------------------------------------------------------------------------
-MACH="nordeck-builder"
+MACH="$TAG-builder"
 cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
@@ -25,8 +25,8 @@ echo "-------------------------- $MACH --------------------------"
 # ------------------------------------------------------------------------------
 # stop the template container if it's running
 set +e
-lxc-stop -n nordeck-bullseye
-lxc-wait -n nordeck-bullseye -s STOPPED
+lxc-stop -n $TAG-bullseye
+lxc-wait -n $TAG-bullseye -s STOPPED
 set -e
 
 # remove the old container if exists
@@ -39,7 +39,7 @@ sleep 1
 set -e
 
 # create the new one
-lxc-copy -n nordeck-bullseye -N $MACH -p /var/lib/lxc/
+lxc-copy -n $TAG-bullseye -N $MACH -p /var/lib/lxc/
 
 # the shared directories
 mkdir -p $SHARED/cache
@@ -54,7 +54,7 @@ cat >> /var/lib/lxc/$MACH/config <<EOF
 lxc.start.auto = 0
 lxc.start.order = 303
 lxc.start.delay = 2
-lxc.group = nordeck-group
+lxc.group = $TAG-group
 EOF
 
 # start the container
