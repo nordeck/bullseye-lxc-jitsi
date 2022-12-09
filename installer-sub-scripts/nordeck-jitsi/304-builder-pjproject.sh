@@ -7,7 +7,7 @@ source $INSTALLER/000-source
 # ------------------------------------------------------------------------------
 # ENVIRONMENT
 # ------------------------------------------------------------------------------
-MACH="nordeck-builder"
+MACH="$TAG-builder"
 cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
@@ -75,9 +75,9 @@ EOSS
 EOS
 
 # store
-mkdir -p /root/nordeck-store
+mkdir -p /root/$TAG-store
 cp $ROOTFS/home/dev/src/pjproject/pjsip-apps/bin/pjsua-x86_64-unknown-linux-gnu \
-    /root/nordeck-store/pjsua
+    /root/$TAG-store/pjsua
 
 # ------------------------------------------------------------------------------
 # CONTAINER SERVICES
