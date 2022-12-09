@@ -7,7 +7,7 @@ source $INSTALLER/000-source
 # ------------------------------------------------------------------------------
 # ENVIRONMENT
 # ------------------------------------------------------------------------------
-MACH="nordeck-builder"
+MACH="$TAG-builder"
 cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
@@ -63,9 +63,9 @@ EOSS
 EOS
 
 # store
-mkdir -p /root/nordeck-store
+mkdir -p /root/$TAG-store
 cp $ROOTFS/home/dev/src/jitsi-component-sidecar_*_all.deb \
-    /root/nordeck-store/jitsi-component-sidecar.deb
+    /root/$TAG-store/jitsi-component-sidecar.deb
 
 # ------------------------------------------------------------------------------
 # CONTAINER SERVICES
