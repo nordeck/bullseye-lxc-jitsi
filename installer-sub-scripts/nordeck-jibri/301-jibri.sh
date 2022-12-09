@@ -7,7 +7,7 @@ source $INSTALLER/000-source
 # ------------------------------------------------------------------------------
 # ENVIRONMENT
 # ------------------------------------------------------------------------------
-MACH="nordeck-jibri-template"
+MACH="$TAG-jibri-template"
 cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
@@ -25,8 +25,8 @@ echo "-------------------------- $MACH --------------------------"
 # ------------------------------------------------------------------------------
 # stop the template container if it's running
 set +e
-lxc-stop -n nordeck-bullseye
-lxc-wait -n nordeck-bullseye -s STOPPED
+lxc-stop -n $TAG-bullseye
+lxc-wait -n $TAG-bullseye -s STOPPED
 set -e
 
 # remove the old container if exists
@@ -41,7 +41,7 @@ sleep 1
 set -e
 
 # create the new one
-lxc-copy -n nordeck-bullseye -N $MACH -p /var/lib/lxc/
+lxc-copy -n $TAG-bullseye -N $MACH -p /var/lib/lxc/
 
 # the shared directories
 mkdir -p $SHARED/cache
@@ -50,11 +50,11 @@ mkdir -p $SHARED/recordings
 # the container config
 rm -rf $ROOTFS/var/cache/apt/archives
 mkdir -p $ROOTFS/var/cache/apt/archives
-rm -rf $ROOTFS/usr/local/nordeck/recordings
-mkdir -p $ROOTFS/usr/local/nordeck/recordings
+rm -rf $ROOTFS/usr/local/$TAG/recordings
+mkdir -p $ROOTFS/usr/local/$TAG/recordings
 
 cat >> /var/lib/lxc/$MACH/config <<EOF
-lxc.mount.entry = $SHARED/recordings usr/local/nordeck/recordings none bind 0 0
+lxc.mount.entry = $SHARED/recordings usr/local/$TAG/recordings none bind 0 0
 
 # Devices
 lxc.cgroup2.devices.allow = c 116:* rwm
@@ -64,8 +64,8 @@ lxc.mount.entry = /dev/snd dev/snd none bind,optional,create=dir
 lxc.start.auto = 1
 lxc.start.order = 301
 lxc.start.delay = 2
-lxc.group = nordeck-group
-lxc.group = nordeck-jibri
+lxc.group = $TAG-group
+lxc.group = $TAG-jibri
 EOF
 
 # start the container
@@ -198,7 +198,7 @@ EOS
 
 # google chrome managed policies
 mkdir -p $ROOTFS/etc/opt/chrome/policies/managed
-cp etc/opt/chrome/policies/managed/nordeck-policies.json \
+cp etc/opt/chrome/policies/managed/$TAG-policies.json \
     $ROOTFS/etc/opt/chrome/policies/managed/
 
 # ------------------------------------------------------------------------------
@@ -239,7 +239,7 @@ chmod 755 $ROOTFS/home/jibri/.icewm/startup
 # recordings directory
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
-chown jibri:jibri /usr/local/nordeck/recordings -R
+chown jibri:jibri /usr/local/$TAG/recordings -R
 EOS
 
 # pki
