@@ -7,11 +7,11 @@ source $INSTALLER/000-source
 # ------------------------------------------------------------------------------
 # ENVIRONMENT
 # ------------------------------------------------------------------------------
-MACH="nordeck-jitsi"
+MACH="$TAG-jitsi"
 cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
-DNS_RECORD=$(grep "address=/$MACH/" /etc/dnsmasq.d/nordeck-jitsi | head -n1)
+DNS_RECORD=$(grep "address=/$MACH/" /etc/dnsmasq.d/$TAG-jitsi | head -n1)
 IP=${DNS_RECORD##*/}
 SSH_PORT="30$(printf %03d ${IP##*.})"
 echo JITSI="$IP" >> $INSTALLER/000-source
@@ -24,30 +24,30 @@ PROSODY_CONFIG="$ROOTFS/etc/prosody/conf.avail/$JITSI_FQDN.cfg.lua"
 # NFTABLES RULES
 # ------------------------------------------------------------------------------
 # the public ssh
-nft delete element nordeck-nat tcp2ip { $SSH_PORT } 2>/dev/null || true
-nft add element nordeck-nat tcp2ip { $SSH_PORT : $IP }
-nft delete element nordeck-nat tcp2port { $SSH_PORT } 2>/dev/null || true
-nft add element nordeck-nat tcp2port { $SSH_PORT : 22 }
+nft delete element $TAG-nat tcp2ip { $SSH_PORT } 2>/dev/null || true
+nft add element $TAG-nat tcp2ip { $SSH_PORT : $IP }
+nft delete element $TAG-nat tcp2port { $SSH_PORT } 2>/dev/null || true
+nft add element $TAG-nat tcp2port { $SSH_PORT : 22 }
 # http
-nft delete element nordeck-nat tcp2ip { 80 } 2>/dev/null || true
-nft add element nordeck-nat tcp2ip { 80 : $IP }
-nft delete element nordeck-nat tcp2port { 80 } 2>/dev/null || true
-nft add element nordeck-nat tcp2port { 80 : 80 }
+nft delete element $TAG-nat tcp2ip { 80 } 2>/dev/null || true
+nft add element $TAG-nat tcp2ip { 80 : $IP }
+nft delete element $TAG-nat tcp2port { 80 } 2>/dev/null || true
+nft add element $TAG-nat tcp2port { 80 : 80 }
 # https
-nft delete element nordeck-nat tcp2ip { 443 } 2>/dev/null || true
-nft add element nordeck-nat tcp2ip { 443 : $IP }
-nft delete element nordeck-nat tcp2port { 443 } 2>/dev/null || true
-nft add element nordeck-nat tcp2port { 443 : 443 }
+nft delete element $TAG-nat tcp2ip { 443 } 2>/dev/null || true
+nft add element $TAG-nat tcp2ip { 443 : $IP }
+nft delete element $TAG-nat tcp2port { 443 } 2>/dev/null || true
+nft add element $TAG-nat tcp2port { 443 : 443 }
 # tcp/5222
-nft delete element nordeck-nat tcp2ip { 5222 } 2>/dev/null || true
-nft add element nordeck-nat tcp2ip { 5222 : $IP }
-nft delete element nordeck-nat tcp2port { 5222 } 2>/dev/null || true
-nft add element nordeck-nat tcp2port { 5222 : 5222 }
+nft delete element $TAG-nat tcp2ip { 5222 } 2>/dev/null || true
+nft add element $TAG-nat tcp2ip { 5222 : $IP }
+nft delete element $TAG-nat tcp2port { 5222 } 2>/dev/null || true
+nft add element $TAG-nat tcp2port { 5222 : 5222 }
 # udp/10000
-nft delete element nordeck-nat udp2ip { 10000 } 2>/dev/null || true
-nft add element nordeck-nat udp2ip { 10000 : $IP }
-nft delete element nordeck-nat udp2port { 10000 } 2>/dev/null || true
-nft add element nordeck-nat udp2port { 10000 : 10000 }
+nft delete element $TAG-nat udp2ip { 10000 } 2>/dev/null || true
+nft add element $TAG-nat udp2ip { 10000 : $IP }
+nft delete element $TAG-nat udp2port { 10000 } 2>/dev/null || true
+nft add element $TAG-nat udp2port { 10000 : 10000 }
 
 # ------------------------------------------------------------------------------
 # INIT
@@ -76,8 +76,8 @@ fi
 # ------------------------------------------------------------------------------
 # stop the template container if it's running
 set +e
-lxc-stop -n nordeck-bullseye
-lxc-wait -n nordeck-bullseye -s STOPPED
+lxc-stop -n $TAG-bullseye
+lxc-wait -n $TAG-bullseye -s STOPPED
 set -e
 
 # remove the old container if exists
@@ -90,7 +90,7 @@ sleep 1
 set -e
 
 # create the new one
-lxc-copy -n nordeck-bullseye -N $MACH -p /var/lib/lxc/
+lxc-copy -n $TAG-bullseye -N $MACH -p /var/lib/lxc/
 
 # the shared directories
 mkdir -p $SHARED/cache
@@ -99,17 +99,17 @@ mkdir -p $SHARED/recordings
 # the container config
 rm -rf $ROOTFS/var/cache/apt/archives
 mkdir -p $ROOTFS/var/cache/apt/archives
-rm -rf $ROOTFS/usr/local/nordeck/recordings
-mkdir -p $ROOTFS/usr/local/nordeck/recordings
+rm -rf $ROOTFS/usr/local/$TAG/recordings
+mkdir -p $ROOTFS/usr/local/$TAG/recordings
 
 cat >> /var/lib/lxc/$MACH/config <<EOF
-lxc.mount.entry = $SHARED/recordings usr/local/nordeck/recordings none bind 0 0
+lxc.mount.entry = $SHARED/recordings usr/local/$TAG/recordings none bind 0 0
 
 # Start options
 lxc.start.auto = 1
 lxc.start.order = 307
 lxc.start.delay = 2
-lxc.group = nordeck-group
+lxc.group = $TAG-group
 lxc.group = onboot
 EOF
 
@@ -267,15 +267,15 @@ echo \$VERSION > /root/meta/jibri-version
 EOS
 
 # sip
-cp $MACHINES/nordeck-sip-template/etc/jitsi/jibri/pjsua.config \
+cp $MACHINES/$TAG-sip-template/etc/jitsi/jibri/pjsua.config \
     $ROOTFS/root/meta/
 
 # sidecar env files
-cp $MACHINES/nordeck-jibri-template/etc/jitsi/sidecar/env \
+cp $MACHINES/$TAG-jibri-template/etc/jitsi/sidecar/env \
     $ROOTFS/root/meta/env.sidecar.jibri
 sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" $ROOTFS/root/meta/env.sidecar.jibri
 
-cp $MACHINES/nordeck-sip-template/etc/jitsi/sidecar/env \
+cp $MACHINES/$TAG-sip-template/etc/jitsi/sidecar/env \
     $ROOTFS/root/meta/env.sidecar.sip
 sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" $ROOTFS/root/meta/env.sidecar.sip
 
@@ -307,25 +307,23 @@ cp /root/.ssh/jibri.pub $ROOTFS/usr/share/jitsi-meet/static/
 # SYSTEM CONFIGURATION
 # ------------------------------------------------------------------------------
 # certificates
-cp /root/nordeck-certs/nordeck-CA.pem \
+cp /root/$TAG-certs/$TAG-CA.pem \
     $ROOTFS/usr/local/share/ca-certificates/jms-CA.crt
-cp /root/nordeck-certs/nordeck-CA.pem \
-    $ROOTFS/usr/share/jitsi-meet/static/jms-CA.crt
-cp /root/nordeck-certs/nordeck-jitsi.key \
-    $ROOTFS/etc/ssl/private/nordeck-cert.key
-cp /root/nordeck-certs/nordeck-jitsi.pem $ROOTFS/etc/ssl/certs/nordeck-cert.pem
+cp /root/$TAG-certs/$TAG-CA.pem $ROOTFS/usr/share/jitsi-meet/static/jms-CA.crt
+cp /root/$TAG-certs/$TAG-jitsi.key $ROOTFS/etc/ssl/private/$TAG-cert.key
+cp /root/$TAG-certs/$TAG-jitsi.pem $ROOTFS/etc/ssl/certs/$TAG-cert.pem
 
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 update-ca-certificates
 
-chmod 640 /etc/ssl/private/nordeck-cert.key
-chown root:ssl-cert /etc/ssl/private/nordeck-cert.key
+chmod 640 /etc/ssl/private/$TAG-cert.key
+chown root:ssl-cert /etc/ssl/private/$TAG-cert.key
 
 rm /etc/jitsi/meet/$JITSI_FQDN.key
 rm /etc/jitsi/meet/$JITSI_FQDN.crt
-ln -s /etc/ssl/private/nordeck-cert.key /etc/jitsi/meet/$JITSI_FQDN.key
-ln -s /etc/ssl/certs/nordeck-cert.pem /etc/jitsi/meet/$JITSI_FQDN.crt
+ln -s /etc/ssl/private/$TAG-cert.key /etc/jitsi/meet/$JITSI_FQDN.key
+ln -s /etc/ssl/certs/$TAG-cert.pem /etc/jitsi/meet/$JITSI_FQDN.crt
 EOS
 
 # set-letsencrypt-cert
