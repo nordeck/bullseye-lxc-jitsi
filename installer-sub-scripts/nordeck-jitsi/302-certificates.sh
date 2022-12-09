@@ -20,12 +20,12 @@ echo "---------------------- CERTIFICATES -----------------------"
 # ------------------------------------------------------------------------------
 # SELF-SIGNED CERTIFICATE
 # ------------------------------------------------------------------------------
-cd /root/nordeck-certs
-rm -f /root/nordeck-certs/nordeck-jitsi.*
+cd /root/$TAG-certs
+rm -f /root/$TAG-certs/$TAG-jitsi.*
 
 # the extension file for multiple hosts:
 # the container IP, the host IP and the host names
-cat >nordeck-jitsi.ext <<EOF
+cat >$TAG-jitsi.ext <<EOF
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
@@ -35,28 +35,27 @@ subjectAltName = @alt_names
 EOF
 
 # FQDNs
-echo "DNS.1 = $JITSI_FQDN" >>nordeck-jitsi.ext
-echo "DNS.2 = $TURN_FQDN" >>nordeck-jitsi.ext
+echo "DNS.1 = $JITSI_FQDN" >>$TAG-jitsi.ext
+echo "DNS.2 = $TURN_FQDN" >>$TAG-jitsi.ext
 
 # internal IPs
 i=1
-for addr in $(egrep '^address=' /etc/dnsmasq.d/nordeck-jitsi); do
+for addr in $(egrep '^address=' /etc/dnsmasq.d/$TAG-jitsi); do
     ip=$(echo $addr | rev | cut -d '/' -f1 | rev)
-    echo "IP.$i = $ip" >> nordeck-jitsi.ext
+    echo "IP.$i = $ip" >> $TAG-jitsi.ext
     (( i += 1 ))
 done
 
 # external IPs
-echo "IP.$i = $REMOTE_IP" >>nordeck-jitsi.ext
+echo "IP.$i = $REMOTE_IP" >>$TAG-jitsi.ext
 (( i += 1 ))
 [[ -n "$EXTERNAL_IP" ]] && [[ "$EXTERNAL_IP" != "$REMOTE_IP" ]] \
-    && echo "IP.$i = $EXTERNAL_IP" >>nordeck-jitsi.ext \
+    && echo "IP.$i = $EXTERNAL_IP" >>$TAG-jitsi.ext \
     || true
 
 # the domain key and the domain certificate
 openssl req -nodes -newkey rsa:2048 \
-    -keyout nordeck-jitsi.key -out nordeck-jitsi.csr \
-    -subj "/O=nordeck/OU=nordeck-jitsi/CN=$JITSI_FQDN"
-openssl x509 -req -CA nordeck-CA.pem -CAkey nordeck-CA.key -CAcreateserial \
-    -days 10950 -in nordeck-jitsi.csr -out nordeck-jitsi.pem \
-    -extfile nordeck-jitsi.ext
+    -keyout $TAG-jitsi.key -out $TAG-jitsi.csr \
+    -subj "/O=$TAG/OU=$TAG-jitsi/CN=$JITSI_FQDN"
+openssl x509 -req -CA $TAG-CA.pem -CAkey $TAG-CA.key -CAcreateserial \
+    -days 10950 -in $TAG-jitsi.csr -out $TAG-jitsi.pem -extfile $TAG-jitsi.ext
