@@ -377,7 +377,7 @@ sed -i "s/^-- \(https_ports = { };\)/\1/" $PROSODY_CONFIG
 
 # recorder
 cp etc/prosody/conf.avail/recorder.cfg.lua \
-   $ROOTFS/etc/prosody/conf.avail/recorder.$JITSI_FQDN.cfg.lua
+    $ROOTFS/etc/prosody/conf.avail/recorder.$JITSI_FQDN.cfg.lua
 sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" \
     $ROOTFS/etc/prosody/conf.avail/recorder.$JITSI_FQDN.cfg.lua
 ln -s ../conf.avail/recorder.$JITSI_FQDN.cfg.lua \
