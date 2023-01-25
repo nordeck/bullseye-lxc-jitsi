@@ -130,7 +130,7 @@ host turn.nordeck.corp
 Create a deployment key for each customer
 
 ```bash
-ssh-keygen -t rsa -b 4096 -f jitsi-deploy-customer_name
+ssh-keygen -t rsa -b 4096 -P "" -f jitsi-deploy-customer_name
 ```
 
 Add the content of `jitsi-deploy-customer_name.pub` as a deployment key on
