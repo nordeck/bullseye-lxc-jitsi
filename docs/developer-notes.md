@@ -1,4 +1,6 @@
-## Local setup
+## Local Test Environment
+
+These are only valid for the test environment.
 
 ### JMS
 
@@ -32,6 +34,8 @@
 
 ### Additional Video-SIP-Gateway
 
+- After installation
+  - Set `CPI` to `2` in `/usr/local/sbin/sip-ephemeral-start`
 - Testing
   - start `FreeSWITCH` to allow SIP
   - Add `Jitsi SIP account` into the SIP server
