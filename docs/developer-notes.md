@@ -33,6 +33,9 @@
 ### Additional Video-SIP-Gateway
 
 - Testing
+  - start `FreeSWITCH` to allow SIP
+  - Add `Jitsi SIP account` into the SIP server
+  - Configure a SIP client as a remote peer
   - outgoing call through UI
   - outgoing call through API
   - incoming call through API
