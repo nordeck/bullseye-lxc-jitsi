@@ -199,8 +199,8 @@ apt-get $APT_PROXY -y install gcc git
 EOS
 
 # jitsi-meet-tokens secret
-APP_ID="jitsi-$RANDOM"
-APP_SECRET="$(openssl rand -hex 20)"
+[[ -z "$APP_ID" ]] && APP_ID="jitsi-$RANDOM" || true
+[[ -z "$APP_SECRET" ]] && APP_SECRET="$(openssl rand -hex 20)" || true
 
 echo APP_ID="$APP_ID" >> $INSTALLER/000-source
 echo APP_SECRET="$APP_SECRET" >> $INSTALLER/000-source
