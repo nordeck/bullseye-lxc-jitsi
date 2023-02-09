@@ -13,6 +13,7 @@
     - `SIP_CLIENT_PASSWORD`
     - `SIP_CLIENT_USERNAME`
   - Custom port in `/root/.ssh/jms-config`
+  - Update `/home/dialplan/app/dial-plan.json`
 - Testing
   - 3 participants while `coturn` is stopped
 
@@ -25,3 +26,6 @@
   - 3 participants while `coturn` and `main jvb` are stopped
 
 ### Additional Jibri
+
+- Testing
+  - recording
