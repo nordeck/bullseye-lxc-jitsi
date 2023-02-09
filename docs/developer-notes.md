@@ -13,3 +13,15 @@
     - `SIP_CLIENT_PASSWORD`
     - `SIP_CLIENT_USERNAME`
   - Custom port in `/root/.ssh/jms-config`
+- Testing
+  - 3 participants while `coturn` is stopped
+
+### Additional JVB
+
+- After installation
+  - Enable `harvester` addresses in
+    `/etc/jitsi/videobridge/sip-communicator.properties`
+- Testing
+  - 3 participants while `coturn` and `main jvb` are stopped
+
+### Additional Jibri
