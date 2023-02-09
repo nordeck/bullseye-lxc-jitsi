@@ -29,3 +29,10 @@
 
 - Testing
   - recording
+
+### Additional Video-SIP-Gateway
+
+- Testing
+  - outgoing call through UI
+  - outgoing call through API
+  - incoming call through API
