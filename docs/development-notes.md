@@ -16,3 +16,16 @@ is no solution which can handle `NAT`.
   - `--contact '<sip:1000@172.17.17.36:5060;transport=udp>'` works
     \
     `172.17.17.36` is the IP address of SIP server.
+
+```bash
+exec /usr/local/bin/pjsua --config-file /etc/jitsi/jibri/pjsua.config \
+  --id 'jitsi <sip:1000@sip.mydomain.corp>' \
+  --registrar 'sip:sip.mydomain.corp' \
+  --realm=* \
+  --username=1000 \
+  --password=pwd1000 \
+  --auto-answer-timer=30 \
+  --auto-answer=200 \
+  --contact '<sip:1000@172.17.17.36:5060;transport=udp>' \
+  >/dev/null
+```
