@@ -10,3 +10,9 @@ is no solution which can handle `NAT`.
   error in my configuration. Use only numbers to be safe.
 
 - `Incoming call` fails in there is no `--contact` while running `pjsua`
+
+- `--contact` with `FQDN` doesn't work in my environment.
+  - `--contact '<sip:1000@sip.mydomain.corp:5060;transport=udp>'` fails
+  - `--contact '<sip:1000@172.17.17.36:5060;transport=udp>'` works
+    \
+    `172.17.17.36` is the IP address of SIP server.
