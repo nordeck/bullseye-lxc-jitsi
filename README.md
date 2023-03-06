@@ -63,6 +63,7 @@
   - [4.2 Configuration](#42-configuration)
   - [4.3 Installation](#43-installation)
   - [4.4 Updating the PJSUA configuration](#44-updating-the-pjsua-configuration)
+  - [4.5 Dial-plan](#45-dial-plan)
 
 ## 1. JMS (Jitsi Meet Server)
 
@@ -394,3 +395,9 @@ update-sip-config <SIP-IP-ADDRESS>
 
 _Be careful, if there is an active SIP session while running this command, it
 will be canceled._
+
+### 4.5 Dial-plan
+
+Update `/var/lib/lxc/nordeck-dialplan/rootfs/home/dialplan/app/dial-plan.json`
+to set available SIP peers for `Jitsi` UI. This list is only accessible for
+moderator users.
