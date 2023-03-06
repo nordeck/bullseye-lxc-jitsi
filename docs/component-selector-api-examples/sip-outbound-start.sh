@@ -8,7 +8,9 @@ set -e
 # Usage:
 #   export JITSI_HOST="https://jitsi.nordeck.corp"
 #   export JITSI_ROOM="myroom"
-#   export SIP_PASSWD="my-secret-password"
+#   export PROSODY_SIP_PASSWD="my-secret-password"
+#   export CALLER_USERNAME="1009@sip.nordeck.corp"
+#   export CALLER_PASSWORD="1234"
 #
 #   bash sip-outbound-start.sh <CALLEE>
 #
@@ -33,15 +35,17 @@ JSON=$(cat <<EOF
   },
   "metadata": {
     "sipClientParams": {
-      "autoAnswer": false,
+      "userName": "$CALLER_USERNAME",
+      "password": "$CALLER_PASSWORD",
       "sipAddress": "$CALLEE",
-      "displayName": "Caller"
+      "displayName": "Caller",
+      "autoAnswer": false
     }
   },
   "callLoginParams": {
     "domain": "sip.jitsi.nordeck.corp",
     "username": "sip",
-    "password": "$SIP_PASSWD"
+    "password": "$PROSODY_SIP_PASSWD"
   }
 }
 EOF

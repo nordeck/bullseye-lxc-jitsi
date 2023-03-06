@@ -11,15 +11,17 @@ set -e
 # Usage:
 #   export JITSI_HOST="https://jitsi.nordeck.corp"
 #   export JITSI_ROOM="myroom"
-#   export SIP_PASSWD="my-secret-password"
+#   export PROSODY_SIP_PASSWD="my-secret-password"
+#   export INVITER_USERNAME="1009@sip.nordeck.corp"
+#   export INVITER_PASSWORD="1234"
 #
-#   bash sip-inbound-start.sh <CALLEE>
+#   bash sip-inbound-start.sh <INVITEE>
 #
 # Example:
 #   bash sip-inbound-start.sh "sip:1001@sip.nordeck.corp"
 # ------------------------------------------------------------------------------
 
-CALLER="$1"
+INVITEE="$1"
 
 JSON=$(cat <<EOF
 {
@@ -36,15 +38,17 @@ JSON=$(cat <<EOF
   },
   "metadata": {
     "sipClientParams": {
+      "userName": "$INVITER_USERNAME",
+      "password": "$INVITER_PASSWORD",
+      "sipAddress": "$INVITEE",
+      "displayName": "Caller",
       "autoAnswer": true,
-      "sipAddress": "$CALLER",
-      "displayName": "Caller"
     }
   },
   "callLoginParams": {
     "domain": "sip.jitsi.nordeck.corp",
     "username": "sip",
-    "password": "$SIP_PASSWD"
+    "password": "$PROSODY_SIP_PASSWD"
   }
 }
 EOF
