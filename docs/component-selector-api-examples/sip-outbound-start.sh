@@ -13,7 +13,7 @@ set -e
 #   bash sip-outbound-start.sh <CALLEE>
 #
 # Example:
-#   bash sip-outbound-start.sh "sip:1001@freeswitch.mydomain.corp"
+#   bash sip-outbound-start.sh "sip:1001@sip.nordeck.corp"
 # ------------------------------------------------------------------------------
 
 CALLEE="$1"

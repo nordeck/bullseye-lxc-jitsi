@@ -16,7 +16,7 @@ set -e
 #   bash sip-inbound-start.sh <CALLEE>
 #
 # Example:
-#   bash sip-inbound-start.sh "sip:1001@freeswitch.mydomain.corp"
+#   bash sip-inbound-start.sh "sip:1001@sip.nordeck.corp"
 # ------------------------------------------------------------------------------
 
 CALLER="$1"
