@@ -14,6 +14,7 @@ set -e
 #   export PROSODY_SIP_PASSWD="my-secret-password"
 #   export INVITER_USERNAME="1009@sip.nordeck.corp"
 #   export INVITER_PASSWORD="1234"
+#   export INVITER_CONTACT="<sip:1009@172.17.17.36:5060;transport=udp>"
 #
 #   bash sip-inbound-start.sh <INVITEE>
 #
@@ -40,6 +41,7 @@ JSON=$(cat <<EOF
     "sipClientParams": {
       "userName": "$INVITER_USERNAME",
       "password": "$INVITER_PASSWORD",
+      "contact": "$INVITER_CONTACT",
       "sipAddress": "$INVITEE",
       "displayName": "Caller",
       "autoAnswer": true
