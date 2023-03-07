@@ -42,7 +42,7 @@ JSON=$(cat <<EOF
       "password": "$INVITER_PASSWORD",
       "sipAddress": "$INVITEE",
       "displayName": "Caller",
-      "autoAnswer": true,
+      "autoAnswer": true
     }
   },
   "callLoginParams": {
