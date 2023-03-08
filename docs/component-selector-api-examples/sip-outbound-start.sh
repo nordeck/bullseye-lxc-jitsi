@@ -11,6 +11,7 @@ set -e
 #   export PROSODY_SIP_PASSWD="my-secret-password"
 #   export CALLER_USERNAME="1009@sip.nordeck.corp"
 #   export CALLER_PASSWORD="1234"
+#   export SIP_PROXY="sip:sip.nordeck.corp;transport=udp;hide"
 #
 #   bash sip-outbound-start.sh <CALLEE>
 #
@@ -39,6 +40,7 @@ JSON=$(cat <<EOF
       "password": "$CALLER_PASSWORD",
       "sipAddress": "$CALLEE",
       "displayName": "Caller",
+      "proxy": "$SIP_PROXY",
       "autoAnswer": false
     }
   },
