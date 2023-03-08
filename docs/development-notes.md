@@ -39,3 +39,34 @@ When `H.264` is disabled, `Linphone` can see `pjsua`'s video but `pjsua` cannot
 see `Linphone`'s video. It seems that there is `VP8` decoding issue in `pjsua`.
 
 Check SIP packages on `FreeSWITCH` to collect more data about the issue.
+
+**Edit:**
+After disabling `H.264` on `FreeSWITCH`, `VP8` works for `pjsua` too.
+
+- `/etc/freeswitch/vars.xml`
+
+```
+253,254c253,254
+<   <X-PRE-PROCESS cmd="set" data="global_codec_prefs=OPUS,G722,PCMU,PCMA,H264,VP8"/>
+<   <X-PRE-PROCESS cmd="set" data="outbound_codec_prefs=OPUS,G722,PCMU,PCMA,H264,VP8"/>
+---
+>   <X-PRE-PROCESS cmd="set" data="global_codec_prefs=OPUS,G722,PCMU,PCMA,VP8"/>
+>   <X-PRE-PROCESS cmd="set" data="outbound_codec_prefs=OPUS,G722,PCMU,PCMA,VP8"/>
+```
+
+- `/etc/freeswitch/autoload_configs/verto.conf.xml`
+
+```
+29,30c29,30
+<       <param name="outbound-codec-string" value="opus,h264,vp8"/>
+<       <param name="inbound-codec-string" value="opus,h264,vp8"/>
+---
+>       <param name="outbound-codec-string" value="opus,vp8"/>
+>       <param name="inbound-codec-string" value="opus,vp8"/>
+51,52c51,52
+<       <param name="outbound-codec-string" value="opus,h264,vp8"/>
+<       <param name="inbound-codec-string" value="opus,h264,vp8"/>
+---
+>       <param name="outbound-codec-string" value="opus,vp8"/>
+>       <param name="inbound-codec-string" value="opus,vp8"/>
+```
