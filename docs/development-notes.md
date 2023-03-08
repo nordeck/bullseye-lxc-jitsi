@@ -29,3 +29,13 @@ exec /usr/local/bin/pjsua --config-file /etc/jitsi/jibri/pjsua.config \
   --contact '<sip:1009@172.17.17.36:5060;transport=udp>' \
   >/dev/null
 ```
+
+### VP8 issue
+
+Two `Linphone` peers can communicate with video over `FreeSWITCH` even `H.264`
+is disabled.
+
+When `H.264` is disabled, `Linphone` can see `pjsua`'s video but `pjsua` cannot
+see `Linphone`'s video. It seems that there is `VP8` decoding issue in `pjsua`.
+
+Check SIP packages on `FreeSWITCH` to collect more data about the issue.
