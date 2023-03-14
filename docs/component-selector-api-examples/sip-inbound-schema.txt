@@ -1,0 +1,46 @@
+                                          INCOMING SIP CALL
+                                          =================
+
+
+    ╭──────────────────────────────────╮                      ╭─────╮
+    │                       ╭───────╮  │       register       │  S  │       call      ╭──────────╮
+    │                       │  SIP  ├╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶ ▶│  I  │◀╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶┤   SIP    │
+    │                       │ agent │  │       and wait       │  P  │                 │  device  │
+    │                       ╰───┬───╯  │                      │     │                 ╰──────────╯
+    │              JITSI        ▲      │                      │  S  │
+    │             SESSION       ╎      │                      │  E  │
+    │                           ╎      │                      │  R  │
+    │                           ╎      │                      │  V  │
+    │                           ╎      │                      │  E  │      ╭───────────────────────────────────────
+    │                           ╎      │                      │  R  │      │{
+    ╰───────────────────────────╎──────╯                      ╰─────╯      │  "callParams": {
+                                ╎                                          │    "callUrlInfo": {
+                                ╎                                          │      "baseUrl": "$JITSI_HOST",
+                                ╎                                          │      "callName": "$JITSI_ROOM"
+                                ╎                                          │    }
+                                ╎                                          │  },
+                                ╎                                          │  "componentParams": {
+    ╭───────────────────────────┴──────╮            API request            │    "type": "SIP-JIBRI",
+    │        component-selector        │◀╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶│    "region": "default-region",
+    ╰──────────────────────────────────╯                                   │    "environment": "default-env"
+                                                                           │  },
+                                                                           │  "metadata": {
+                                                                           │    "sipClientParams": {
+                                                                           │      "userName": "$INVITER_USERNAME",
+                                                                           │      "password": "$INVITER_PASSWORD",
+                  Register by using SIP account "$INVITER"                 │      "contact": "$INVITER_CONTACT",
+                  From Jitsi room "$JITSI_ROOM"                            │      "sipAddress": "$INVITEE",
+                  Wait for an incoming call from "$INVITEE"                │      "displayName": "$DISPLAY_NAME",
+                                                                           │      "autoAnswer": true
+                                                                           │    }
+                                                                           │  },
+                                                                           │  "callLoginParams": {
+                                                                           │    "domain": "sip.jitsi.nordeck.corp",
+                                                                           │    "username": "sip",
+                                                                           │    "password": "$PROSODY_SIP_PASSWD"
+                                                                           │  }
+                                                                           │}
+                                                                           ╰───────────────────────────────────────
+
+
+# vim: tw=140
