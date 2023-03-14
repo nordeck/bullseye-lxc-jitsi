@@ -28,9 +28,9 @@
                                                                            │    "sipClientParams": {
                                                                            │      "userName": "$CALLER_USERNAME",
                                                                            │      "password": "$CALLER_PASSWORD",
-                  Call SIP device "$CALLEE"                                │      "sipAddress": "$CALLEE",
-                  From Jitsi room "$JITSI_ROOM"                            │      "displayName": "$DISPLAY_NAME",
-                  By using SIP account "$CALLER"                           │      "proxy": "$SIP_PROXY",
+             Call SIP device "$CALLEE"                                     │      "sipAddress": "$CALLEE",
+             From Jitsi room "$JITSI_ROOM"                                 │      "displayName": "$DISPLAY_NAME",
+             By using SIP account "$CALLER"                                │      "proxy": "$SIP_PROXY",
                                                                            │      "autoAnswer": false
                                                                            │    }
                                                                            │  },

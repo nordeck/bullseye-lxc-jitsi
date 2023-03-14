@@ -28,9 +28,9 @@
                                                                            │    "sipClientParams": {
                                                                            │      "userName": "$INVITER_USERNAME",
                                                                            │      "password": "$INVITER_PASSWORD",
-                  Register by using SIP account "$INVITER"                 │      "contact": "$INVITER_CONTACT",
-                  From Jitsi room "$JITSI_ROOM"                            │      "sipAddress": "$INVITEE",
-                  Wait for an incoming call from "$INVITEE"                │      "displayName": "$DISPLAY_NAME",
+             Register by using SIP account "$INVITER"                      │      "contact": "$INVITER_CONTACT",
+             From Jitsi room "$JITSI_ROOM"                                 │      "sipAddress": "$INVITEE",
+             Wait 30 seconds for an incoming call from "$INVITEE"          │      "displayName": "$DISPLAY_NAME",
                                                                            │      "autoAnswer": true
                                                                            │    }
                                                                            │  },
