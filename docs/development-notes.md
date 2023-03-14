@@ -53,20 +53,3 @@ After disabling `H.264` on `FreeSWITCH`, `VP8` works for `pjsua` too.
 >   <X-PRE-PROCESS cmd="set" data="global_codec_prefs=OPUS,G722,PCMU,PCMA,VP8"/>
 >   <X-PRE-PROCESS cmd="set" data="outbound_codec_prefs=OPUS,G722,PCMU,PCMA,VP8"/>
 ```
-
-- `/etc/freeswitch/autoload_configs/verto.conf.xml`
-
-```
-29,30c29,30
-<       <param name="outbound-codec-string" value="opus,h264,vp8"/>
-<       <param name="inbound-codec-string" value="opus,h264,vp8"/>
----
->       <param name="outbound-codec-string" value="opus,vp8"/>
->       <param name="inbound-codec-string" value="opus,vp8"/>
-51,52c51,52
-<       <param name="outbound-codec-string" value="opus,h264,vp8"/>
-<       <param name="inbound-codec-string" value="opus,h264,vp8"/>
----
->       <param name="outbound-codec-string" value="opus,vp8"/>
->       <param name="inbound-codec-string" value="opus,vp8"/>
-```
