@@ -23,6 +23,7 @@ set -e
 # ------------------------------------------------------------------------------
 
 INVITEE="$1"
+DISPLAY_NAME=$(echo $INVITEE | cut -d: -f2 | cut -d@ -f1)
 
 JSON=$(cat <<EOF
 {
@@ -43,7 +44,7 @@ JSON=$(cat <<EOF
       "password": "$INVITER_PASSWORD",
       "contact": "$INVITER_CONTACT",
       "sipAddress": "$INVITEE",
-      "displayName": "Caller",
+      "displayName": "$DISPLAY_NAME",
       "autoAnswer": true
     }
   },

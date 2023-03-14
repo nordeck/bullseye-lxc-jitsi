@@ -20,6 +20,7 @@ set -e
 # ------------------------------------------------------------------------------
 
 CALLEE="$1"
+DISPLAY_NAME=$(echo $CALLEE | cut -d: -f2 | cut -d@ -f1)
 
 JSON=$(cat <<EOF
 {
@@ -39,7 +40,7 @@ JSON=$(cat <<EOF
       "userName": "$CALLER_USERNAME",
       "password": "$CALLER_PASSWORD",
       "sipAddress": "$CALLEE",
-      "displayName": "Caller",
+      "displayName": "$DISPLAY_NAME",
       "proxy": "$SIP_PROXY",
       "autoAnswer": false
     }
