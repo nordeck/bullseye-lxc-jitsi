@@ -30,13 +30,11 @@
     - [1.1.2 Server specifications](#112-server-specifications)
     - [1.1.3 DNS records](#113-dns-records)
     - [1.1.4 Public Ports](#114-public-ports)
-    - [1.1.5 Creating the deployment key](#115-creating-the-deployment-key)
   - [1.2 Installation](#12-installation)
     - [1.2.1 Login to the server](#121-login-to-the-server)
     - [1.2.2 Installer script](#122-installer-script)
     - [1.2.3 Installer config](#123-installer-config)
-    - [1.2.4 Deployment key](#124-deployment-key)
-    - [1.2.5 Running the installer](#125-running-the-installer)
+    - [1.2.4 Running the installer](#124-running-the-installer)
 - [2. Additional JVB (Jitsi Video Bridge)](#2-additional-jvb-jitsi-video-bridge)
   - [2.1 Prerequisites](#21-prerequisites)
     - [2.1.1 Supported distribution](#211-supported-distribution)
@@ -126,19 +124,6 @@ host turn.nordeck.corp
 - `UDP/10000`\
   _If there is an enabled `JVB` on `JMS`_
 
-#### 1.1.5 Creating the deployment key
-
-Create a deployment key for each customer
-
-```bash
-ssh-keygen -t rsa -b 4096 -P "" -f jitsi-deploy-customer_name
-```
-
-Add the content of `jitsi-deploy-customer_name.pub` as a deployment key on
-`GitHub`.
-
-![deployment key](docs/images/deployment_key.png)
-
 ### 1.2 Installation
 
 #### 1.2.1 Login to the server
@@ -164,20 +149,7 @@ echo export JITSI_FQDN=jitsi.nordeck.corp >>nordeck-jitsi.conf
 echo export TURN_FQDN=turn.nordeck.corp >>nordeck-jitsi.conf
 ```
 
-#### 1.2.4 Deployment key
-
-Copy the private part of the deployment key into `/root/.ssh/` folder. Its name
-must be `deploy.key`
-
-```bash
-cp jitsi-deploy-customer_name /root/.ssh/deploy.key
-chmod 600 /root/.ssh/deploy.key
-```
-
-_Don't delete the deployment key after the setup because it will be used to add
-the additional nodes._
-
-#### 1.2.5 Running the installer
+#### 1.2.4 Running the installer
 
 Run the installer
 
