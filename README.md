@@ -141,8 +141,15 @@ wget -O ni https://raw.githubusercontent.com/nordeck/bullseye-lxc-base/main/inst
 
 #### 1.2.3 Installer config
 
-Copy [nordeck-jitsi.conf](installer/nordeck-jitsi.conf) into `/root/` folder and
-customize it if needed, For example add FQDNs into it:
+Download [nordeck-jitsi.conf](installer/nordeck-jitsi.conf) into `/root/`
+folder:
+
+```bash
+cd /root
+wget -O nordeck-jitsi.conf https://raw.githubusercontent.com/nordeck/bullseye-lxc-jitsi/main/installer/nordeck-jitsi.conf
+```
+
+And customize it if needed. For example add your FQDNs into it:
 
 ```bash
 echo export JITSI_FQDN=jitsi.nordeck.corp >>nordeck-jitsi.conf
