@@ -5,6 +5,8 @@
 - Custom configurations are needed for many components
 - Custom tools, scripts and modifications are needed to integrate components
 - No publicly available documentation with all details
+- Additional customizations and modifications may be needed depending on the
+  target environment and use-case.
 
 ## jitsi-meet
 
