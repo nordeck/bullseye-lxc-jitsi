@@ -1,5 +1,11 @@
 # Components for video-sip-gateway
 
+- All components are publicly available
+- The components need to be put together in a special way
+- Custom configurations are needed for many components
+- Custom tools, scripts and modifications are needed to integrate components
+- No publicly available documentation with all details
+
 ## jitsi-meet
 
 `deb package` <-- https://download.jitsi.org
