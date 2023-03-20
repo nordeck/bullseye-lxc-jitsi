@@ -80,6 +80,10 @@ session through Jitsi UI.
 
 - building `deb package`
 
+**Dependencies:**
+
+- `nodejs` and `npm` from https://deb.nodesource.com/node_18.x
+
 ## pjproject
 
 `source code` <- https://github.com/jitsi/pjproject (_branch jibri-2.10-dev1_)
@@ -90,3 +94,29 @@ session through Jitsi UI.
 
 - Some development tools, codecs and libraries from Official Debian Bullseye
   repo
+
+## sip-video-gateway
+
+Our `jibri` related modifications are in the `master` branch but not released
+yet as `deb` package.
+
+**Dependencies:**
+
+- `deb package` of `jibri` <-- https://download.jitsi.org
+- `deb package` of `jitsi-component-sidecar`
+- `executable binary` of `pjsua`
+- `nodejs` and `npm` from https://deb.nodesource.com/node_18.x
+- `google-chrome-stable` from https://dl.google.com/linux/chrome/deb/
+- `chromedriver` from https://chromedriver.storage.googleapis.com/
+- `ffmpeg` from Official Debian Bullseye repo
+
+**Customization**
+
+- `xorg` with 2 displays
+- `icewm` with 2 desktops
+- custom `jibri.conf`
+- custom `icewm` config
+- custom `asoundrc`
+- custom `pjsua` config
+- custom `ffmpeg` config
+- custom `jitsi-component-sidecar` config
