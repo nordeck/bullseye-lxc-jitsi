@@ -40,7 +40,7 @@ see `Linphone`'s video. It seems that there is `VP8` decoding issue in `pjsua`.
 
 Check SIP packages on `FreeSWITCH` to collect more data about the issue.
 
-**Edit:**
+**Edit:**\
 After disabling `H.264` on `FreeSWITCH`, `VP8` works for `pjsua` too.
 
 - `/etc/freeswitch/vars.xml`
