@@ -119,6 +119,7 @@ yet as `deb` package.
 - `google-chrome-stable` from https://dl.google.com/linux/chrome/deb/
 - `chromedriver` from https://chromedriver.storage.googleapis.com/
 - `ffmpeg` from Official Debian Bullseye repo
+- `redis` from Official Debian Bullseye repo
 
 **Customization**
 
