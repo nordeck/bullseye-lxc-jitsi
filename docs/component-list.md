@@ -8,7 +8,7 @@
 - Additional customizations and modifications may be needed depending on the
   target environment and use-case.
 
-## Jitsi-meet
+## 1. Jitsi-meet
 
 `deb package` <-- https://download.jitsi.org
 
@@ -17,20 +17,20 @@
 - custom config for `dialplan`
 - custom config for `UI`
 
-## Jicofo
+## 2. Jicofo
 
 `deb package` <-- https://download.jitsi.org
 
 - custom config for `JibriBrewery`
 - custom config for `SipBrewery`
 
-## Jitsi-videobridge
+## 3. Jitsi-videobridge
 
 `deb package` <-- https://download.jitsi.org
 
 - custom config for `RESTAPI`
 
-## Prosody
+## 4. Prosody
 
 `deb package` <-- Official Debian Bullseye repo
 
@@ -43,13 +43,13 @@
 - optional `prosody` modules from
   https://github.com/jitsi-contrib/prosody-plugins
 
-## Coturn
+## 5. Coturn
 
 `deb package` <-- Official Debian Bullseye repo
 
 - optional custom config depending on the setup environment
 
-## Nginx
+## 6. Nginx
 
 `deb package` <-- Official Debian Bullseye repo
 
@@ -60,7 +60,7 @@
 - optional custom config for `coturn` depending on the setup environment
 - optional custom config for `dialplan service`
 
-## DialPlan service
+## 7. DialPlan service
 
 `source code` <- https://github.com/jitsi-contrib/sip-dial-plan
 
@@ -71,7 +71,7 @@ session through Jitsi UI.
 
 - `deno` from https://github.com/denoland/deno
 
-## Jitsi-component-selector
+## 8. Jitsi-component-selector
 
 `source code` <- https://github.com/jitsi/jitsi-component-selector
 
@@ -84,7 +84,7 @@ session through Jitsi UI.
 - `nodejs` and `npm` from https://deb.nodesource.com/node_18.x
 - `redis` from Official Debian Bullseye repo
 
-## Jitsi-component-sidecar
+## 9. Jitsi-component-sidecar
 
 `source code` <- https://github.com/jitsi/jitsi-component-sidecar
 
@@ -94,7 +94,7 @@ session through Jitsi UI.
 
 - `nodejs` and `npm` from https://deb.nodesource.com/node_18.x
 
-## Pjproject
+## 10. Pjproject
 
 `source code` <- https://github.com/jitsi/pjproject (_branch jibri-2.10-dev1_)
 
@@ -105,7 +105,7 @@ session through Jitsi UI.
 - Some development tools, codecs and libraries from Official Debian Bullseye
   repo
 
-## Sip-video-gateway
+## 11. Sip-video-gateway
 
 Our `jibri` related modifications are in the `master` branch but not released
 yet as `deb` package.
