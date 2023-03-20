@@ -22,7 +22,7 @@
 
 ## Prosody
 
-`deb package` <-- Official Debian Bullseye Repo
+`deb package` <-- Official Debian Bullseye repo
 
 - custom config for `authentication`, probably the `token` authentication
 - custom config for `Sip virtualhost`
@@ -35,13 +35,13 @@
 
 ## Coturn
 
-`deb package` <-- Official Debian Bullseye Repo
+`deb package` <-- Official Debian Bullseye repo
 
 - optional custom config depending on the setup environment
 
 ## Nginx
 
-`deb package` <-- Official Debian Bullseye Repo
+`deb package` <-- Official Debian Bullseye repo
 
 - custom config for `jitsi-component-selector`
 - custom config for `ASAP key server` which provides public keys for
@@ -59,4 +59,34 @@ session through Jitsi UI.
 
 **Dependencies:**
 
-- https://github.com/denoland/deno
+- `deno` from https://github.com/denoland/deno
+
+## jitsi-component-selector
+
+`source code` <- https://github.com/jitsi/jitsi-component-selector
+
+- building `deb package`
+- generating public-private key pair
+- custom config
+
+**Dependencies:**
+
+- `nodejs` and `npm` from https://deb.nodesource.com/node_18.x
+- `redis` from Official Debian Bullseye repo
+
+## jitsi-component-sidecar
+
+`source code` <- https://github.com/jitsi/jitsi-component-sidecar
+
+- building `deb package`
+
+## pjproject
+
+`source code` <- https://github.com/jitsi/pjproject (_branch jibri-2.10-dev1_)
+
+- building `pjsua` executable
+
+**Dependencies:**
+
+- Some development tools, codecs and libraries from Official Debian Bullseye
+  repo
