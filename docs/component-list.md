@@ -2,9 +2,9 @@
 
 `deb package` <-- https://download.jitsi.org
 
-- custom config for `dialplan`
 - custom config for `recording`
 - custom config for `livestream`
+- custom config for `dialplan`
 - custom config for `UI`
 
 ## jicofo
@@ -22,7 +22,7 @@
 
 ## Prosody
 
-`deb package` <-- Official Debian Repo
+`deb package` <-- Official Debian Bullseye Repo
 
 - custom config for `authentication`, probably the `token` authentication
 - custom config for `Sip virtualhost`
@@ -35,13 +35,13 @@
 
 ## Coturn
 
-`deb package` <-- Official Debian Repo
+`deb package` <-- Official Debian Bullseye Repo
 
 - optional custom config depending on the setup environment
 
 ## Nginx
 
-`deb package` <-- Official Debian Repo
+`deb package` <-- Official Debian Bullseye Repo
 
 - custom config for `jitsi-component-selector`
 - custom config for `ASAP key server` which provides public keys for
