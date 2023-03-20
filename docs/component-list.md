@@ -8,7 +8,7 @@
 - Additional customizations and modifications may be needed depending on the
   target environment and use-case.
 
-## jitsi-meet
+## Jitsi-meet
 
 `deb package` <-- https://download.jitsi.org
 
@@ -17,14 +17,14 @@
 - custom config for `dialplan`
 - custom config for `UI`
 
-## jicofo
+## Jicofo
 
 `deb package` <-- https://download.jitsi.org
 
 - custom config for `JibriBrewery`
 - custom config for `SipBrewery`
 
-## Videobridge
+## Jitsi-videobridge
 
 `deb package` <-- https://download.jitsi.org
 
@@ -71,7 +71,7 @@ session through Jitsi UI.
 
 - `deno` from https://github.com/denoland/deno
 
-## jitsi-component-selector
+## Jitsi-component-selector
 
 `source code` <- https://github.com/jitsi/jitsi-component-selector
 
@@ -84,7 +84,7 @@ session through Jitsi UI.
 - `nodejs` and `npm` from https://deb.nodesource.com/node_18.x
 - `redis` from Official Debian Bullseye repo
 
-## jitsi-component-sidecar
+## Jitsi-component-sidecar
 
 `source code` <- https://github.com/jitsi/jitsi-component-sidecar
 
@@ -94,7 +94,7 @@ session through Jitsi UI.
 
 - `nodejs` and `npm` from https://deb.nodesource.com/node_18.x
 
-## pjproject
+## Pjproject
 
 `source code` <- https://github.com/jitsi/pjproject (_branch jibri-2.10-dev1_)
 
@@ -105,7 +105,7 @@ session through Jitsi UI.
 - Some development tools, codecs and libraries from Official Debian Bullseye
   repo
 
-## sip-video-gateway
+## Sip-video-gateway
 
 Our `jibri` related modifications are in the `master` branch but not released
 yet as `deb` package.
