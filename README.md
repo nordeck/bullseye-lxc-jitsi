@@ -35,6 +35,7 @@
     - [1.2.2 Installer script](#122-installer-script)
     - [1.2.3 Installer config](#123-installer-config)
     - [1.2.4 Running the installer](#124-running-the-installer)
+    - [1.2.5 Let's Encrypt certificate](#125-lets-encrypt-certificate)
 - [2. Additional JVB (Jitsi Video Bridge)](#2-additional-jvb-jitsi-video-bridge)
   - [2.1 Prerequisites](#21-prerequisites)
     - [2.1.1 Supported distribution](#211-supported-distribution)
@@ -165,6 +166,17 @@ Run the installer
 cd /root
 bash ni nordeck-jitsi
 ```
+
+#### 1.2.5 Let's Encrypt certificate
+
+Let's say the host address of `JMS` is `jitsi.nordeck.corp` and the host address
+of `TURN` is `turn.nordeck.corp`. To set the Let's Encrypt certificate:
+
+```bash
+set-letsencrypt-cert jitsi.nordeck.corp,turn.nordeck.corp
+```
+
+_Be careful, no space between host addresses._
 
 ## 2. Additional JVB (Jitsi Video Bridge)
 
