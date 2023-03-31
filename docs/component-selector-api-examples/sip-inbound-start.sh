@@ -3,7 +3,7 @@ set -e
 
 # -----------------------------------------------------------------------------
 # Warning:
-#   This script doesn't work because there is an issue on the server side.
+#   This script only works for jibri newer than 8.0-140-gccc7278-1
 #
 # Packages:
 #   apt-get install curl jq
