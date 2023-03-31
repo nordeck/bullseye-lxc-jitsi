@@ -214,14 +214,18 @@ apt-get install openssh-server
 
 The SSH public key of `JMS` must be in `/root/.ssh/authorized_keys` on `JVB`.
 
+_Set `JITSI_HOST` according to your Jitsi FQDN._
+
 ```bash
 mkdir -p /root/.ssh
 chmod 700 /root/.ssh
 
-# if there is a self-signed certificate, run it with --no-check-certificate
-# wget --no-check-certificate -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
+JITSI_HOST=jitsi.nordeck.corp
 
-wget -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
+# if there is a self-signed certificate, run it with --no-check-certificate
+# wget --no-check-certificate -O /tmp/jms.pub https://$JITSI_HOST/static/jms.pub
+
+wget -O /tmp/jms.pub https://$JITSI_HOST/static/jms.pub
 cat /tmp/jms.pub >>/root/.ssh/authorized_keys
 ```
 
@@ -268,14 +272,18 @@ apt-get install openssh-server
 
 The SSH public key of `JMS` must be in `/root/.ssh/authorized_keys` on `Jibri`.
 
+_Set `JITSI_HOST` according to your Jitsi FQDN._
+
 ```bash
 mkdir -p /root/.ssh
 chmod 700 /root/.ssh
 
-# if there is a self-signed certificate, run it with --no-check-certificate
-# wget --no-check-certificate -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
+JITSI_HOST=jitsi.nordeck.corp
 
-wget -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
+# if there is a self-signed certificate, run it with --no-check-certificate
+# wget --no-check-certificate -O /tmp/jms.pub https://$JITSI_HOST/static/jms.pub
+
+wget -O /tmp/jms.pub https://$JITSI_HOST/static/jms.pub
 cat /tmp/jms.pub >>/root/.ssh/authorized_keys
 ```
 
@@ -322,14 +330,18 @@ apt-get install openssh-server
 The SSH public key of `JMS` must be in `/root/.ssh/authorized_keys` on
 `video-sip-gateway`.
 
+_Set `JITSI_HOST` according to your Jitsi FQDN._
+
 ```bash
 mkdir -p /root/.ssh
 chmod 700 /root/.ssh
 
-# if there is a self-signed certificate, run it with --no-check-certificate
-# wget --no-check-certificate -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
+JITSI_HOST=jitsi.nordeck.corp
 
-wget -O /tmp/jms.pub https://jitsi.nordeck.corp/static/jms.pub
+# if there is a self-signed certificate, run it with --no-check-certificate
+# wget --no-check-certificate -O /tmp/jms.pub https://$JITSI_HOST/static/jms.pub
+
+wget -O /tmp/jms.pub https://$JITSI_HOST/static/jms.pub
 cat /tmp/jms.pub >>/root/.ssh/authorized_keys
 ```
 
