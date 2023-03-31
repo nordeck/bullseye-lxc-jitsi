@@ -12,7 +12,7 @@ set -e
 SSH_CONFIG="/root/.ssh/jms-config"
 
 APP="nordeck-sip"
-APP_REPO="ssh://git@github.com:22/nordeck/bullseye-lxc-jitsi.git"
+APP_REPO="https://github.com/nordeck/bullseye-lxc-jitsi.git"
 INSTALLER="https://raw.githubusercontent.com/nordeck/bullseye-lxc-base/main/installer/ni"
 NODE=$1
 
@@ -118,8 +118,6 @@ apt-get -y install wget
 wget $INSTALLER -O /tmp/ni -T 30
 EOS
 
-scp_ /root/.ssh/deploy.key /root/.ssh/
-
 ssh_ <<EOS
 set -e
 export APP_REPO=$APP_REPO
@@ -133,8 +131,7 @@ export APT_PROXY=$APT_PROXY
 export REINSTALL_BULLSEYE_IF_EXISTS=$REINSTALL_BULLSEYE_IF_EXISTS
 
 cd /tmp
-bash ni $APP || (rm -f /root/.ssh/deploy.key; false)
-rm -f /root/.ssh/deploy.key
+bash ni $APP
 EOS
 
 
