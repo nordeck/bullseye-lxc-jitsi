@@ -22,6 +22,9 @@ set -e
 CALLEE="$1"
 DISPLAY_NAME=$(echo $CALLEE | cut -d: -f2 | cut -d@ -f1)
 
+# `callLoginParams` is needed to bypass Prosody authentication. If you don't
+# want to use this block then set `callParams.callUrlInfo.callName` as
+# `roomName?jwt=token-value`
 JSON=$(cat <<EOF
 {
   "callParams": {
