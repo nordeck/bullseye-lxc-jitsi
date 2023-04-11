@@ -1,0 +1,46 @@
+                                           CUSTOM SIP CALL
+                                           ===============
+
+    ╭──────────────────────────────────╮
+    │                       ╭───────╮  │         incoming SIP call         ╭──────────╮
+    │                       │  SIP  ├ ◀╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶┤   SIP    │
+    │                       │ agent │  │                                   │  device  │
+    │                       ╰───┬───╯  │                                   ╰──────────╯
+    │              JITSI        ▲      │
+    │             SESSION       ╎      │
+    │                           ╎      │                                   ╭──────────────────────────────────────────
+    │                           ╎      │                                   │{
+    ╰───────────────────────────╎──────╯                                   │  "callParams": {
+                                ╎                                          │    "callUrlInfo": {
+                                ╎                                          │      "baseUrl": "$JITSI_HOST",
+                                ╎                                          │      "callName": "$JITSI_ROOM"
+                                ╎                                          │    }
+                                ╎                                          │  },
+                                ╎                                          │  "componentParams": {
+    ╭───────────────────────────┴──────╮            API request            │    "type": "SIP-JIBRI",
+    │        component-selector        │◀╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶│    "region": "default-region",
+    ╰──────────────────────────────────╯                                   │    "environment": "default-env"
+                                                                           │  },
+                                                                           │  "metadata": {
+                                                                           │    "sipClientParams": {
+                                                                           │      "sipAddress": "sip:jibri@127.0.0.1",
+                                                                           │      "displayName": "$DISPLAY_NAME",
+                                                                           │      "autoAnswer": true
+                                                                           │    }
+                                                                           │  }
+                                                                           │}
+                                                                           ╰──────────────────────────────────────────
+                                                                           ╭──────────────────────────────────────────
+                                                                           │{
+                                                                           │  "sessionId": "4a258446-70ff-4096-b122-da904d3bc591",
+                                                                           │  "type": "SIP-JIBRI",
+                                                    API response           │  "environment": "default-env",
+                                        ╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶▶│  "region": "default-region",
+                                                                           │  "status": "PENDING",
+                                                                           │  "componentKey": "nordeck-sip-81fae5244e014948a48-3-7ed3c0",
+                                                                           │  "metadata": {
+                                                                           │    "sipUsername": null
+                                                                           │  }
+                                                                           │}
+                                                                           ╰──────────────────────────────────────────
+# vim: tw=140
