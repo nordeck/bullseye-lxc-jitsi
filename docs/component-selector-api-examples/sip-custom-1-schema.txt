@@ -13,7 +13,7 @@
     ╰───────────────────────────╎──────╯                                   │  "callParams": {
                                 ╎                                          │    "callUrlInfo": {
                                 ╎                                          │      "baseUrl": "$JITSI_HOST",
-                                ╎                                          │      "callName": "$JITSI_ROOM"
+                                ╎                                          │      "callName": "$JITSI_ROOM?jwt=$TOKEN"
                                 ╎                                          │    }
                                 ╎                                          │  },
                                 ╎                                          │  "componentParams": {
