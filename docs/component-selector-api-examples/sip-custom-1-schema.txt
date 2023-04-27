@@ -25,7 +25,8 @@
                                                                            │    "sipClientParams": {
                                                                            │      "sipAddress": "sip:jibri@127.0.0.1",
                                                                            │      "displayName": "$DISPLAY_NAME",
-                                                                           │      "autoAnswer": true
+                                                                           │      "autoAnswer": true,
+                                                                           │      "autoAnswerTimer": $AUTO_ANSWER_TIMEOUT
                                                                            │    }
                                                                            │  }
                                                                            │}
