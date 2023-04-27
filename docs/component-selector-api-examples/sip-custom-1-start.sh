@@ -20,6 +20,7 @@ set -e
 # ------------------------------------------------------------------------------
 
 DISPLAY_NAME="$1"
+AUTO_ANSWER_TIMEOUT=300
 
 JSON=$(cat <<EOF
 {
@@ -38,7 +39,8 @@ JSON=$(cat <<EOF
     "sipClientParams": {
       "sipAddress": "sip:jibri@127.0.0.1",
       "displayName": "$DISPLAY_NAME",
-      "autoAnswer": true
+      "autoAnswer": true,
+      "autoAnswerTimer": $AUTO_ANSWER_TIMEOUT
     }
   }
 }
