@@ -37,6 +37,15 @@ Gateway=172.22.22.1
 EOF
 ```
 
+Add mount entries for video devices:
+
+```bash
+cat >>/var/lib/lxc/nordeck-sip-1/config <<EOF
+lxc.mount.entry = /dev/video2 dev/video0 none bind,optional,create=file
+lxc.mount.entry = /dev/video3 dev/video1 none bind,optional,create=file
+EOF
+```
+
 #### Firewall rules
 
 Add NAT rules in `/etc/nftables.conf`
