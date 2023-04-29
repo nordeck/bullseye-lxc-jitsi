@@ -53,3 +53,7 @@ After disabling `H.264` on `FreeSWITCH`, `VP8` works for `pjsua` too.
 >   <X-PRE-PROCESS cmd="set" data="global_codec_prefs=OPUS,G722,PCMU,PCMA,VP8"/>
 >   <X-PRE-PROCESS cmd="set" data="outbound_codec_prefs=OPUS,G722,PCMU,PCMA,VP8"/>
 ```
+
+**Edit:**\
+`VP8` works for direct calling without a SIP server. Tested with `Linphone` with
+a disabled `H.264`.
