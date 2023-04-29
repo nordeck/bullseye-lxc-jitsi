@@ -1,9 +1,9 @@
 ## Development Notes
 
-### Inbound call issue
+### Incoming call issue
 
 `Video-SIP-Gateway` is in `LXC` container behind a firewall. So `pjsua` is not
-accessible directly through `UDP/5060`. This prevents `inbound calls` if there
+accessible directly through `UDP/5060`. This prevents `incoming calls` if there
 is no solution which can handle `NAT`.
 
 - Using alphanumeric as an extention fails in `FreeSWITCH`. Maybe there is an
