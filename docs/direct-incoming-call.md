@@ -1,13 +1,13 @@
 ## Direct Incoming Call
 
 This notes are related with direct incoming SIP call. This is the case when
-there is no SIP server in the environment and the remote peer calls `pjsua` to
-start the SIP session.
+there is no SIP server in the environment and the remote peer calls `pjsua`
+directly to start the SIP session.
 
 ### Needed changes
 
-The following changes should be applied to SIP server manually after the
-standard setup.
+The following changes should be applied to `video-sip-gateway` server manually
+after the standard setup.
 
 #### Disable sip-ephemeral-container service
 
@@ -16,9 +16,10 @@ systemctl stop sip-ephemeral-container.service
 systemctl disable sip-ephemeral-container.service
 ```
 
-#### Create a static SIP container
+#### Create a static video-sip-gateway container
 
-Create a static SIP container by cloning it from `nordeck-sip-template`.
+Create a static video-sip-gateway container by cloning it from
+`nordeck-sip-template`.
 
 ```bash
 lxc-copy -n nordeck-sip-template -N nordeck-sip-1
