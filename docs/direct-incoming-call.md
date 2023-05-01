@@ -1,6 +1,6 @@
 ## Direct Incoming Call
 
-This notes are related with direct incoming SIP call. This is the case when
+This notes are related with direct incoming SIP calls. This is the case when
 there is no SIP server in the environment and the remote peer calls `pjsua`
 directly to start the SIP session.
 
@@ -66,7 +66,8 @@ systemctl restart nftables.service
 
 #### Pjsua config
 
-Set `pjsua` config
+Set `pjsua` config, `EXTERNAL_IP` is the IP address which is publicly accessible
+by remote peers.
 
 ```bash
 EXTERNAL_IP=172.17.17.203
