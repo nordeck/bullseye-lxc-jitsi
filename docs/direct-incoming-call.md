@@ -79,16 +79,6 @@ cat >>/var/lib/lxc/nordeck-sip-1/rootfs/etc/jitsi/jibri/pjsua.config <<EOF
 EOF
 ```
 
-Update `/var/lib/lxc/nordeck-sip-1/rootfs/opt/jitsi/jibri/pjsua.sh`
-
-```bash
-#exec /usr/local/bin/pjsua --config-file /etc/jitsi/jibri/pjsua.config \
-#    "$@" >/dev/null
-
-exec /usr/local/bin/pjsua --config-file /etc/jitsi/jibri/pjsua.config \
-    --auto-answer-timer=300 --auto-answer=200 >/dev/null
-```
-
 #### Start container
 
 ```bash
