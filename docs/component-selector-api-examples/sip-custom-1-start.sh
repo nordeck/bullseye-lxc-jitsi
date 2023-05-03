@@ -20,7 +20,7 @@ set -e
 # ------------------------------------------------------------------------------
 
 DISPLAY_NAME="$1"
-AUTO_ANSWER_TIMEOUT=300
+AUTO_ANSWER_TIMEOUT=360
 
 JSON=$(cat <<EOF
 {
