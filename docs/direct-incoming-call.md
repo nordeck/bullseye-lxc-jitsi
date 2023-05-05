@@ -54,6 +54,7 @@ Add NAT rules in `/etc/nftables.conf`
 ```
 chain prerouting {
   ...
+  iif "enp1s0" ip saddr != 172.22.22.0/24 tcp dport 5060 dnat to 172.22.22.101
   iif "enp1s0" ip saddr != 172.22.22.0/24 udp dport 5060 dnat to 172.22.22.101
   iif "enp1s0" ip saddr != 172.22.22.0/24 udp dport 4000-4010 dnat to 172.22.22.101
 ```
@@ -74,7 +75,7 @@ EXTERNAL_IP=172.17.17.203
 
 cat >>/var/lib/lxc/nordeck-sip-1/rootfs/etc/jitsi/jibri/pjsua.config <<EOF
 --ip-addr=$EXTERNAL_IP
---contact "<sip:$EXTERNAL_IP:5060;transport=udp>"
+--contact "<sip:$EXTERNAL_IP:5060>"
 --id "jibri <sip:$EXTERNAL_IP>"
 EOF
 ```
