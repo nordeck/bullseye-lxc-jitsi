@@ -63,6 +63,14 @@
   - [4.3 Installation](#43-installation)
   - [4.4 Updating the PJSUA configuration](#44-updating-the-pjsua-configuration)
   - [4.5 Dial-plan](#45-dial-plan)
+- [5. Additional Video SIP Gateway (without LXC)](#5-additional-video-sip-gateway-without-lxc)
+  - [5.1 Prerequisites](#51-prerequisites)
+    - [5.1.1 Supported distribution](#511-supported-distribution)
+    - [5.1.2 Server specifications](#512-server-specifications)
+    - [5.1.3 Public Ports](#513-public-ports)
+    - [5.1.4 SSH server](#514-ssh-server)
+    - [5.1.5 JMS public key](#515-jms-public-key)
+  - [5.2 Installation](#52-installation)
 - [6. Sponsors](#6-sponsors)
 
 ## 1. JMS (Jitsi Meet Server)
@@ -405,6 +413,63 @@ will be canceled._
 Update `/var/lib/lxc/nordeck-dialplan/rootfs/home/dialplan/app/dial-plan.json`
 to set available SIP peers for `Jitsi` UI. This list is only accessible for
 moderator users.
+
+## 5. Additional Video SIP Gateway (without LXC)
+
+### 5.1 Prerequisites
+
+#### 5.1.1 Supported distribution
+
+`Debian 11 Bullseye`
+
+#### 5.1.2 Server specifications
+
+- At least 8 CPU cores
+- At least 8 GB RAM
+- At least 8 GB disk.
+
+#### 5.1.3 Public Ports
+
+- `TCP/22`
+  \
+  _`SSH` port... This port must be accessible for `JMS`_
+
+#### 5.1.4 SSH server
+
+Install `openssh-server` if not already exists:
+
+```bash
+apt-get install openssh-server
+```
+
+#### 5.1.5 JMS public key
+
+The SSH public key of `JMS` must be in `/root/.ssh/authorized_keys` on
+`video-sip-gateway`.
+
+_Set `JITSI_HOST` according to your Jitsi FQDN._
+
+```bash
+mkdir -p /root/.ssh
+chmod 700 /root/.ssh
+
+JITSI_HOST=jitsi.nordeck.corp
+
+# if there is a self-signed certificate, run it with --no-check-certificate
+# wget --no-check-certificate -O /tmp/jms.pub https://$JITSI_HOST/static/jms.pub
+
+wget -O /tmp/jms.pub https://$JITSI_HOST/static/jms.pub
+cat /tmp/jms.pub >>/root/.ssh/authorized_keys
+```
+
+### 5.2 Installation
+
+Login as `root` to `JMS` and run `add-sip-vm` command using IP address of
+`video-sip-gateway`:
+
+```bash
+add-sip-vm <SIP-IP-ADDRESS>
+```
 
 ## 6. Sponsors
 
