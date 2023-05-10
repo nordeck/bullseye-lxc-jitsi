@@ -63,7 +63,7 @@
   - [4.3 Installation](#43-installation)
   - [4.4 Updating the PJSUA configuration](#44-updating-the-pjsua-configuration)
   - [4.5 Dial-plan](#45-dial-plan)
-- [5. Sponsors](#5-sponsors)
+- [6. Sponsors](#6-sponsors)
 
 ## 1. JMS (Jitsi Meet Server)
 
@@ -406,6 +406,6 @@ Update `/var/lib/lxc/nordeck-dialplan/rootfs/home/dialplan/app/dial-plan.json`
 to set available SIP peers for `Jitsi` UI. This list is only accessible for
 moderator users.
 
-## 5. Sponsors
+## 6. Sponsors
 
 [![Nordeck](docs/images/nordeck.png)](https://nordeck.net/)
