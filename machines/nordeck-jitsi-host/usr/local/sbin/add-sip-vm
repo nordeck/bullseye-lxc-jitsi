@@ -119,7 +119,7 @@ EOS
 
 ssh_ <<EOS
 set -e
-export START_TIME=$(date +%s)
+export START_TIME=\$(date +%s)
 export JITSI_FQDN=$JITSI_FQDN
 export JIBRI_VERSION=$JIBRI_VERSION
 export JIBRI_PASSWD=$JIBRI_PASSWD
@@ -129,16 +129,16 @@ export APT_PROXY=$APT_PROXY
 
 cd /tmp/nordeck-repo/installer-sub-scripts/$APP
 [[ -f "init.sh" ]] && bash init.sh
-for sub in $(ls *.sh | grep -v init.sh); do
-    bash $sub
+for sub in \$(ls *.sh | grep -v init.sh); do
+    bash \$sub
 done
 
 apt-get -y purge git
 apt-get -y autoremove --purge
 
-END_TIME=$(date +%s)
-DURATION=$(date -u -d "0 $END_TIME seconds - $START_TIME seconds" +"%H:%M:%S")
-echo Installation Duration: $DURATION
+END_TIME=\$(date +%s)
+DURATION=\$(date -u -d "0 \$END_TIME seconds - \$START_TIME seconds" +"%H:%M:%S")
+echo Installation Duration: \$DURATION
 EOS
 
 

@@ -14,3 +14,5 @@ echo
 [[ -z "$(dig +short $JITSI_FQDN)" ]] && echo "unresolvable JITSI_FQDN" && false
 [[ -z "$JIBRI_PASSWD" ]] && echo "JIBRI_PASSWD not found" && false
 [[ -z "$JIBRI_SIP_PASSWD" ]] && echo "JIBRI_SIP_PASSWD not found" && false
+
+true
