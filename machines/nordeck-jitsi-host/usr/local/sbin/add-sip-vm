@@ -137,7 +137,8 @@ apt-get -y purge git
 apt-get -y autoremove --purge
 
 END_TIME=\$(date +%s)
-DURATION=\$(date -u -d "0 \$END_TIME seconds - \$START_TIME seconds" +"%H:%M:%S")
+DURATION=\$(date -ud "0 \$END_TIME seconds - \$START_TIME seconds" +"%H:%M:%S")
+echo
 echo Installation Duration: \$DURATION
 EOS
 
