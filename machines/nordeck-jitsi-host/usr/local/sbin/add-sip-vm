@@ -120,6 +120,8 @@ EOS
 ssh_ <<EOS
 set -e
 export START_TIME=\$(date +%s)
+export TAG="nordeck"
+export MACHINES="/tmp/nordeck-repo/machines"
 export JITSI_FQDN=$JITSI_FQDN
 export JIBRI_VERSION=$JIBRI_VERSION
 export JIBRI_PASSWD=$JIBRI_PASSWD
