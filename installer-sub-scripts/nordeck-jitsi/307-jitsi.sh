@@ -265,6 +265,8 @@ EOS
 # sip
 cp $MACHINES/$TAG-sip-template/etc/jitsi/jibri/pjsua.config \
     $ROOTFS/root/meta/
+cp $MACHINES/$TAG-sip-template/etc/jitsi/jibri/pjsua.config.vm \
+    $ROOTFS/root/meta/
 
 # sidecar env files
 cp $MACHINES/$TAG-jibri-template/etc/jitsi/sidecar/env \
