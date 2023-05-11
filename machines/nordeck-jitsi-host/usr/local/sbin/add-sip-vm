@@ -121,6 +121,7 @@ ssh_ <<EOS
 set -e
 export START_TIME=\$(date +%s)
 export TAG="nordeck"
+export INSTALLER="/tmp/nordeck-repo/installer-sub-scripts/$APP"
 export MACHINES="/tmp/nordeck-repo/machines"
 export JITSI_FQDN=$JITSI_FQDN
 export JIBRI_VERSION=$JIBRI_VERSION
@@ -129,7 +130,7 @@ export JIBRI_SIP_PASSWD=$JIBRI_SIP_PASSWD
 export DONT_RUN_COMPONENT_SIDECAR=$DONT_RUN_COMPONENT_SIDECAR
 export APT_PROXY=$APT_PROXY
 
-cd /tmp/nordeck-repo/installer-sub-scripts/$APP
+cd $INSTALLER
 [[ -f "init.sh" ]] && bash init.sh
 for sub in \$(ls *.sh | grep -v init.sh); do
     bash \$sub
