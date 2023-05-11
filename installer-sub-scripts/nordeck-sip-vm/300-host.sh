@@ -27,8 +27,6 @@ apt-get $APT_PROXY -y --no-install-recommends install linux-headers-$ARCH \
     build-essential
 apt-get $APT_PROXY -y --no-install-recommends install v4l2loopback-dkms \
     v4l2loopback-utils
-#apt-get $APT_PROXY -y --install-recommends install v4l2loopback-dkms \
-#    v4l2loopback-utils
 
 # ------------------------------------------------------------------------------
 # SYSTEM CONFIGURATION
