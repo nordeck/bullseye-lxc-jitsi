@@ -203,4 +203,5 @@ systemctl stop jibri-xorg.service
 
 find /var/log/jitsi -type f -delete
 
+systemctl start sip-ephemeral-config.service
 systemctl start jibri.service
