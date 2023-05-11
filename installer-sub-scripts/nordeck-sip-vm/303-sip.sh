@@ -154,7 +154,7 @@ sed -i "s/___JIBRI_SIP_PASSWD___/$JIBRI_SIP_PASSWD/" /etc/jitsi/jibri/jibri.conf
 cp home/jibri/.asoundrc /home/jibri/
 
 # sip ephemeral config service
-cp usr/local/sbin/sip-ephemeral-config /usr/local/sbin/
+cp usr/local/sbin/sip-ephemeral-config.vm /usr/local/sbin/sip-ephemeral-config
 chmod 744 /usr/local/sbin/sip-ephemeral-config
 cp etc/systemd/system/sip-ephemeral-config.service /etc/systemd/system/
 
