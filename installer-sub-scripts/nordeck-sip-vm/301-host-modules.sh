@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# HOST.SH
+# HOST-MODULES.SH
 # ------------------------------------------------------------------------------
 set -e
 source $INSTALLER/000-source
@@ -10,25 +10,19 @@ source $INSTALLER/000-source
 MACH="$TAG-sip-host"
 cd $MACHINES/$MACH
 
+export DEBIAN_FRONTEND=noninteractive
+
 # ------------------------------------------------------------------------------
 # INIT
 # ------------------------------------------------------------------------------
-[[ "$DONT_RUN_SIP_HOST" = true ]] && exit
+[[ "$DONT_RUN_HOST_MODULES" = true ]] && exit
 
 echo
-echo "-------------------------- HOST --------------------------"
-
-# ------------------------------------------------------------------------------
-# CLEAN UP
-# ------------------------------------------------------------------------------
-rm -f /lib/modules/$(uname -r)/kernel/drivers/video/v4l2loopback.ko
-depmod
+echo "---------------------- HOST MODULES ----------------------"
 
 # ------------------------------------------------------------------------------
 # PACKAGES
 # ------------------------------------------------------------------------------
-export DEBIAN_FRONTEND=noninteractive
-
 apt-get $APT_PROXY -y install uuid-runtime
 apt-get $APT_PROXY -y install kmod alsa-utils
 apt-get $APT_PROXY -y --no-install-recommends install linux-headers-$ARCH \

@@ -120,7 +120,6 @@ usermod -aG adm,audio,video,plugdev jibri
 chown jibri:jibri /home/jibri
 
 # jibri, icewm
-rm -rf /home/jibri/.icewm
 mkdir -p /home/jibri/.icewm
 cp home/jibri/.icewm/theme /home/jibri/.icewm/
 cp home/jibri/.icewm/prefoverride /home/jibri/.icewm/
@@ -134,7 +133,6 @@ fi
 
 update-ca-certificates
 
-rm -rf /home/jibri/.pki
 mkdir -p /home/jibri/.pki/nssdb
 chmod 700 /home/jibri/.pki
 chmod 700 /home/jibri/.pki/nssdb
@@ -168,7 +166,6 @@ systemctl enable jibri.service
 systemctl start jibri.service
 
 # jibri, vnc
-rm -rf /home/jibri/.vnc
 mkdir -p /home/jibri/.vnc
 x11vnc -storepasswd jibri /home/jibri/.vnc/passwd
 chown jibri:jibri /home/jibri/.vnc -R
