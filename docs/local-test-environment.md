@@ -37,13 +37,13 @@ These are only valid for the test environment.
 
 - Before installation
   - Update `pjsua.config` in `meta`
-  ```
-  --id "jitsi <sip:1009@sip.nordeck.corp>"
-  --registrar=sip:sip.nordeck.corp
-  --realm=*
-  --username=1009
-  --password=1234
-  ```
+    ```
+    --id "jitsi <sip:1009@sip.nordeck.corp>"
+    --registrar=sip:sip.nordeck.corp
+    --realm=*
+    --username=1009
+    --password=1234
+    ```
 - After installation
   - Set `CPI` to `2` in `/usr/local/sbin/sip-ephemeral-start`
 - Testing
@@ -54,3 +54,15 @@ These are only valid for the test environment.
   - `outgoing call` through API
   - `incoming call` through API
   - `direct incoming call` is not supported on LXC based `video-sip-gateway`
+
+### Additional Video-SIP-Gateway on VM
+
+- Before installation update kernel on VM and reboot
+  ```bash
+  apt-get update
+  apt-get install linux-image-amd64
+  reboot
+  ```
+- Testing
+  - `direct incoming call` through API
+  - `direct outgoing call` through UI
