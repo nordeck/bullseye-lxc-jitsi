@@ -39,18 +39,25 @@ pcm.pjsua {
   slave.pcm "bduplex"
 }
 
-# --capture-dev=7 if there is no sound card
+# capture device for pjsua, --capture-dev=7 if there is no sound card
 pcm.pjsua_capture {
   type plug
   slave.pcm "hw:Loopback,1,0"
 }
 
-# --playback-dev=8 if there is no sound card
+# playback device for pjsua, --playback-dev=8 if there is no sound card
 pcm.pjsua_playback {
   type plug
   slave.pcm "hw:Loopback_1,0,0"
 }
 
+# capture device for chrome
+pcm.chrome_capture {
+  type plug
+  slave.pcm "hw:Loopback_1,1,0"
+}
+
+# playback device for chrome (since this is the default option)
 pcm.!default {
   type plug
   slave.pcm "aduplex"
