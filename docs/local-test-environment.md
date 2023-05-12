@@ -24,6 +24,7 @@ These are only valid for the test environment.
 - After installation
   - Enable `harvester` addresses in
     `/etc/jitsi/videobridge/sip-communicator.properties`
+  - Hard-coded `EXTERNAL_IP` in `/usr/local/sbin/jvb-config`
 - Testing
   - 3 participants while `coturn` and `main jvb` are stopped
 
