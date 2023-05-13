@@ -1,10 +1,5 @@
 ## Development Notes
 
-### Simple installer for video-sip-gateway
-
-A simple installer script is needed for `video-sip-gateway`. Without LXC and
-without a compiler environment. `add-sip-vm`...
-
 ### Incoming call issue
 
 `Video-SIP-Gateway` is in `LXC` container behind a firewall. So `pjsua` is not
