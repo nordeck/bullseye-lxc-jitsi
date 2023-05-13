@@ -105,7 +105,7 @@ session through Jitsi UI.
 - Some development tools, codecs and libraries from Official Debian Bullseye
   repo
 
-## 11. Sip-video-gateway
+## 11. Video-sip-gateway
 
 Our `jibri` related modifications are in the `master` branch but not released
 yet as `deb` package.
@@ -129,5 +129,8 @@ yet as `deb` package.
 - custom `icewm` config
 - custom `asoundrc`
 - custom `pjsua` config
-- custom `ffmpeg` config
 - custom `jitsi-component-sidecar` config
+- custom `/usr/local/bin/chrome-stable`
+- custom `/opt/jitsi/jibri/pjsua.sh`
+- custom `snd_aloop` config
+- custom `v4l2loopback` config
