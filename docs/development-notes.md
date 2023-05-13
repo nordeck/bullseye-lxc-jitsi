@@ -4,10 +4,11 @@
 
 If there is a sound card on the system, `snd_aloop` module needs the system to
 be rebooted to create loopback devices because the first card (`card 0`) was
-already reserved by the existing card and `snd_aloop` cannot use it.
+already reserved by the existing card and `snd_aloop` cannot use it at the
+installation time.
 
-So rebooting `jibri` and `video-sip-gateway` machines after the installation
-solve the issue.
+So rebooting `jibri` and `video-sip-gateway` machines after installation solve
+the issue.
 
 ### Incoming call issue
 
