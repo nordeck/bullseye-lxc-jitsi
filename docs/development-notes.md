@@ -1,5 +1,14 @@
 ## Development Notes
 
+### Existing sound card issue
+
+If there is a sound card on the system, `snd_aloop` module needs the system to
+be rebooted to create loopback devices because the first card (`card 0`) was
+already reserved by the existing card and `snd_aloop` cannot use it.
+
+So rebooting `jibri` and `video-sip-gateway` machines after the installation
+solve the issue.
+
 ### Incoming call issue
 
 `Video-SIP-Gateway` is in `LXC` container behind a firewall. So `pjsua` is not
