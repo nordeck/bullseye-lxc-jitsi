@@ -7,7 +7,7 @@ be rebooted to create loopback devices because the first card (`card 0`) was
 already reserved by the existing card and `snd_aloop` cannot use it at the
 installation time.
 
-So rebooting `jibri` and `video-sip-gateway` machines after installation solve
+So rebooting `jibri` and `video-sip-gateway` machines after installation solves
 the issue.
 
 ### Incoming call issue
