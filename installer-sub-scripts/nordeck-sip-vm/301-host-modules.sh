@@ -61,7 +61,7 @@ if [[ "$DONT_CHECK_SND_ALOOP" != true ]] && \
 This kernel ($(uname -r)) does not support snd_aloop module or it is not
 up-to-date.
 
-Please install the standard Linux kernel package and reboot it.
+Please install the standard Linux kernel package and reboot with it.
 Probably it is "linux-image-$ARCH" for your case.
 
 EOF
@@ -75,7 +75,7 @@ if [[ "$DONT_CHECK_V4L2LOOPBACK" != true ]] && \
 This kernel ($(uname -r)) does not support v4l2loopback module or it is not
 up-to-date.
 
-Please install the standard Linux kernel package and reboot it.
+Please install the standard Linux kernel package and reboot with it.
 Probably it is "linux-image-$ARCH" for your case.
 
 EOF
