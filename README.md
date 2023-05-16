@@ -71,6 +71,7 @@
     - [5.1.4 SSH server](#514-ssh-server)
     - [5.1.5 JMS public key](#515-jms-public-key)
   - [5.2 Installation](#52-installation)
+  - [5.3 Warnings](#53-warnings)
 - [6. Sponsors](#6-sponsors)
 
 ## 1. JMS (Jitsi Meet Server)
@@ -470,6 +471,18 @@ Login as `root` to `JMS` and run `add-sip-vm` command using IP address of
 ```bash
 add-sip-vm <SIP-IP-ADDRESS>
 ```
+
+### 5.3 Warnings
+
+Some ports are publicly open by default in VM setup. Don't forget to limit their
+accessibility by using a firewall if the network interface is publicly
+accessible for this VM.
+
+Publicly open ports:
+
+- `TCP/2222`, Jibri's external API
+- `TCP/3333`, Jibri's internal API
+- `TCP/8017`, component-sidecar
 
 ## 6. Sponsors
 
