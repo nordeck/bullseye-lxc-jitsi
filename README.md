@@ -1,6 +1,6 @@
 # Jitsi Cluster
 
-`Jitsi` cluster based on `LXC`.
+`LXC` based `Jitsi` cluster on `Debian 11 Bullseye`.
 
 ```
 ╭───── JMS ─────╮          ╭───────── JVB POOL ──────────╮         ╭───────────╮
