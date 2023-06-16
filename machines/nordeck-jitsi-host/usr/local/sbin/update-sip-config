@@ -50,7 +50,7 @@ trap on_exit EXIT
 if [[ -z "$NODE" ]]; then
     cat <<EOF
 Usage:
-       update-jibri-node <NODE-ADDRESS>
+       update-sip-config <NODE-ADDRESS>
 EOF
     exit 1
 fi
