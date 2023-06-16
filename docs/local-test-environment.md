@@ -10,10 +10,7 @@ These are only valid for the test environment.
 - After installation
   - Enable `harvester` addresses in
     `/etc/jitsi/videobridge/sip-communicator.properties`
-  - Update `/root/meta/pjsua.config`
-  - Update `/root/meta/env.sidecar.sip`
-    - `SIP_CLIENT_PASSWORD`
-    - `SIP_CLIENT_USERNAME`
+  - Update `/root/meta/pjsua.config` (only needed for calls from UI)
   - Custom port in `/root/.ssh/jms-config`
   - Update `/home/dialplan/app/dial-plan.json`
 - Testing
@@ -31,12 +28,13 @@ These are only valid for the test environment.
 ### Additional Jibri
 
 - Testing
-  - recording
+  - recording with local JVB
+  - recording with additional JVB
 
 ### Additional Video-SIP-Gateway
 
 - Before installation
-  - Update `pjsua.config` in `meta`
+  - Update `pjsua.config` in `meta` (only needed for calls from UI)
     ```
     --id "jitsi <sip:1009@sip.nordeck.corp>"
     --registrar=sip:sip.nordeck.corp
