@@ -444,6 +444,8 @@ hocon -f /etc/jitsi/jicofo/jicofo.conf set jicofo.authentication.login-url \
 hocon -f /etc/jitsi/jicofo/jicofo.conf \
     set jicofo.authentication.enable-auto-login false
 hocon -f /etc/jitsi/jicofo/jicofo.conf \
+    set jicofo.authentication.authentication-lifetime '1 second'
+hocon -f /etc/jitsi/jicofo/jicofo.conf \
     set jicofo.conference.enable-auto-owner false
 
 hocon -f /etc/jitsi/jicofo/jicofo.conf \
