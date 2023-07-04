@@ -1,8 +1,8 @@
 # Jitsi Cluster
 
-`LXC` based `Jitsi` cluster on `Debian 11 Bullseye`.
-
 ![Jitsi Cluster](/docs/images/jitsi-cluster.png)
+
+`LXC` based `Jitsi` cluster on `Debian 11 Bullseye`.
 
 ## Installation
 
