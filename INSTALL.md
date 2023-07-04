@@ -1,9 +1,9 @@
 # Jitsi Cluster Deployment
 
+![Jitsi Cluster](/docs/images/jitsi-cluster.png)
+
 This guide contains step-by-step instructions to deploy `LXC` based `Jitsi`
 cluster on `Debian 11 Bullseye`.
-
-![Jitsi Cluster](/docs/images/jitsi-cluster.png)
 
 - [1. JMS (Jitsi Meet Server)](#1-jms-jitsi-meet-server)
   - [1.1 Prerequisites](#11-prerequisites)
