@@ -24,6 +24,9 @@ echo "------------------- JITSI CUSTOMIZATION -------------------"
 # ------------------------------------------------------------------------------
 # CONFIG.JS
 # ------------------------------------------------------------------------------
+# guest domain
+cat $MACHINES/$TAG-jitsi/etc/jitsi/meet/config.guest.js >> $CONFIG_JS
+
 # dialplan
 if [[ "$DONT_RUN_DIALPLAN" != true ]]; then
     cat $MACHINES/$TAG-jitsi/etc/jitsi/meet/config.dialplan.js >> $CONFIG_JS
