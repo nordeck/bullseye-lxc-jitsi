@@ -12,8 +12,8 @@ See [the deployment guide](/INSTALL.md).
 
 Deploying a `Jitsi` cluster is a complex task and requires a lot of specific
 configurations on each component to function properly. This repository contains
-tools that simplify the deployment processes and automatically configure each component
-without any user interaction.
+tools that simplify the deployment processes and automatically configure each
+component without any user interaction.
 
 ## Features
 
@@ -22,7 +22,7 @@ without any user interaction.
 - Allow to add as many `JVBs` as needed to scale up the number of participants
   and meetings.
 
-- Allow to add as many `Jibris`as needed to increase the number of concurrent
+- Allow to add as many `Jibris` as needed to increase the number of concurrent
   recordings.
 
 - Allow to add as many `video-sip-gateway` as needed to allow the video-SIP
