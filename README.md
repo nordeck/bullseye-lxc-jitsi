@@ -19,8 +19,17 @@ without any user interaction.
 
 - `JMS` node is the core of the cluster.
 
-- It is possible to add additional `JVB`s to scale up the number of participants
+- Allow to add as many `JVBs` as needed to scale up the number of participants
   and meetings.
+
+- Allow to add as many `Jibris`as needed to increase the number of concurrent
+  recordings.
+
+- Allow to add as many `video-sip-gateway` as needed to allow the video-SIP
+  participants.
+
+- Built in `component-selector` to manage `jibri` and `video-sip-gateway` nodes
+  programmatically.
 
 ## Sponsors
 
