@@ -407,9 +407,9 @@ sed -i '/\s*app_secret=/a \
 \    allow_empty_token = true \
 \    enable_domain_verification = false' \
     $PROSODY_CONFIG
-#sed -i '/^Component .conference\./,/admins/!b; /\s*"token_verification"/a \
-#\        "token_affiliation";' \
-#    $PROSODY_CONFIG
+sed -i '/^Component .conference\./,/admins/!b; /\s*"token_verification"/a \
+\        "token_affiliation";' \
+    $PROSODY_CONFIG
 
 # restart
 lxc-attach -n $MACH -- systemctl daemon-reload
