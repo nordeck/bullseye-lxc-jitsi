@@ -392,18 +392,24 @@ sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" \
 ln -s ../conf.avail/sip.$JITSI_FQDN.cfg.lua \
     $ROOTFS/etc/prosody/conf.d/
 
+# guest
+cp etc/prosody/conf.avail/guest.cfg.lua \
+   $ROOTFS/etc/prosody/conf.avail/guest.$JITSI_FQDN.cfg.lua
+ln -s ../conf.avail/guest.$JITSI_FQDN.cfg.lua \
+    $ROOTFS/etc/prosody/conf.d/
+
 # lua modules
 cp usr/share/jitsi-meet/prosody-plugins/*.lua \
     $ROOTFS/usr/share/jitsi-meet/prosody-plugins/
 
 # token related
 sed -i '/\s*app_secret=/a \
-\    allow_empty_token = false \
+\    allow_empty_token = true \
 \    enable_domain_verification = false' \
     $PROSODY_CONFIG
-sed -i '/^Component .conference\./,/admins/!b; /\s*"token_verification"/a \
-\        "token_affiliation";' \
-    $PROSODY_CONFIG
+#sed -i '/^Component .conference\./,/admins/!b; /\s*"token_verification"/a \
+#\        "token_affiliation";' \
+#    $PROSODY_CONFIG
 
 # restart
 lxc-attach -n $MACH -- systemctl daemon-reload
