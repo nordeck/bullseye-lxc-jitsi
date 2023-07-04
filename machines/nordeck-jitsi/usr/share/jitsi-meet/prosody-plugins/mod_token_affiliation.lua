@@ -62,6 +62,7 @@ local LOGLEVEL = "debug"
 
 local is_admin = require "core.usermanager".is_admin
 local is_healthcheck_room = module:require "util".is_healthcheck_room
+local timer = require "util.timer"
 module:log(LOGLEVEL, "loaded")
 
 local function _is_admin(jid)
@@ -100,4 +101,10 @@ module:hook("muc-occupant-joined", function (event)
 
     module:log(LOGLEVEL, "affiliation: %s", affiliation)
     room:set_affiliation(true, occupant.bare_jid, affiliation)
+
+    -- overwrite the jicofo affiliation after 3 secs
+    timer.add_task(3, function()
+        module:log(LOGLEVEL, "overwrite affiliation: %s", affiliation)
+        room:set_affiliation(true, occupant.bare_jid, affiliation)
+    end)
 end)
