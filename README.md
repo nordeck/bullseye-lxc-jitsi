@@ -15,6 +15,13 @@ configurations on each component to function properly. This repository contains
 tools that simplify the deployment processes and automatically configure each component
 without any user interaction.
 
+## Features
+
+- `JMS` node is the core of the cluster.
+
+- It is possible to add additional `JVB`s to scale up the number of participants
+  and meetings.
+
 ## Sponsors
 
 [![Nordeck](/docs/images/nordeck.png)](https://nordeck.net/)
