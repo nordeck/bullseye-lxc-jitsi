@@ -31,6 +31,8 @@ component without any user interaction.
 - Built in `component-selector` to manage `jibri` and `video-sip-gateway` nodes
   programmatically.
 
+- `JWT` authentication and `guest` domain are enabled by default.
+
 ## Sponsors
 
 [![Nordeck](/docs/images/nordeck.png)](https://nordeck.net/)
