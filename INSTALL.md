@@ -414,8 +414,12 @@ moderator users.
 
 #### 5.1.3 Public Ports
 
-- `TCP/22`
-  \
+- `TCP/5060` and `UDP/5060`\
+  _`SIP` ports... These ports must be open if there will be direct incoming
+  `SIP` call (a call from a remote SIP device without using a SIP server in the
+  middle)_
+
+- `TCP/22`\
   _`SSH` port... This port must be accessible for `JMS`_
 
 #### 5.1.4 SSH server
