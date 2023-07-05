@@ -116,7 +116,7 @@ host turn.nordeck.corp
   access `JMS` through the public IP_
 
 - `UDP/10000`\
-  _If there is an enabled `JVB` on `JMS`_
+  _If the internal `JVB` on `JMS` is enabled_
 
 ### 1.2 Installation
 
