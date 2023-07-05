@@ -29,7 +29,9 @@ component without any user interaction.
   participants.
 
 - Built in `component-selector` to manage `jibri` and `video-sip-gateway` nodes
-  programmatically.
+  programmatically. See
+  [component-selector-api-examples](/docs/component-selector-api-examples)
+  folder for more details.
 
 - `JWT` authentication and `guest` domain are enabled by default.
 
