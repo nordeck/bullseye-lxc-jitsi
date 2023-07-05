@@ -28,12 +28,14 @@ component without any user interaction.
 - Allow to add as many `video-sip-gateway` as needed to allow the video-SIP
   participants.
 
-- Built in `component-selector` to manage `jibri` and `video-sip-gateway` nodes
+- Built-in `component-selector` to manage `jibri` and `video-sip-gateway` nodes
   programmatically. See
   [component-selector-api-examples](/docs/component-selector-api-examples)
   folder for more details.
 
 - `JWT` authentication and `guest` domain are enabled by default.
+
+- Built-in `dial-plan` service to provide `SIP` contact list for `Jitsi` UI.
 
 ## Sponsors
 
