@@ -35,7 +35,7 @@ component without any user interaction.
 
 - Built-in `dial-plan` service to provide `SIP` contact list for `Jitsi` UI.
 
-- `JWT` authentication and `guest` domain are enabled by default.
+- `JWT` authentication and `guest` domain are enabled and configured by default.
 
 ## Sponsors
 
