@@ -74,8 +74,8 @@ The `JMS` server contains:
 - `JVB`\
   _Jitsi Video Bridge service_\
   \
-  _This service may be disabled on `JMS` if there are additional `JVBs`. This is
-  the recommended way for the production environment._
+  _This internal `JVB` may be disabled on `JMS` if there are additional `JVBs`.
+  This is the recommended way for the production environment._
 
 ### 1.1 Prerequisites
 
