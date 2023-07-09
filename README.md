@@ -37,6 +37,8 @@ component without any user interaction.
 
 - `JWT` authentication and `guest` domain are enabled and configured by default.
 
+- `Whiteboard` (_based on Excalidraw_) is enabled and configured by default.
+
 ## Sponsors
 
 [![Nordeck](/docs/images/nordeck.png)](https://nordeck.net/)
