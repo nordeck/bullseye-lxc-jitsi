@@ -62,6 +62,8 @@ CHROMEDRIVER_LINK=$(curl -s \
     jq -r ".versions[].downloads.chromedriver | select(. != null) | .[].url" | \
     grep linux64 | grep "$CHROME_VER" | tail -1)
 wget -T 30 -qO /tmp/chromedriver-linux64.zip $CHROMEDRIVER_LINK
+
+rm -rf /tmp/chromedriver-linux64
 unzip -o /tmp/chromedriver-linux64.zip -d /tmp
 mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/
 chmod 755 /usr/local/bin/chromedriver
