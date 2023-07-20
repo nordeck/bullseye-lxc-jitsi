@@ -107,6 +107,7 @@ EOS
 lxc-attach -n $MACH -- zsh <<EOS
 set -e
 export DEBIAN_FRONTEND=noninteractive
+apt-get $APT_PROXY -y install jq
 apt-get $APT_PROXY -y install gnupg unzip unclutter
 apt-get $APT_PROXY -y install libnss3-tools
 apt-get $APT_PROXY -y install va-driver-all vdpau-driver-all
