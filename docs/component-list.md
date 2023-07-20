@@ -115,9 +115,10 @@ yet as `deb` package.
 - `deb package` of `jibri` <-- https://download.jitsi.org
 - `deb package` of `jitsi-component-sidecar`
 - `executable binary` of `pjsua`
-- `nodejs` and `npm` from https://deb.nodesource.com/node_18.x
+- `nodejs` and `npm` from https://deb.nodesource.com/node_20.x
 - `google-chrome-stable` from https://dl.google.com/linux/chrome/deb/
 - `chromedriver` from https://chromedriver.storage.googleapis.com/
+- `chromedriver` from https://edgedl.me.gvt1.com (_after version 115_)
 - `ffmpeg` from Official Debian Bullseye repo
 - `redis` from Official Debian Bullseye repo
 
