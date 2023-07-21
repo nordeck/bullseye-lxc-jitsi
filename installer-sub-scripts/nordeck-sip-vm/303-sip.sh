@@ -121,7 +121,7 @@ systemctl daemon-reload
 systemctl enable sip-icewm.service
 
 # jibri groups
-chsh -s /bin/bash jibri
+chsh -s /usr/bin/bash jibri
 usermod -aG adm,audio,video,plugdev jibri
 chown jibri:jibri /home/jibri
 
