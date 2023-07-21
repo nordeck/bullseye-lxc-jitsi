@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 LOG_DIR_PATH="/var/log/jitsi/jibri"
 LATEST_PJSUA_LOG_FILE="$LOG_DIR_PATH/pjsua.log"
