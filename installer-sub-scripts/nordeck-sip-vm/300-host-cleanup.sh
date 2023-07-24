@@ -20,6 +20,7 @@ echo "------------------------ CLEAN UP -------------------------"
 # ------------------------------------------------------------------------------
 # CLEAN UP
 # ------------------------------------------------------------------------------
+systemctl stop component-sidecar-config.service || true
 systemctl stop jitsi-component-sidecar.service || true
 systemctl stop sip-xorg.service || true
 systemctl stop jibri-xorg.service || true
@@ -54,6 +55,7 @@ rm -f  /etc/apt/sources.list.d/nodesource.list
 rm -f  /usr/local/bin/chromedriver
 rm -f  /usr/local/bin/google-chrome
 rm -f  /usr/local/bin/pjsua
+rm -f  /usr/local/sbin/component-sidecar-config
 rm -f  /usr/local/sbin/sip-ephemeral-config
 rm -f  /usr/share/keyrings/google-chrome.gpg
 rm -f  /usr/share/keyrings/jitsi.gpg
