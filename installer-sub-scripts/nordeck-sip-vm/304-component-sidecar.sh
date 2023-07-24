@@ -37,9 +37,10 @@ apt-get $APT_PROXY -y install nodejs
 npm install npm -g
 
 # jitsi-component-sidecar
-debconf-set-selections <<< "\
-    jitsi-component-sidecar jitsi-component-sidecar/selector-address string \
-    $JITSI_FQDN"
+cat <<EOF | debconf-set-selections
+jitsi-component-sidecar jitsi-component-sidecar/selector-address string \
+$JITSI_FQDN
+EOF
 
 dpkg -i /root/meta/jitsi-component-sidecar.deb
 
