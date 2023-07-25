@@ -1,6 +1,7 @@
 [Unit]
 Description=Component Sidecar Config
-After=network.target
+Wants=network-online.target
+After=network-online.target
 Before=jitsi-component-sidecar.service
 
 [Service]
