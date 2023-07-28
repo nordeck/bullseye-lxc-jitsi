@@ -1,3 +1,3 @@
 VirtualHost "guest.domain.loc"
-    authentication = "anonymous"
+    authentication = "jitsi-anonymous"
     c2s_require_encryption = false
