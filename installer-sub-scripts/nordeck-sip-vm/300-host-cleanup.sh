@@ -46,10 +46,10 @@ delgroup jibri || true
 rm -rf /home/jibri
 rm -rf /etc/jitsi
 rm -rf /etc/opt/chrome
-rm -rf /etc/systemd/system/virtual-camera-*
 rm -rf /etc/systemd/system/jibri*
 rm -rf /etc/systemd/system/jitsi-*
 rm -rf /etc/systemd/system/sip-*
+rm -rf /etc/systemd/system/virtual-camera-*
 rm -rf /opt/jitsi
 rm -rf /var/log/jitsi
 rm -f  /etc/apt/sources.list.d/jitsi-stable.list
