@@ -333,6 +333,13 @@ chown jibri:jibri /home/jibri/.Xdefaults
 EOS
 
 # ------------------------------------------------------------------------------
+# VIRTUAL CAMERAS
+# ------------------------------------------------------------------------------
+cp etc/systemd/system/virtual-camera-0.service $ROOTFS/etc/systemd/system/
+cp etc/systemd/system/virtual-camera-1.service $ROOTFS/etc/systemd/system/
+lxc-attach -n $MACH -- systemctl daemon-reload
+
+# ------------------------------------------------------------------------------
 # PJSUA
 # ------------------------------------------------------------------------------
 mv /root/pjsua $ROOTFS/usr/local/bin/pjsua

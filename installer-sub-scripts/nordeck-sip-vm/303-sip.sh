@@ -186,6 +186,13 @@ cp home/jibri/.Xdefaults /home/jibri/
 chown jibri:jibri /home/jibri/.Xdefaults
 
 # ------------------------------------------------------------------------------
+# VIRTUAL CAMERAS
+# ------------------------------------------------------------------------------
+cp etc/systemd/system/virtual-camera-0.service /etc/systemd/system/
+cp etc/systemd/system/virtual-camera-1.service /etc/systemd/system/
+systemctl daemon-reload
+
+# ------------------------------------------------------------------------------
 # PJSUA
 # ------------------------------------------------------------------------------
 cp /root/meta/pjsua /usr/local/bin/pjsua
