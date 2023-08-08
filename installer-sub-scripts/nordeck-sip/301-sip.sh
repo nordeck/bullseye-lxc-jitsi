@@ -114,6 +114,7 @@ apt-get $APT_PROXY -y install va-driver-all vdpau-driver-all
 apt-get $APT_PROXY -y install openjdk-11-jre-headless
 apt-get $APT_PROXY -y --install-recommends install ffmpeg
 apt-get $APT_PROXY -y install x11vnc
+apt-get $APT_PROXY -y install sudo
 EOS
 
 # google chrome
@@ -208,6 +209,10 @@ EOS
 mkdir -p $ROOTFS/etc/opt/chrome/policies/managed
 cp etc/opt/chrome/policies/managed/$TAG-policies.json \
     $ROOTFS/etc/opt/chrome/policies/managed/
+
+# sudo
+cp etc/sudoers.d/jibri $ROOTFS/etc/sudoers.d/
+chmod 440 $ROOTFS/etc/sudoers.d/jibri
 
 # ------------------------------------------------------------------------------
 # JIBRI

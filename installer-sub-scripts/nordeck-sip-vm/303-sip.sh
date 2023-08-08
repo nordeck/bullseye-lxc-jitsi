@@ -35,6 +35,7 @@ apt-get $APT_PROXY -y install va-driver-all vdpau-driver-all
 apt-get $APT_PROXY -y install openjdk-11-jre-headless
 apt-get $APT_PROXY -y --install-recommends install ffmpeg
 apt-get $APT_PROXY -y install x11vnc
+apt-get $APT_PROXY -y install sudo
 
 # google chrome
 cp etc/apt/sources.list.d/google-chrome.list /etc/apt/sources.list.d/
@@ -93,6 +94,10 @@ apt-get -y purge upower
 mkdir -p /etc/opt/chrome/policies/managed
 cp etc/opt/chrome/policies/managed/$TAG-policies.json \
     /etc/opt/chrome/policies/managed/
+
+# sudo
+cp etc/sudoers.d/jibri /etc/sudoers.d/
+chmod 440 /etc/sudoers.d/jibri
 
 # ------------------------------------------------------------------------------
 # JIBRI
