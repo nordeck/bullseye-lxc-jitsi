@@ -13,6 +13,7 @@ These are only valid for the test environment.
   - Update `/root/meta/pjsua.config` (only needed for calls from UI)
   - Custom port in `/root/.ssh/jms-config`
   - Update `/home/dialplan/app/dial-plan.json`
+    `/var/lib/lxc/nordeck-dialplan/rootfs/home/dialplan/app/dial-plan.json`
 - Testing
   - 3 participants while `coturn` is stopped
 
