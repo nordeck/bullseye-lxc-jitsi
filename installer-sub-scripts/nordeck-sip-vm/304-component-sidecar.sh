@@ -62,14 +62,15 @@ sed -i "s/___JITSI_FQDN___/$JITSI_FQDN/" /etc/jitsi/sidecar/env
 chown jitsi-sidecar:jitsi /etc/jitsi/sidecar/*
 
 # ------------------------------------------------------------------------------
-# COMPONENT-SIDECAR-CONFIG
+# JITSI-COMPONENT-SIDECAR-CONFIG
 # ------------------------------------------------------------------------------
-cp usr/local/sbin/component-sidecar-config.vm \
-    /usr/local/sbin/component-sidecar-config
-chmod 744 /usr/local/sbin/component-sidecar-config
-cp etc/systemd/system/component-sidecar-config.service /etc/systemd/system/
+cp usr/local/sbin/jitsi-component-sidecar-config.vm \
+    /usr/local/sbin/jitsi-component-sidecar-config
+chmod 744 /usr/local/sbin/jitsi-component-sidecar-config
+cp etc/systemd/system/jitsi-component-sidecar-config.service \
+    /etc/systemd/system/
 
 systemctl daemon-reload
-systemctl enable component-sidecar-config.service
-systemctl restart component-sidecar-config.service
+systemctl enable jitsi-component-sidecar-config.service
+systemctl restart jitsi-component-sidecar-config.service
 systemctl restart jitsi-component-sidecar.service
