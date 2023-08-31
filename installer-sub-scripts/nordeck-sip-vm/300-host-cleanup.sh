@@ -22,8 +22,8 @@ echo "------------------------ CLEAN UP -------------------------"
 # ------------------------------------------------------------------------------
 systemctl stop virtual-camera-0.service || true
 systemctl stop virtual-camera-1.service || true
-systemctl stop component-sidecar-config.service || true
 systemctl stop jitsi-component-sidecar.service || true
+systemctl stop jitsi-component-sidecar-config.service || true
 systemctl stop sip-xorg.service || true
 systemctl stop jibri-xorg.service || true
 
@@ -46,7 +46,6 @@ delgroup jibri || true
 rm -rf /home/jibri
 rm -rf /etc/jitsi
 rm -rf /etc/opt/chrome
-rm -rf /etc/systemd/system/component-sidecar-*
 rm -rf /etc/systemd/system/jibri*
 rm -rf /etc/systemd/system/jitsi-*
 rm -rf /etc/systemd/system/sip-*
