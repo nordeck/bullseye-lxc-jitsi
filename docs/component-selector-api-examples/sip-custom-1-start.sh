@@ -11,7 +11,6 @@ set -e
 # Usage:
 #   export JITSI_HOST="https://jitsi.nordeck.corp"
 #   export JITSI_ROOM="myroom"
-#   export TOKEN="token-value-..."
 #
 #   bash sip-custom-1-start.sh <DISPLAY_NAME>
 #
@@ -27,7 +26,7 @@ JSON=$(cat <<EOF
   "callParams": {
     "callUrlInfo": {
       "baseUrl": "$JITSI_HOST",
-      "callName": "$JITSI_ROOM?jwt=$TOKEN"
+      "callName": "$JITSI_ROOM"
     }
   },
   "componentParams": {

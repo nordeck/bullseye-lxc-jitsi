@@ -11,7 +11,6 @@ set -e
 # Usage:
 #   export JITSI_HOST="https://jitsi.nordeck.corp"
 #   export JITSI_ROOM="myroom"
-#   export PROSODY_SIP_PASSWD="my-secret-password"
 #   export INVITER_USERNAME="1009@sip.nordeck.corp"
 #   export INVITER_PASSWORD="1234"
 #   export INVITER_CONTACT="<sip:1009@172.17.17.36:5060;transport=udp>"
@@ -25,10 +24,6 @@ set -e
 INVITEE="$1"
 DISPLAY_NAME=$(echo $INVITEE | cut -d: -f2 | cut -d@ -f1)
 
-
-# `callLoginParams` is needed to bypass Prosody authentication. If you don't
-# want to use this block then set `callParams.callUrlInfo.callName` as
-# `roomName?jwt=token-value`
 JSON=$(cat <<EOF
 {
   "callParams": {
@@ -51,11 +46,6 @@ JSON=$(cat <<EOF
       "displayName": "$DISPLAY_NAME",
       "autoAnswer": true
     }
-  },
-  "callLoginParams": {
-    "domain": "sip.jitsi.nordeck.corp",
-    "username": "sip",
-    "password": "$PROSODY_SIP_PASSWD"
   }
 }
 EOF
