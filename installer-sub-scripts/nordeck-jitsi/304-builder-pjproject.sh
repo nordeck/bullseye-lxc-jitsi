@@ -12,7 +12,7 @@ cd $MACHINES/$MACH
 
 ROOTFS="/var/lib/lxc/$MACH/rootfs"
 PROJECT_REPO="https://github.com/jitsi/pjproject"
-PROJECT_BRANCH="jibri-2.10-dev1"
+PROJECT_BRANCH="jibri-2.13-dev1"
 
 # ------------------------------------------------------------------------------
 # INIT
