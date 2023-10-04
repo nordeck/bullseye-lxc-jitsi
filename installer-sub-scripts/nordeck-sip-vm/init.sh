@@ -22,7 +22,7 @@ echo "-------------------------- CHECKING -------------------------"
 KERNEL=$(apt-get --simulate dist-upgrade | grep "Inst linux-image-" || true)
 if [[ -n "$KERNEL" ]]; then
     cat <<EOF
-Your kernel is not up-to-date on the target machine. Please upgrade the kernel
+The kernel is not up-to-date on the target machine. Please upgrade the kernel
 on the target machine first, reboot it by using the new kernel and then try
 again.
 
