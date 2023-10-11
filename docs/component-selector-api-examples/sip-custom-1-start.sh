@@ -47,6 +47,6 @@ EOF
 )
 
 curl -sk \
-  -X POST https://jitsi.nordeck.corp/jitsi-component-selector/sessions/start \
+  -X POST $JITSI_HOST/jitsi-component-selector/sessions/start \
   --header "Content-Type: application/json" \
   --data @- <<< $JSON | jq '.'

@@ -31,6 +31,6 @@ EOF
 )
 
 curl -sk \
-  -X POST https://jitsi.nordeck.corp/jitsi-component-selector/sessions/stop \
+  -X POST $JITSI_HOST/jitsi-component-selector/sessions/stop \
   --header "Content-Type: application/json" \
   --data @- <<< $JSON
