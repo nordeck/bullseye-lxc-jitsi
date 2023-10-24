@@ -8,6 +8,7 @@ set -e
 # Usage:
 #   export JITSI_HOST="https://jitsi.nordeck.corp"
 #   export JITSI_ROOM="myroom"
+#   export PROSODY_RECORDER_PASSWD="recorder-password"
 #
 #   bash recording-start.sh
 # ------------------------------------------------------------------------------
@@ -27,6 +28,11 @@ JSON=$(cat <<EOF
   },
   "metadata": {
     "sinkType": "FILE"
+  },
+  "callLoginParams": {
+    "domain": "recorder.jitsi.nordeck.corp",
+    "username": "recorder",
+    "password": "$PROSODY_RECORDER_PASSWD"
   }
 }
 EOF
