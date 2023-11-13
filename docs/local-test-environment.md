@@ -10,6 +10,8 @@ These are only valid for the test environment.
 - After installation
   - Enable `harvester` addresses in
     `/etc/jitsi/videobridge/sip-communicator.properties`
+  - Disable `STUN_MAPPING_HARVESTER_ADDRESSES` in
+    `/etc/jitsi/videobridge/sip-communicator.properties`
   - Update `/root/meta/pjsua.config` (only needed for calls from UI)
   - Custom port in `/root/.ssh/jms-config`
   - Update `/home/dialplan/app/dial-plan.json`
