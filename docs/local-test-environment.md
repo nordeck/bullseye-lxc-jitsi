@@ -30,6 +30,8 @@ These are only valid for the test environment.
 
 ### Additional Jibri
 
+- After installation
+  - Set `CPI` to `1` in `/usr/local/sbin/jibri-ephemeral-start`
 - Testing
   - recording with local JVB
   - recording with additional JVB
