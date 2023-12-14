@@ -2,6 +2,8 @@
 
 ### HTTP Basic Access Authentication
 
+See _page 38_ in _API Reference_ for API.
+
 ```bash
 BASIC_AUTH_USER="myname"
 BASIC_AUTH_PASS="mypassword"
@@ -14,7 +16,7 @@ curl -k -H "Authorization: Basic $BASIC_AUTH" $HOST/configuration.xml
 
 ### Command through API
 
-Updating the device name:
+#### Updating the device name
 
 ```bash
 DATA=$(cat <<EOF
@@ -32,7 +34,9 @@ curl -k $HOST/putxml \
   -d "$DATA"
 ```
 
-Reboot:
+#### Rebooting
+
+See _page 325_ in _API Reference_ for `SystemUnit Boot`.
 
 ```bash
 DATA=$(cat <<EOF
@@ -52,3 +56,7 @@ curl -k $HOST/putxml \
   -H "Content-Type: text/xml" \
   -d "$DATA"
 ```
+
+### Links
+
+- https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-111/api-reference-guide-roomos-111.pdf
