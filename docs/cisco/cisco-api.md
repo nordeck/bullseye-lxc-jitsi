@@ -14,6 +14,8 @@ curl -k -H "Authorization: Basic $BASIC_AUTH" $HOST/configuration.xml
 
 ### Command through API
 
+Updating the device name:
+
 ```bash
 DATA=$(cat <<EOF
 <Configuration>
@@ -27,5 +29,26 @@ EOF
 curl -k $HOST/putxml \
   -H "Authorization: Basic $BASIC_AUTH" \
   -H "Content-Type: text/xml" \
+  -d "$DATA"
+```
 
+Reboot:
+
+```bash
+DATA=$(cat <<EOF
+<Command>
+  <SystemUnit>
+    <Boot command="True">
+      <Action>Restart</Action>
+      <Force>True</Force>
+    </Boot>
+  </SystemUnit>
+</Command>
+EOF
+)
+
+curl -k $HOST/putxml \
+  -H "Authorization: Basic $BASIC_AUTH" \
+  -H "Content-Type: text/xml" \
+  -d "$DATA"
 ```
