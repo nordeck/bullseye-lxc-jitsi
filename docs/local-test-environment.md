@@ -8,12 +8,11 @@ These are only valid for the test environment.
   - Set `JITSI_FQDN` and `TURN_FQDN` in `nordeck-jitsi.conf`
   - Set `APP_ID` and `APP_SECRET` in `nordeck-jitsi.conf`
 - After installation
-  - Enable `harvester` addresses in
-    `/etc/jitsi/videobridge/sip-communicator.properties`
-  - Disable `STUN_MAPPING_HARVESTER_ADDRESSES` in
-    `/etc/jitsi/videobridge/sip-communicator.properties`
-  - Update `/root/meta/pjsua.config` (only needed for calls from UI)
+  - `/etc/jitsi/videobridge/sip-communicator.properties` in `nordeck-jitsi`
+    - Disable `STUN_MAPPING_HARVESTER_ADDRESSES`
+    - Enable `harvester` addresses
   - Custom port in `/root/.ssh/jms-config`
+  - Update `/root/meta/pjsua.config` (only needed for calls from UI)
   - Update `/home/dialplan/app/dial-plan.json`
     `/var/lib/lxc/nordeck-dialplan/rootfs/home/dialplan/app/dial-plan.json`
 - Testing
