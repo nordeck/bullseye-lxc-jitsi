@@ -57,6 +57,30 @@ curl -k $HOST/putxml \
   -d "$DATA"
 ```
 
+### Factory reset
+
+See _page 326_ in _API Reference_ for
+
+```bash
+DATA=$(cat <<EOF
+<Command>
+  <SystemUnit>
+    <FactoryReset command="True">
+      <Confirm>Yes</Confirm>
+      <Keep>Certificates/HTTP/LocalSetup/Network/Provisioning/RemoteSupportUser</Keep>
+      <TrailingAction>Restart</TrailingAction>
+    </FactoryReset>
+  </SystemUnit>
+</Command>
+EOF
+)
+
+curl -k $HOST/putxml \
+  -H "Authorization: Basic $BASIC_AUTH" \
+  -H "Content-Type: text/xml" \
+  -d "$DATA"
+```
+
 ### Links
 
 - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-111/api-reference-guide-roomos-111.pdf
