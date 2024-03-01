@@ -10,7 +10,7 @@ set -e
 #   export JITSI_ROOM="myroom"
 #   export PRIVATE_KEY_FILE="./signal.key"
 #
-#   bash sip-outbound-stop.sh <SESSION_ID>
+#   bash sip-stop.sh <SESSION_ID>
 # ------------------------------------------------------------------------------
 [[ -z "$PRIVATE_KEY_FILE" ]] && PRIVATE_KEY_FILE="./signal.key" || true
 
