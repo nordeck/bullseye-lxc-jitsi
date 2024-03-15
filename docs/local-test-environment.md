@@ -9,8 +9,8 @@ These are only valid for the test environment.
   - Set `APP_ID` and `APP_SECRET` in `nordeck-jitsi.conf`
 - After installation
   - `/etc/jitsi/videobridge/sip-communicator.properties` in `nordeck-jitsi`
-    - Disable `STUN_MAPPING_HARVESTER_ADDRESSES`
     - Enable `harvester` addresses
+    - Don't disable `STUN_MAPPING_HARVESTER_ADDRESSES`
   - Custom port in `/root/.ssh/jms-config`
   - Update `/root/meta/pjsua.config` (only needed for calls from UI)
   - Update `/home/dialplan/app/dial-plan.json`
@@ -23,6 +23,7 @@ These are only valid for the test environment.
 - After installation
   - Enable `harvester` addresses in
     `/etc/jitsi/videobridge/sip-communicator.properties`
+  - Don't disable `STUN_MAPPING_HARVESTER_ADDRESSES`
   - Hard-coded `EXTERNAL_IP` in `/usr/local/sbin/jvb-config`
 - Testing
   - 3 participants while `coturn` and `main jvb` are stopped
