@@ -25,6 +25,7 @@ set -e
 
 INVITEE="$1"
 DISPLAY_NAME=$(echo $INVITEE | cut -d: -f2 | cut -d@ -f1)
+AUTO_ANSWER_TIMEOUT=30
 
 JSON=$(cat <<EOF
 {
@@ -46,7 +47,8 @@ JSON=$(cat <<EOF
       "contact": "$INVITER_CONTACT",
       "sipAddress": "$INVITEE",
       "displayName": "$DISPLAY_NAME",
-      "autoAnswer": true
+      "autoAnswer": true,
+      "autoAnswerTimer": $AUTO_ANSWER_TIMEOUT
     }
   }
 }
