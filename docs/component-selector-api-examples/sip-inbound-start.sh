@@ -14,6 +14,7 @@ set -e
 #   export INVITER_USERNAME="1009@sip.nordeck.corp"
 #   export INVITER_PASSWORD="1234"
 #   export INVITER_CONTACT="<sip:1009@172.17.17.36:5060;transport=udp>"
+#   #export INVITER_CONTACT="<sip:1009@192.168.1.1>"
 #   export PRIVATE_KEY_FILE="./signal.key"
 #
 #   bash sip-inbound-start.sh <INVITEE>
