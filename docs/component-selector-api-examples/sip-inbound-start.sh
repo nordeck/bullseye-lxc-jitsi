@@ -12,9 +12,10 @@ set -e
 #   export JITSI_HOST="https://jitsi.nordeck.corp"
 #   export JITSI_ROOM="myroom"
 #   export INVITER_USERNAME="1009@sip.nordeck.corp"
+#   #export INVITER_USERNAME="1009@sip.nordeck.corp:5060;transport=tcp"
 #   export INVITER_PASSWORD="1234"
 #   export INVITER_CONTACT="<sip:1009@172.17.17.36:5060;transport=udp>"
-#   #export INVITER_CONTACT="<sip:1009@192.168.1.1>"
+#   #export INVITER_CONTACT="<sip:1009@172.17.17.36:5060;transport=tcp>"
 #   export PRIVATE_KEY_FILE="./signal.key"
 #
 #   bash sip-inbound-start.sh <INVITEE>
