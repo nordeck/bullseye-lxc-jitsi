@@ -81,7 +81,7 @@ session through Jitsi UI.
 
 **Dependencies:**
 
-- `nodejs` and `npm` from https://deb.nodesource.com/node_18.x
+- `nodejs` and `npm` from https://deb.nodesource.com/node_20.x
 - `redis` from Official Debian Bullseye repo
 
 ## 9. Jitsi-component-sidecar
@@ -92,7 +92,7 @@ session through Jitsi UI.
 
 **Dependencies:**
 
-- `nodejs` and `npm` from https://deb.nodesource.com/node_18.x
+- `nodejs` and `npm` from https://deb.nodesource.com/node_20.x
 
 ## 10. Pjproject
 
